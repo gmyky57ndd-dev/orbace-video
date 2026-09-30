@@ -1,0 +1,83 @@
+[
+  {
+    "type": "full_replay",
+    "supu_id": "SP-20260928-355762",
+    "title": "Identifying a quick contradiction to pinpoint a critical digit",
+    "hook": "What if r5c3 = 1?",
+    "level": "Extreme",
+    "sub_level": null,
+    "videos": [
+      {
+        "aspect": "16:9",
+        "youtube_id": "dVESq4-Yt9A",
+        "duration_s": 140,
+        "file": "videos/full-replay/SP-20260928-355762/renders/final/SP-20260928-355762_full_169_4k.mp4",
+        "poster": "videos/full-replay/SP-20260928-355762/publishing/thumbnails/SP-20260928-355762_full_169_thumb.jpg"
+      },
+      {
+        "aspect": "9:16",
+        "youtube_id": "mQQyWzigqRU",
+        "duration_s": 140,
+        "file": "videos/full-replay/SP-20260928-355762/renders/final/SP-20260928-355762_full_916_4k.mp4",
+        "poster": "videos/full-replay/SP-20260928-355762/publishing/thumbnails/SP-20260928-355762_full_916_thumb.jpg"
+      }
+    ],
+    "published_at": "2026-09-29",
+    "status": "live",
+    "featured_until": null,
+    "pin_in_tab": false
+  },
+  {
+    "type": "trailer",
+    "supu_id": "SP-20260925-683633",
+    "title": "Using ibtree to identify a quick contradiction",
+    "hook": "This puzzle looked impossible.",
+    "level": "Extreme",
+    "sub_level": "Hell",
+    "videos": [
+      {
+        "aspect": "16:9",
+        "youtube_id": "0Zh2wJWnCrI",
+        "duration_s": 43,
+        "file": "videos/trailer/SP-20260925-683633-extreme-ibtree/renders/final/SP-20260925-683633_trailer_169_1080p.mp4"
+      },
+      {
+        "aspect": "9:16",
+        "youtube_id": "oOBIhpPqBd4",
+        "duration_s": 43,
+        "file": "videos/trailer/SP-20260925-683633-extreme-ibtree/renders/final/SP-20260925-683633_trailer_916_1080p.mp4"
+      }
+    ],
+    "published_at": "2026-09-26",
+    "status": "live",
+    "featured_until": null,
+    "pin_in_tab": false
+  },
+  {
+    "type": "lesson",
+    "supu_id": "SP-20260801-567421",
+    "title": "When the Branch Holds: Finishing Without Contradiction",
+    "level": "Extreme",
+    "sub_level": null,
+    "lesson": {
+      "number": 7,
+      "path": "/journal/when-the-branch-holds/journal-when-the-branch-holds"
+    },
+    "videos": [
+      {
+        "aspect": "16:9",
+        "youtube_id": "fk18qqlLIPU",
+        "duration_s": 75,
+        "file": "videos/journal-lesson/lesson7/renders/final/SP-20260801-567421_lesson_169_1080p.mp4"
+      },
+      {
+        "aspect": "9:16",
+        "youtube_id": null,
+        "duration_s": 70,
+        "file": "videos/journal-lesson/lesson7/renders/final/SP-20260801-567421_lesson_916_1080p.mp4"
+      }
+    ],
+    "published_at": "2026-09-29",
+    "status": "live"
+  }
+]

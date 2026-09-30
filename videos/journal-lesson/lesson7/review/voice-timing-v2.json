@@ -1,0 +1,230 @@
+{
+  "version": 2,
+  "temporaryVoice": true,
+  "voice": "Samantha (macOS system voice)",
+  "rateWpm": 135,
+  "leadInSeconds": 5.6,
+  "totalDurationSeconds": 59.965584,
+  "phrases": [
+    {
+      "id": "setup",
+      "text": "An Extreme puzzle begins simply enough.",
+      "pauseAfter": 0.25,
+      "index": 1,
+      "start": 5.6,
+      "end": 8.056021,
+      "duration": 2.456021,
+      "voice": "Samantha",
+      "rateWpm": 135
+    },
+    {
+      "id": "cross-hatching",
+      "text": "A few cross-hatching moves reveal a confined group: one and seven.",
+      "pauseAfter": 0.55,
+      "index": 2,
+      "start": 8.306021,
+      "end": 12.561729,
+      "duration": 4.255708,
+      "voice": "Samantha",
+      "rateWpm": 135
+    },
+    {
+      "id": "fork",
+      "text": "Then comes the fork.",
+      "pauseAfter": 0.25,
+      "index": 3,
+      "start": 13.111729,
+      "end": 14.327208,
+      "duration": 1.215479,
+      "voice": "Samantha",
+      "rateWpm": 135
+    },
+    {
+      "id": "two-positions",
+      "text": "Two positions remain for two.",
+      "pauseAfter": 0.2,
+      "index": 4,
+      "start": 14.577208,
+      "end": 16.431041,
+      "duration": 1.853833,
+      "voice": "Samantha",
+      "rateWpm": 135
+    },
+    {
+      "id": "choose",
+      "text": "We choose one—not because we know it's right, but because we can follow where it leads.",
+      "pauseAfter": 0.5,
+      "index": 5,
+      "start": 16.631041,
+      "end": 22.006708,
+      "duration": 5.375667,
+      "voice": "Samantha",
+      "rateWpm": 135
+    },
+    {
+      "id": "forces",
+      "text": "One placement forces another.",
+      "pauseAfter": 0.15,
+      "index": 6,
+      "start": 22.506708,
+      "end": 24.422458,
+      "duration": 1.91575,
+      "voice": "Samantha",
+      "rateWpm": 135
+    },
+    {
+      "id": "box-six",
+      "text": "Box six resolves.",
+      "pauseAfter": 0.25,
+      "index": 7,
+      "start": 24.572457999999997,
+      "end": 25.920395999999997,
+      "duration": 1.347938,
+      "voice": "Samantha",
+      "rateWpm": 135
+    },
+    {
+      "id": "no-conflict",
+      "text": "Still, no conflict.",
+      "pauseAfter": 0.85,
+      "index": 8,
+      "start": 26.170395999999997,
+      "end": 27.877437999999998,
+      "duration": 1.707042,
+      "voice": "Samantha",
+      "rateWpm": 135
+    },
+    {
+      "id": "branch-holds",
+      "text": "The branch holds.",
+      "pauseAfter": 1,
+      "index": 9,
+      "start": 28.727438,
+      "end": 29.815792,
+      "duration": 1.088354,
+      "voice": "Samantha",
+      "rateWpm": 135
+    },
+    {
+      "id": "parallel",
+      "text": "Now two boxes constrain seven in parallel.",
+      "pauseAfter": 0.2,
+      "index": 10,
+      "start": 30.815792,
+      "end": 33.839062999999996,
+      "duration": 3.023271,
+      "voice": "Samantha",
+      "rateWpm": 135
+    },
+    {
+      "id": "fixed-seven",
+      "text": "That fixes another seven, and the puzzle begins to open.",
+      "pauseAfter": 0.55,
+      "index": 11,
+      "start": 34.039063,
+      "end": 37.574000999999996,
+      "duration": 3.534938,
+      "voice": "Samantha",
+      "rateWpm": 135
+    },
+    {
+      "id": "filled",
+      "text": "Soon, every cell is filled.",
+      "pauseAfter": 0.9,
+      "index": 12,
+      "start": 38.12400099999999,
+      "end": 39.98197999999999,
+      "duration": 1.857979,
+      "voice": "Samantha",
+      "rateWpm": 135
+    },
+    {
+      "id": "not-proof",
+      "text": "But completion isn't proof.",
+      "pauseAfter": 0.7,
+      "index": 13,
+      "start": 40.88197999999999,
+      "end": 42.58983399999999,
+      "duration": 1.707854,
+      "voice": "Samantha",
+      "rateWpm": 135
+    },
+    {
+      "id": "return",
+      "text": "Return to the assumption.",
+      "pauseAfter": 0.2,
+      "index": 14,
+      "start": 43.28983399999999,
+      "end": 44.770937999999994,
+      "duration": 1.481104,
+      "voice": "Samantha",
+      "rateWpm": 135
+    },
+    {
+      "id": "trace",
+      "text": "Trace it through the finished grid.",
+      "pauseAfter": 0.2,
+      "index": 15,
+      "start": 44.970938,
+      "end": 46.685458999999994,
+      "duration": 1.714521,
+      "voice": "Samantha",
+      "rateWpm": 135
+    },
+    {
+      "id": "duplicate",
+      "text": "No duplicate.",
+      "pauseAfter": 0.25,
+      "index": 16,
+      "start": 46.885459,
+      "end": 47.98148,
+      "duration": 1.096021,
+      "voice": "Samantha",
+      "rateWpm": 135
+    },
+    {
+      "id": "contradiction",
+      "text": "No contradiction.",
+      "pauseAfter": 0.85,
+      "index": 17,
+      "start": 48.23148,
+      "end": 49.455208999999996,
+      "duration": 1.223729,
+      "voice": "Samantha",
+      "rateWpm": 135
+    },
+    {
+      "id": "verified",
+      "text": "Verified.",
+      "pauseAfter": 0.9,
+      "index": 18,
+      "start": 50.305209,
+      "end": 51.166542,
+      "duration": 0.861333,
+      "voice": "Samantha",
+      "rateWpm": 135
+    },
+    {
+      "id": "sometimes",
+      "text": "Sometimes the branch doesn't break.",
+      "pauseAfter": 0.35,
+      "index": 19,
+      "start": 52.066542,
+      "end": 54.14523,
+      "duration": 2.078688,
+      "voice": "Samantha",
+      "rateWpm": 135
+    },
+    {
+      "id": "home",
+      "text": "It leads all the way home.",
+      "pauseAfter": 4,
+      "index": 20,
+      "start": 54.49523,
+      "end": 55.965584,
+      "duration": 1.470354,
+      "voice": "Samantha",
+      "rateWpm": 135
+    }
+  ]
+}

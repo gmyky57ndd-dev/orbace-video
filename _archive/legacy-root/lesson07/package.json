@@ -1,0 +1,38 @@
+{
+  "name": "orbace-lesson07-video",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "studio": "remotion studio src/index.ts",
+    "render:qa": "node scripts/render-qa.mjs",
+    "render:film": "remotion render src/index.ts Lesson07-When-The-Branch-Holds exports/orbace-journal-lesson07-when-the-branch-holds-60s.mp4 --config=remotion.config.ts --codec=h264 --crf=17 --audio-codec=aac --audio-bitrate=192k",
+    "render:qc": "node scripts/render-qc.mjs",
+    "voice:v2": "node scripts/build-voice-v2.mjs",
+    "render:v2:voice": "remotion render src/index.ts Lesson07-V2-Voice output/lesson07-v2-voice-9x16.mp4 --config=remotion.config.ts --codec=h264 --crf=17 --audio-codec=aac --audio-bitrate=192k",
+    "render:v2:muted": "remotion render src/index.ts Lesson07-V2-Muted output/lesson07-v2-muted-9x16.mp4 --config=remotion.config.ts --codec=h264 --crf=17",
+    "render:v2:preview": "node scripts/render-v2-preview.mjs",
+    "voice:v3": "node scripts/build-voice-v3.mjs",
+    "render:v3:voice": "remotion render src/index.ts Lesson07-V3-British-Voice output/lesson07-v3-british-voice-9x16.mp4 --config=remotion.config.ts --codec=h264 --crf=17 --audio-codec=aac --audio-bitrate=192k",
+    "render:v3:muted": "remotion render src/index.ts Lesson07-V3-Muted output/lesson07-v3-muted-9x16.mp4 --config=remotion.config.ts --codec=h264 --crf=17",
+    "render:v4:voice": "remotion render src/index.ts Lesson07-V4-Voice output/lesson07-v4-original-voice-9x16.mp4 --config=remotion.config.ts --codec=h264 --crf=17 --audio-codec=aac --audio-bitrate=192k",
+    "render:v4:muted": "remotion render src/index.ts Lesson07-V4-Muted output/lesson07-v4-muted-9x16.mp4 --config=remotion.config.ts --codec=h264 --crf=17"
+    ,"lesson01:voice": "node scripts/build-lesson01-voice.mjs"
+    ,"lesson01:review": "remotion render src/index.ts OrbaceJournalLesson01Review renders/lesson-01/review/orbace-journal-lesson-01-two-homes-for-a-nine-review.mp4 --config=remotion.config.ts --codec=h264 --crf=24 --audio-codec=aac --audio-bitrate=128k"
+    ,"lesson01:final": "remotion render src/index.ts OrbaceJournalLesson01 renders/lesson-01/final/orbace-journal-lesson-01-two-homes-for-a-nine.mp4 --config=remotion.config.ts --codec=h264 --crf=17 --audio-codec=aac --audio-bitrate=192k"
+    ,"lesson01:poster": "remotion still src/index.ts OrbaceJournalLesson01 renders/lesson-01/final/orbace-journal-lesson-01-two-homes-for-a-nine-poster.png --frame=30 --config=remotion.config.ts"
+  },
+  "dependencies": {
+    "@remotion/captions": "4.0.515",
+    "@remotion/cli": "4.0.515",
+    "@remotion/media": "4.0.515",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "remotion": "4.0.515"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "typescript": "5.9.3"
+  }
+}

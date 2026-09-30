@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Su-Pu Replay | Orbace Sudoku</title>
+<meta name="description" content="Watch a step-by-step Su-Pu (数谱) Sudoku replay — every placement, note, correction, and turning point preserved move by move. Shared publicly by an Orbace Sudoku player.">
+<link rel="canonical" href="https://orbacesudoku.com/su-pu">
+<meta name="robots" content="noindex, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Orbace Sudoku">
+<meta property="og:title" content="Su-Pu Replay | Orbace Sudoku">
+<meta property="og:description" content="Watch a step-by-step Su-Pu (数谱) Sudoku replay — every placement, note, correction, and turning point preserved move by move. Shared publicly by an Orbace Sudoku player.">
+<meta property="og:url" content="https://orbacesudoku.com/su-pu">
+<meta property="og:image" content="https://orbacesudoku.com/img/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#244C3A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/tokens.css?v=3">
+<link rel="stylesheet" href="/css/shell.css?v=3">
+
+<!-- ============================================================ -->
+<!-- Google Consent Mode v2 + GA4 (R7, site re-imagined v2) — same
+     property/config as the SPA (index.html), so static pages report into
+     the same analytics view and honor the same EEA/UK/CH consent
+     defaults BEFORE any Google tag loads. Analytics loads on every page —
+     AdSense's loader does not: the last script tag just above the closing
+     head tag is filled in by build-pages.mjs per PAGES-manifest
+     `adsEligible` flag, blank on every ineligible page. Previously the
+     AdSense loader was hardcoded
+     here site-wide (P0 AdSense-recovery review, 2026-08-27, finding D2 —
+     "load ads globally, then only some pages render a unit" is the exact
+     anti-pattern the recovery plan requires replacing with an explicit
+     per-route allowlist; even with no <ins> unit on the page, the loader
+     script itself is a network request to Google's ad infrastructure that
+     a crawler/reviewer network trace on any PRODUCT/UTILITY route would
+     see). See docs/shared_artifacts/PM-Plan-2026-08-27-AdSense-Recovery-
+     P0-Execution-Plan.md. -->
+<!-- ============================================================ -->
+<script src="/js/consent-init.js?v=1"></script>
+<script src="/js/consent.js?v=2"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0RWLZBGC6Y"></script>
+<link rel="stylesheet" href="/css/orbace-grid.css?v=21">
+<link rel="stylesheet" href="/css/orbace-supu-replay.css?v=11">
+<link rel="stylesheet" href="/css/orbace-supu-replay-v2.css?v=8">
+<link rel="stylesheet" href="/css/orbace-game-card.css?v=4">
+<link rel="stylesheet" href="/css/styles.css?v=70">
+</head>
+<body>
+
+<!-- Built by scripts/build-pages.mjs from site-src/pages/replay-template.html — do not edit directly. -->
+<a class="osh-skip" href="#main">Skip to main content</a>
+<header class="osh-header">
+  <nav class="osh-nav" aria-label="Primary navigation">
+    <a class="osh-brand" href="/" aria-label="Orbace Sudoku home"><span class="osh-seal" aria-hidden="true">数</span><span class="osh-brand-copy"><strong>Orbace Sudoku</strong><span class="osh-brand-tag"><span lang="zh">一局一茶</span><span>ONE PUZZLE, ONE TEA</span></span></span></a>
+    <div class="osh-links">
+      <a href="/play" data-nav-id="play">Tea Moment</a>
+      <a href="/puzzle-packs" data-nav-id="puzzle-packs">Puzzle Packs</a>
+      <a href="/compete" data-nav-id="compete">Compete</a>
+      <a href="/learn-sudoku" data-nav-id="learn-sudoku">Learn</a>
+      <a href="/su-pu" data-nav-id="su-pu" aria-current="page">Su-Pu</a>
+      <a href="/journal" data-nav-id="journal">Journal</a>
+      <a href="/download" data-nav-id="download">Download</a>
+    </div>
+    <div id="authMount" class="osh-account"><a href="/signin" class="osh-auth-link osh-auth-signin" data-role="authsignin">Sign in</a></div>
+  </nav>
+</header>
+
+<!-- Sign-in persistence fix (2026-08-13, same root cause as /rankings'
+     2026-08-10 fix, 8560c2b): this is the real /su-pu/:id template (served
+     via vercel.json rewrite) -- missing Supabase SDK meant getSupabase()
+     always returned null and the header fell back to signed-out here,
+     regardless of a real active session ("the sign in id disappeared"
+     after following a Su-Pu link). -->
+<style>
+  .supu-replay-page { max-width: 74rem; margin: auto; padding: 3rem 1.3rem; }
+  .supu-actions { display: flex; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
+  .supu-cta { text-align: center; margin-top: 32px; padding: 1.5rem; border: 1px solid var(--l, rgba(36,76,58,.2)); border-radius: .65rem; background: rgba(255,255,255,.6); }
+  .supu-meta-error { color: var(--r, #c41e3a); cursor: pointer; text-decoration: underline; }
+  /* .toast lives in css/styles.css (site-wide component). A page-local
+     copy here once set `bottom` while styles.css set `top`, stretching the
+     fixed box down the whole viewport — the tall vertical "copied" bar.
+     Do not re-declare .toast on this page. */
+</style>
+<main id="main">
+  <div class="supu-replay-page">
+    <div id="replayCardBody">
+      <div id="replayStory" hidden></div>
+      <div class="osr-layout">
+        <div class="osr-board-col">
+          <div id="replayBoard"></div>
+          <div id="replayControls"></div>
+          <div id="replayExplain" class="osr-explain" hidden></div>
+        </div>
+        <div id="replayMoveList"></div>
+      </div>
+    </div>
+    <div class="supu-actions">
+      <button class="btn quiet sm" data-supu-copy-link>传谱 Copy Link</button>
+      <a class="btn" href="/su-pu">Browse Public Library</a>
+    </div>
+    <div class="supu-cta">
+      <b style="font-family:Georgia,serif;font-size:17px">Want to create your own Su-Pu?</b>
+      <p style="color:var(--m,#626862);margin:8px 0">Complete a game in the Orbace Sudoku app to save and share your solve.</p>
+      <a class="btn primary" href="/download">Download the App</a>
+      <a class="btn ghost" href="/play">Play in Browser</a>
+    </div>
+  </div>
+  <div class="toast" id="supuToast" role="status" aria-live="polite"></div>
+</main>
+<footer class="osh-footer">
+  <div class="osh-footer-inner">
+    <div class="osh-footer-brand">
+      <strong>Orbace Sudoku</strong><br>
+      A product of Orbace Technologies LLC.<br>
+      <span lang="zh">一局一茶</span> · &copy; 2026 Orbace Technologies LLC.
+    </div>
+    <nav class="osh-footer-group" aria-label="Play">
+      <h4>Play</h4>
+      <ul>
+        <li><a href="/play">Tea Moment</a></li>
+        <li><a href="/puzzle-packs">Puzzle Packs</a></li>
+        <li><a href="/compete">Compete</a></li>
+        <li><a href="/su-pu">Su-Pu Library</a></li>
+        <li><a href="/su-pu/example">Featured Replay</a></li>
+      </ul>
+    </nav>
+    <nav class="osh-footer-group" aria-label="Learn">
+      <h4>Learn</h4>
+      <ul>
+        <li><a href="/learn-sudoku">Learn Sudoku</a></li>
+        <li><a href="/sudoku-strategies">Strategies</a></li>
+        <li><a href="/journal">Journal</a></li>
+        <li><a href="/download">Download the app</a></li>
+      </ul>
+    </nav>
+    <nav class="osh-footer-group" aria-label="Company and account">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+        <li><a href="/cookies">Cookies</a></li>
+        <li><button type="button" class="cookie-settings-button">Cookie Settings</button></li>
+        <li><a href="/terms">Terms</a></li>
+        <li><a href="/sitemap">Sitemap</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+<script src="/js/auth-session.js?v=8"></script>
+<script src="/js/auth-utility.js?v=5"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="/js/config.js?v=27"></script>
+<script src="/js/mock-data.js?v=35"></script>
+<script src="/js/analytics.js?v=22"></script>
+<script src="/js/api.js?v=82"></script>
+<script src="/js/orbace-grid.js?v=20"></script>
+<script src="/js/orbace-supu-replay.js?v=9"></script>
+<script src="/js/orbace-replay-core.js?v=8"></script>
+<script src="/js/orbace-technique-explanations.js?v=1"></script>
+<script src="/js/orbace-supu-replay-v2.js?v=21"></script>
+<script src="/js/orbace-game-card.js?v=6"></script>
+<script src="/js/su-pu-pages.js?v=8"></script>
+</body>
+</html>

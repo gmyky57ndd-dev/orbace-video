@@ -1,0 +1,33 @@
+{
+  "project": "Orbace Replay App Store Preview V2",
+  "createdAt": "2026-08-26",
+  "selectedSource": {
+    "originalPath": "/Users/justinzero/Downloads/ScreenRecording_08-26-2026 10-55-35_1.MP4",
+    "archivedPath": "source/captures/orbace-replay-v2-selected-20260826.MP4",
+    "sha256": "aa324d0905b6d9e019bb33473a9cebc0008f52aabab51794e84e2ac6e9061ce2",
+    "video": "HEVC, 1170x2532, variable frame rate, approximately 28.65 fps",
+    "durationSeconds": 124.805,
+    "selectionReason": "One continuous current-interface, ad-free 70-step Replay attempt from entry through completion.",
+    "usedRanges": [
+      {"source": "00:13-00:16", "output": "00:00-00:03"},
+      {"source": "00:17-00:22", "output": "00:03-00:08"},
+      {"source": "00:26-00:30", "output": "00:08-00:12"},
+      {"source": "01:02-01:04", "output": "00:12-00:14"}
+    ]
+  },
+  "corroboratingSource": {
+    "originalPath": "/Users/justinzero/Downloads/ScreenRecording_08-26-2026 10-51-17_1.MP4",
+    "sha256": "4b5a47bcab9bf87d43929e2541fc52dedf7308cca2a85f2bd5fa495bbadad504",
+    "video": "HEVC, 1170x2532, variable frame rate, approximately 28.05 fps",
+    "durationSeconds": 170.621667,
+    "usage": "Inspected for interface consistency; not mixed into the final edit."
+  },
+  "contentChecks": {
+    "currentInterface": true,
+    "advertisingVisibleInUsedRanges": false,
+    "notificationBannersVisibleInUsedRanges": false,
+    "debugOverlaysVisibleInUsedRanges": false,
+    "playerAliasVisibleInFinal": false,
+    "fabricatedProductBehavior": false
+  }
+}

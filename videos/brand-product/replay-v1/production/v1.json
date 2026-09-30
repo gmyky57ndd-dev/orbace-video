@@ -1,0 +1,29 @@
+{
+  "source": "assets/captures/replay_take_01.mp4",
+  "source_properties": {
+    "resolution": "720x1602",
+    "nominal_fps": 60,
+    "duration_seconds": 850.919033,
+    "codec": "h264",
+    "audio": "aac"
+  },
+  "selected_replay": {
+    "completed_frame_seconds": 833.0,
+    "step_24_seconds": 823.7,
+    "forward_sequence_end_seconds": 830.0,
+    "actual_total_steps": 64,
+    "actual_difficulty": "Beginner"
+  },
+  "delivery": {
+    "duration_seconds": 15,
+    "resolution": "1080x1920",
+    "fps": 30,
+    "video_codec": "H.264 High",
+    "audio_codec": "AAC 48 kHz"
+  },
+  "variants": {
+    "A": "Control hook",
+    "B": "Approved chess-player alternate hook",
+    "C": "Product-first, no opening hook"
+  }
+}

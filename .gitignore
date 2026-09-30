@@ -1,0 +1,43 @@
+# ---- Local-only media (kept on the production Mac, not in Git) ----
+# Only approved finals under videos/**/renders/final/ are versioned (via Git LFS).
+*.mp4
+*.MP4
+*.mov
+*.MOV
+*.m4v
+*.webm
+*.mkv
+*.wav
+*.WAV
+*.aif
+*.aiff
+*.flac
+!videos/**/renders/final/*.mp4
+!videos/**/renders/final/*.MP4
+!videos/**/renders/final/*.mov
+
+# Frame captures and render caches
+**/frames/
+**/frames_*/
+**/steps/
+**/steps_w/
+**/hd/w/*.png
+**/hd/v/*.png
+
+# Dependencies / toolchain caches
+node_modules/
+**/node_modules/
+.remotion/
+**/.remotion/
+.cache/
+**/.cache/
+__pycache__/
+
+# Pre-GitHub local history (2026-09-13 initial commit), kept only on the Mac
+.git-local-history-*/
+
+# Logs and OS junk
+*.log
+npm-debug.log*
+.DS_Store
+**/.DS_Store

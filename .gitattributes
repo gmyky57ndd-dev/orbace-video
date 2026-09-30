@@ -1,0 +1,6 @@
+# Approved final videos are stored in Git LFS
+videos/**/renders/final/*.mp4 filter=lfs diff=lfs merge=lfs -text
+videos/**/renders/final/*.MP4 filter=lfs diff=lfs merge=lfs -text
+videos/**/renders/final/*.mov filter=lfs diff=lfs merge=lfs -text
+*.srt text eol=lf
+*.csv text eol=lf

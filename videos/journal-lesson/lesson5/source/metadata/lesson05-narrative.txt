@@ -1,0 +1,13 @@
+I was once asked by a friend that if I can remember any sudoku puzzle's initial state, that was definitely answer of no - because a sudoku puzzle is precisely defined, if you forget a number or misplaced a number, it is going to be either a invalid one or totally different one. Until two weeks ago I came across a beautifully crafted puzzle that I just can not forget [insert lesson05-1.jpg here].
+
+I must appreciate the elegance of ascending 1-2-3, 4-5-6, 7-8-9 along the diagonal lines, adding 2 and 5 (5 square) in the Box 5, and 6 and 4 (8 square) in the Box 9. I can stare at this puzzle for no reason, I bet if you do that, you will not forget it for a long time.
+
+Under the surface of its sheer beauty, however, solving this puzzle using canonical canred method is a heck of pain, because it's rated as "Hell" (level 9), with quite high hodoku value of 7820, and SE rating of 7.2. Adding to the pain, initially there is really no easy crack by basic rules to confirm any number. I can imagine you are going to dance with different kinds of swordfish, 3d medusa, AICs and many wings. 
+
+Why not tackle it with ibtree method with a sharper eyes and a little bit of creativity?
+
+After scanning box by box, we notice that in Box 4, there are two possible positions for 9. [insert lesson05-2.jpg here] We can do a little bit visual tracing and thinking to pick the one for a test. both position can trigger quite long chain of reaction, but 9/R6C2 is more engaging in a sense that it can cause other number around the board into play to leverage other positional information. [insert lesson05-3.jpg here]. Using pencil (small) number as the trial, we can quickly place a lot of numbers out just simply applying cross-hatching. Finally when we reach Box 3, [insert lesson05-4.jpg here] there is no place for 6 - it is a conflict. Then the initial chain trigger of 9 is false, 9 must be in R5C1. [insert lesson05-5.jpg here]. After this we can easily find out some numbers, [insert lesson05-6.jpg here] then we get stuck again. 
+
+With similar observation, we notice that in Box 2 there are two possible positions for 7. By the similar argument, we will use 7/R2C6 as the chain trigger, and we get a long chain of reaction very quickly. [insert lesson05-7.jpg here]. Finally in the Box 1, there is no place for 5 - it is a conflict again. Then the chain trigger 7/R2C6 is false, 7 must be in R1C5. [insert lesson05-8.jpg here]. After 9/R5C1 and 7/R1C5 are confirmed, the puzzle is downgraded to an easily solvable one, some of solved numbers are shown. [insert lesson05-9.jpg here]
+
+Do you want to share a special shaped or uniquely crafted sudoku puzzle?

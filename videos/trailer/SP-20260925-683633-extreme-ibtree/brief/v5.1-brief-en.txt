@@ -1,0 +1,180 @@
+ORBACE SU-PU REPLAY TRAILER — V5.1
+Title: "One Contradiction Changed Everything"
+
+EDITORIAL RULE (governs every decision)
+Reveal the turning point. Never reveal the entire story.
+The replay is the product. The trailer is the door.
+Open on the best moment. Leave the ending for the site.
+End on an invitation to the replay, not on a tease of the ending.
+
+OUTPUT
+- Primary: 9:16, 1080x1920, 30fps, exactly 48.0 seconds.
+- Secondary: 16:9, 1920x1080, cropped from the same master. Do not regenerate.
+- Source: Orbace Su-Pu replay SP-20260925-683633.
+- CTA redirect orbacesudoku.com/one MUST resolve to SP-20260925-683633,
+  not to the library page. Confirm before delivery.
+
+SOURCE FIDELITY (hard rules)
+- Genuine screen-recorded Su-Pu replay footage only.
+- Preserve real replay timing, order, chapter titles, branch visualization,
+  timeline, and controls exactly as rendered.
+- Allowed: freeze frames, speed changes, scrubbing, cropping, slow push
+  (camera only, never UI motion), holding longer on a real chapter title.
+- Forbidden: invented moves, fabricated solver states, artificial branches,
+  redrawn overlays, invented UI, invented chapter names, invented coordinates.
+- If a beat has no matching replay footage, delete the beat. Never fabricate.
+
+SAFE AREA
+All critical elements stay inside the center 60% width of the 9:16 frame:
+contradiction node, branch, chapter title, progress bar, captions, text cards.
+
+CAPTIONS
+- Burn captions for every narration sentence.
+- Clean sans-serif, white, subtle shadow, max two lines, upper-middle third.
+- Width never exceeds 60% of frame.
+- Soft CTA layer is separate from narration captions and can be toggled per
+  aspect ratio without re-exporting scenes.
+
+CHAPTER TITLE RULE (new in V5.1)
+Every time a real Su-Pu chapter title appears on screen, hold on it 0.5 seconds
+longer than natural before cutting away. Do not slow the replay playback to do
+this. Let the title linger into the next shot. This is the only place the
+trailer explicitly sells the idea that a solve is organized into chapters.
+
+AUDIO
+Voice: warm, thoughtful documentary narrator, original synthetic voice.
+Approx 130 wpm. Never imitate or resemble any identifiable person.
+Music: minimal ambient, 60-70 BPM, no percussion, no risers, no impacts.
+
+SILENCE RULE
+At the contradiction: cut music, room tone, ambience.
+Hold 1.0 second of true silence with the contradiction marker visible.
+Then one VO line. Then 1.0 second before music returns.
+Total quiet window approximately 2.5 seconds. Not a stall — a held beat.
+During silence, keep a very slow 3% push on the frame. No UI motion.
+
+TIMING (48 seconds, fixed)
+1. 0:00-0:02  Cold open — contradiction frame
+2. 0:02-0:05  Rewind
+3. 0:05-0:10  Chapter One, accelerated, title held
+4. 0:10-0:16  Chapter Two, branch growth, title held
+5. 0:16-0:22  Approach to contradiction
+6. 0:22-0:24  Silence, held
+7. 0:24-0:30  Resume, bridge line, soft CTA
+8. 0:30-0:37  Endgame at 2x, freeze at ~60%
+9. 0:37-0:48  End card — invitation, not tease
+
+SCENE 1 — COLD OPEN (0:00-0:02)
+Open on the real contradiction frame from the replay. No explanation.
+Caption only: "One contradiction solved this."
+No music for the first 0.5 second. Then music enters quietly.
+No zoom, no push. Let the frame land.
+
+SCENE 2 — REWIND (0:02-0:05)
+Real replay rewind. Scrubbing only. No effects.
+Real replay timeline visible.
+VO: "This puzzle looked impossible."
+
+SCENE 3 — CHAPTER ONE (0:05-0:10)
+Play Chapter One at 3x. Real chapter title visible, not covered.
+Hold on the chapter title 0.5 seconds longer than natural before cutting.
+VO: "Then everything stopped."
+
+SCENE 4 — CHAPTER TWO, BRANCH GROWTH (0:10-0:16)
+Enter Chapter Two. Show the real chapter title. Hold it 0.5 seconds longer
+than natural.
+Then play at 1x: the chosen cell, the branch beginning to grow, the branch
+extending toward the contradiction. Use the real branch visualization.
+Do not add overlays. Do not label anything.
+VO: "One branch. One question."
+
+SCENE 5 — APPROACH (0:16-0:22)
+Continue at 1x as the branch reaches the contradiction.
+VO: "And then the puzzle answered back."
+
+SCENE 6 — SILENCE (0:22-0:24)
+Freeze on the contradiction. Contradiction marker fully visible.
+Cut all audio. Hold 1.0 second of silence.
+Slow 3% camera push only. No UI motion.
+VO (after silence): "That path was impossible."
+
+SCENE 7 — RESUME (0:24-0:30)
+Replay resumes. Speed 2x.
+Soft CTA layer appears (lower third, small, inside safe area):
+"Full replay ↓ below"
+This CTA layer is separable and droppable for the 16:9 export.
+VO (bridge line, new in V5.1): "Now we can replay the exact moment the
+puzzle changed."
+(pause 0.8s)
+VO: "From that single proof... the rest unfolds."
+Note: the bridge line replaces the earlier "From that single proof" opening
+pause. Do not repeat the phrase "everything changed."
+
+SCENE 8 — ENDGAME, DO NOT FINISH (0:30-0:37)
+Play endgame at 2x. Do not show the solved board. Do not show the final
+chapter in full.
+Freeze when the real replay progress bar reads approximately 60%.
+No VO during the freeze.
+On-screen caption, new in V5.1: "Watch the complete replay"
+
+SCENE 9 — END CARD (0:37-0:48)
+Dissolve from the frozen ~60% frame to a minimal Orbace end card.
+No feature list. No screenshots. No app UI. No solved board.
+Centered, inside 60% width:
+"Watch the complete replay"
+"orbacesudoku.com/one"
+"Replay the thinking."
+VO: "The full replay is linked in the description."
+Hold 0.5 seconds after the last line.
+
+PACING
+Never rush. Long pauses are intentional. Silence is a held beat, not a stall.
+Chapter title holds are deliberate, not accidental.
+
+CAMERA
+No shake. No whip pans. Max one slow push per scene.
+During the silence, only the 3% push is allowed.
+
+COLOR
+Do not stylize. Respect the real Su-Pu interface.
+No neon, no cinematic grading, no exaggerated contrast.
+
+NEGATIVE
+Do not invent replay events, chapters, UI, coordinates, or narration about
+replay states.
+Do not explain IB Tree.
+Do not add solver diagrams, stock footage, actors, or lifestyle footage.
+Do not add fake branch graphics.
+Do not over-edit.
+Do not interrupt the replay unnecessarily.
+Do not render statistics as UI panels.
+Do not add on-screen labels not present in the product.
+Do not show the solved board.
+Do not use risers, whooshes, or impacts.
+Do not exceed two lines per caption.
+Do not use the word "Impossible" as a screen title. VO only.
+Do not slow replay playback to hold a chapter title.
+Do not end on the phrase "See how it ends."
+Do not repeat the phrase "everything changed" more than once in the VO.
+
+SUCCESS CRITERIA
+Viewers should leave wanting to know:
+- What happened after the contradiction?
+- Why did that branch fail?
+- What are the other two chapters?
+- How did the puzzle finish?
+If the trailer answers all four, it has revealed too much.
+The trailer must not answer the fourth.
+The trailer must end by inviting the viewer to the replay, not by teasing
+the ending.
+
+DELIVERY
+- 9:16 master: 1080x1920, 30fps, H.264, ~12 Mbps.
+- 16:9: cropped from master, 1920x1080, 30fps, H.264.
+- Captions: burned in + SRT sidecar matching VO.
+- CTA layer: exported as a toggleable overlay for the 16:9 version.
+- Confirm redirect orbacesudoku.com/one resolves to SP-20260925-683633.
+
+AB TEST (secondary cut only, not the primary)
+- Cold open caption variant: "EXTREME. One contradiction solved this."
+- Same edit otherwise. Used only for paid/social comparison.

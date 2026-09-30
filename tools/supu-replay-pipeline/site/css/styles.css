@@ -1,0 +1,973 @@
+/* Orbace Sudoku Web v4 — design system per PRD Brand Design System.
+   Palette/type tokens below follow docs/plans/orbace-phase1-style-recommendations.md:
+   --rice/--ivory act as the doc's --paper/--card, --mid/--light collapse onto
+   one --ink-soft-equivalent gray (the doc's "kill mixed grays" rule — nothing
+   lighter than that on this background reads at AA contrast), and --tea is
+   the primary-action color for buttons/links/nav. --verm/--dverm are retired;
+   --seal is vermilion (#C41E3A, matches apps/web's seal color) and is the
+   color for every seal-chip icon (logo mark, profile/document icons, feature
+   and score-card seals) — never buttons, links or errors. */
+:root{
+  --rice:#F6F1E7; --ivory:#FCFAF4; --ink:#2B2723; --mid:#6B635A; --light:#6B635A;
+  --tea:#3E6B4F; --tea-deep:#2C523B; --seal:#C41E3A; --celadon:#B5C9BC; --celadon-d:#8AA894;
+  --green:#5B8C5A; --amber:#C9862B; --amber-deep:#96591A; --err:#C4533A; --jade:#0F6B5F;
+  /* --fill-green: the color for a PLAYER-entered digit (.og-cell.user), kept apart
+     from --tea (buttons/nav/links) so this one change can't ripple into UI chrome.
+     UAT feedback (2026-09-24): --tea read as nearly indistinguishable from --ink at
+     a glance (worse on su-pu-capture.html's own darker --ink/--tea page override,
+     #1C231E vs #244C3A). This is a genuinely brighter, more saturated green
+     (~4.4:1 contrast on white, clears AA for the bold/large digit glyphs) so a
+     filled cell reads as visibly different from a given the instant you look at
+     the board, not just on close inspection. */
+  --fill-green:#128A3E;
+  /* --amber is for tints/borders/large bold accents; the doc's own --amber-on-paper
+     pairing only measures 2.7:1 (fails AA even at the 3:1 large-text floor) — use
+     --amber-deep for any amber TEXT on a light surface (mistake digits, inline copy). */
+  --serif:'Noto Serif SC','Songti SC','SimSun',serif; --cjk:'Noto Serif SC','Songti SC','SimSun',serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace; --sans:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --line:rgba(43,39,35,.14);
+  /* Warm parchment band for the home route's nav+hero, and the replay
+     theater's board accent — both new in the "1a Red" palette pass. */
+  --header:#EAE2CA; --board-line:#3F4F35;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--rice);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--sans);cursor:pointer}
+:focus-visible{outline:2px solid var(--tea);outline-offset:2px}
+
+/* ---------- Seals ---------- */
+.seal{display:inline-flex;align-items:center;justify-content:center;background:var(--seal);color:#fff;
+  font-family:var(--cjk);font-weight:700;border-radius:8px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.25), 0 1px 2px rgba(139,26,43,.35);
+  user-select:none;flex-shrink:0}
+.seal.lg{width:72px;height:72px;font-size:38px;border-radius:12px}
+.seal.md{width:48px;height:48px;font-size:26px}
+.seal.sm{width:30px;height:30px;font-size:16px;border-radius:6px}
+.seal.outline{background:transparent;color:var(--mid);box-shadow:inset 0 0 0 2px var(--mid)}
+.seal-label{font-size:13px;color:var(--mid);text-align:center;margin-top:4px;letter-spacing:.03em}
+
+/* ---------- Top nav ----------
+   Parchment --header treatment applied on ALL routes (E2E feedback item 15,
+   2026-07-13) so the "Orbace Sudoku" wordmark + 数 seal render identically
+   everywhere, not just on #home. Centered at max-width:1280 to line up with
+   the home hero / #page-home box. */
+nav.top{position:sticky;top:0;z-index:50;background:var(--header);border-bottom:1px solid rgba(46,43,31,.12);
+  display:flex;align-items:center;gap:14px;padding:10px 28px;max-width:1280px;margin:0 auto}
+nav.top .brand{display:flex;align-items:center;gap:10px;margin-right:auto}
+nav.top .brand .brand-name{font-family:var(--serif);font-size:19px;font-weight:600;color:var(--ink)}
+nav.top .brand .tag{font-family:var(--cjk);font-size:13px;color:var(--light);letter-spacing:.25em}
+nav.top .brand .tag .v1-tag-en{font-family:var(--sans);font-size:10px;letter-spacing:.08em;color:var(--light);opacity:.8;font-weight:500;text-transform:uppercase;margin-left:2px}
+nav.top a.navlink,nav.top .navlink{font-size:14px;color:var(--mid);padding:7px 12px;border-radius:6px;font-weight:500}
+nav.top a.navlink:hover,nav.top .navlink:hover{background:var(--ivory);color:var(--ink)}
+nav.top a.navlink.active,nav.top .navlink.active{color:var(--tea);font-weight:600}
+nav.top a.navlink .cjk,nav.top .navlink .cjk{font-family:var(--cjk);color:var(--tea);font-weight:700;font-size:1.2em;margin-right:6px}
+nav.top .navlink a{color:inherit;text-decoration:none;display:inline-block;width:100%}
+
+@media (min-width:901px){
+  nav.top{padding:14px 40px}
+}
+
+/* ---------- Pages ---------- */
+.page{display:none;max-width:1060px;margin:0 auto;padding:28px 24px 80px}
+.page.visible{display:block;animation:fadein .15s ease-out}
+/* #page-home (V1 marketing homepage) is wider than the app's inner pages by
+   design (matches the design reference's 1280px canvas) — .page's 1060px is
+   right for Play/Ranking/Account/Su-Pu's app-like reading-width UI, but was
+   never overridden when the homepage was built, silently capping it to 1060px
+   on every screen (~55% width on a 1920px monitor — a real, unintended bug,
+   not a deliberate narrower layout). .v1-home-hero's negative margins already
+   assume they're bleeding out to this wider boundary, not .page's narrower one. */
+#page-home{max-width:1280px}
+/* .v1-home-hero bleeds out of #page-home's padding (negative margin) then
+   re-pads itself to 40px (matching the design) — but every OTHER homepage
+   section (Tea Moment, feature cards, score card, CTA band) has no padding
+   of its own and just inherits #page-home's plain 24px, producing a real
+   16px left-edge misalignment between the hero's content and every section
+   below it. Bump #page-home's own horizontal padding to 40px to match (only
+   above the 900px breakpoint, where the hero's own padding is 40px — at
+   721-900px the hero already drops to 24px, already matching .page's
+   unchanged default, so nothing needs to change in that range). The
+   matching .v1-home-hero margin override lives further down, next to its
+   base rule — same-specificity rules resolve by SOURCE ORDER regardless of
+   which is behind a media query, so it must come after that base rule to
+   actually win, not up here. */
+@media (min-width:901px){
+  #page-home{padding-left:40px;padding-right:40px}
+}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+
+h2.section{font-family:var(--serif);font-size:16px;font-weight:600;color:var(--mid);
+  display:flex;align-items:center;gap:10px;margin:30px 0 14px}
+h2.section::after{content:"";flex:1;height:1px;background:var(--line)}
+h2.section .cjk{font-family:var(--cjk);color:var(--ink)}
+
+/* Tea Moment header (2026-07-20): the title's trailing rule line (h2.section::after)
+   would otherwise render AFTER the new action link (DOM order: title, link,
+   ::after) — squeezing the link away from the right edge instead of flush
+   against it. Suppress the rule for this specific header and let the link's
+   own margin-left:auto do the right-alignment instead. */
+.v1-home-section--with-action::after{content:none}
+.v1-tea-title-link{margin-left:auto;white-space:nowrap}
+
+.card{background:var(--ivory);border:1px solid var(--line);border-radius:16px;padding:20px;
+  box-shadow:0 18px 40px -24px rgba(43,39,35,.35)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:10px;
+  padding:11px 22px;font-size:15px;font-weight:500;transition:background .15s}
+.btn.primary{background:var(--tea);color:#fff}
+.btn.primary:hover{background:var(--tea-deep)}
+.btn.ghost{background:transparent;color:var(--tea);border:1.5px solid var(--tea)}
+.btn.ghost:hover{background:rgba(62,107,79,.08)}
+.btn.dark{background:var(--ink);color:#fff}
+.btn.dark:hover{background:#000}
+.btn.quiet{background:transparent;color:var(--mid);border:1px solid var(--line)}
+.btn.quiet:hover{background:var(--ivory)}
+.btn.sm{padding:7px 14px;font-size:13px}
+.linkbtn{background:none;border:none;color:var(--tea);font-size:13px;font-weight:500;padding:4px 0}
+.linkbtn:hover{text-decoration:underline}
+
+/* ---------- Landing ---------- */
+.hero{text-align:center;padding:64px 20px 48px}
+.hero .seal.lg{margin:0 auto 22px}
+.hero h2{font-family:var(--serif);font-size:42px;font-weight:600;letter-spacing:-.01em;margin-bottom:6px}
+.hero .zh{font-family:var(--cjk);font-size:15px;color:var(--tea);letter-spacing:.4em;margin-bottom:18px}
+.hero p{max-width:520px;margin:0 auto 30px;color:var(--mid);font-size:17px}
+.hero .ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.hero .or{color:var(--light);font-size:13px;margin:10px 0}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.feature{background:var(--ivory);border:1px solid var(--line);border-radius:12px;padding:22px 18px;text-align:center}
+.feature h3{font-family:var(--serif);font-size:16px;margin:12px 0 4px}
+.feature p{font-size:13px;color:var(--mid)}
+.lb-preview{margin-top:8px}
+.lb-preview .row{display:flex;align-items:center;gap:10px;padding:9px 4px;border-bottom:1px solid var(--line);font-size:14px}
+.lb-preview .row:last-child{border-bottom:none}
+footer{border-top:1px solid var(--line);margin-top:56px;padding:22px 28px;display:flex;gap:22px;flex-wrap:wrap;
+  font-size:13px;color:var(--mid);justify-content:center}
+
+/* ---------- Landing v2 ---------- */
+.hero2{display:flex;gap:48px;align-items:center;padding:56px 4px 36px;flex-wrap:wrap}
+.hero2 .copy{flex:1.1;min-width:300px}
+.eyebrow{font-family:var(--cjk);color:var(--tea);font-size:14px;letter-spacing:.35em;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.eyebrow::after{content:"";width:56px;height:2px;background:var(--tea);opacity:.4}
+.hero2 h2{font-family:var(--serif);font-size:clamp(34px,4.6vw,52px);font-weight:600;line-height:1.1;letter-spacing:-.015em;margin-bottom:16px}
+.hero2 h2 em{font-style:normal;color:var(--tea);position:relative}
+.hero2 h2 em::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:8px;background:rgba(62,107,79,.14);z-index:-1;border-radius:2px}
+.hero2 .sub{color:var(--mid);font-size:17px;max-width:460px;margin-bottom:26px}
+.hero2 .sub b{color:var(--ink)}
+.hero2 .ctas{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.storeline{font-size:13px;color:var(--light)}
+.storeline button{background:none;border:none;color:var(--mid);font-size:13px;font-weight:500;text-decoration:underline;text-underline-offset:3px;padding:0 4px}
+.hero-demo{flex:1;min-width:300px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.board.mini{width:min(340px,88vw);border-width:2px;box-shadow:0 12px 34px rgba(44,44,44,.10)}
+.board.mini .cell{font-size:15px;cursor:default}
+.demo-caption{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mid);background:var(--ivory);
+  border:1px solid var(--line);border-radius:20px;padding:7px 16px}
+.livedot{width:8px;height:8px;border-radius:50%;background:var(--tea);animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.demo-sub{font-size:12px;color:var(--light)}
+.statstrip{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:26px 0 8px}
+.stat{flex:1;min-width:150px;text-align:center;padding:20px 12px}
+.stat+.stat{border-left:1px solid var(--line)}
+.stat .n{font-family:var(--serif);font-size:26px;font-weight:600;color:var(--ink)}
+.stat .n em{font-style:normal;color:var(--tea)}
+.stat .l{font-size:12px;color:var(--mid);margin-top:2px}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:720px){.vs{grid-template-columns:1fr}}
+.vs .col{border-radius:12px;padding:24px}
+.vs .them{background:transparent;border:1px dashed var(--light);color:var(--mid)}
+.vs .us{background:var(--ivory);border:1px solid var(--line);position:relative;overflow:hidden}
+.vs .us::after{content:"数";position:absolute;right:-14px;bottom:-26px;font-family:var(--cjk);font-size:120px;color:rgba(62,107,79,.08);font-weight:700;pointer-events:none}
+.vs h3{font-family:var(--serif);font-size:17px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.vs ul{list-style:none;display:flex;flex-direction:column;gap:11px;font-size:14px}
+.vs .them li::before{content:"✕";color:var(--light);margin-right:9px;font-weight:600}
+.vs .us li{color:var(--ink)}
+.vs .us li .seal.sm{margin-right:8px;vertical-align:-7px}
+.vs2{display:grid;grid-template-columns:104px 1fr 1.25fr;border-bottom:1px solid var(--line);font-size:14px}
+.vs2:last-child{border-bottom:none}
+.vs2>div{padding:15px 18px}
+.vs2 .theme{display:flex;align-items:center;gap:8px;font-family:var(--cjk);font-weight:700;color:var(--tea);font-size:16px}
+.vs2 .theme span{font-family:var(--sans);font-weight:500;color:var(--light);font-size:11px;letter-spacing:.05em;text-transform:uppercase}
+.vs2 .them{color:var(--mid);border-left:1px solid var(--line)}
+.vs2 .us{color:var(--ink);background:rgba(181,201,188,.16);border-left:2px solid var(--celadon-d)}
+.vs2.head>div{font-family:var(--serif);font-weight:600;color:var(--ink);display:flex;align-items:center;gap:8px;padding-bottom:10px}
+.vs2.head .them{color:var(--light)}
+@media (max-width:720px){
+  .vs2{grid-template-columns:1fr 1fr}
+  .vs2 .theme{grid-column:1/-1;padding-bottom:2px}
+  .vs2 .them{border-left:none;padding-top:4px}
+  .vs2 .us{padding-top:4px}
+  .vs2 .them::before{content:"Elsewhere";display:block;font-size:10px;color:var(--light);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px}
+  .vs2 .us::before{content:"At Orbace";display:block;font-size:10px;color:var(--celadon-d);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px}
+  .vs2.head{display:none}
+}
+.ritual{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.ritual .step{background:var(--ivory);border:1px solid var(--line);border-radius:12px;padding:20px;position:relative}
+.ritual .step .when{font-family:var(--mono);font-size:11px;color:var(--tea);letter-spacing:.08em;margin-bottom:8px}
+.ritual .step h4{font-family:var(--serif);font-size:16px;margin:10px 0 4px}
+.ritual .step p{font-size:13px;color:var(--mid)}
+.countdown{font-family:var(--mono);color:var(--tea);font-weight:500}
+.cta-band{margin-top:44px;background:var(--ink);border-radius:16px;padding:44px 28px;text-align:center;color:var(--rice)}
+.cta-band .zh-v{font-family:var(--cjk);font-size:15px;letter-spacing:.5em;color:var(--celadon);margin-bottom:12px}
+.cta-band h3{font-family:var(--serif);font-size:28px;font-weight:600;margin-bottom:8px}
+.cta-band p{color:var(--light);font-size:14px;margin-bottom:22px}
+
+/* ---------- Play ---------- */
+.mode-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.mode-tab{border:1px solid var(--line);background:var(--ivory);border-radius:20px;padding:8px 16px;font-size:13px;color:var(--mid)}
+.mode-tab.active{background:var(--tea);border-color:var(--tea);color:#fff;font-weight:500}
+.mode-tab .cjk{font-family:var(--cjk);margin-right:5px}
+
+/* ---- Puzzle browser (epic B, docs/plans/2026-07-16-play-playground-search-design.md) ---- */
+.v1-play-filters { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+.v1-play-filter-group { display: flex; flex-wrap: wrap; gap: 8px; }
+.v1-play-filter-chip { border: 1px solid var(--line); background: var(--ivory); border-radius: 20px; padding: 6px 14px; font-size: 13px; color: var(--mid); cursor: pointer; }
+.v1-play-filter-chip.active { background: var(--tea); border-color: var(--tea); color: #fff; font-weight: 500; }
+.v1-play-filter-count { opacity: .65; font-size: 11px; margin-left: 3px; }
+.v1-play-results { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.v1-play-result-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--ivory); cursor: pointer; font-size: 13px; }
+.v1-play-result-title { color: var(--mid); font-size: 12px; text-align: right; margin-left: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 45%; }
+.v1-play-pagination { display: flex; gap: 8px; justify-content: center; }
+
+.play-layout{display:flex;gap:26px;align-items:flex-start}
+.board-wrap{flex-shrink:0}
+/* .board-wrap is now nested one level inside the .osgc-card OrbaceGameCard.wrap()
+ * inserts around it (js/orbace-game-card.js) — .osgc-card, not .board-wrap, is
+ * the actual flex item of .play-layout now.
+ *
+ * UX/CX audit 2026-09-05 §2: this was just flex-shrink:0 (no basis/grow), so
+ * .osgc-card never claimed real width of its own — and #playCardBody (inside
+ * osgc-card's .osgc-body, which is display:flex;flex-direction:column;
+ * align-items:center, css/orbace-game-card.css) doesn't stretch to fill it
+ * by default, so the whole board chain collapsed through to .og-board-col's
+ * min-width:280px floor (orbace-grid.css) regardless of how wide the page
+ * was — measured live at 1920px: board 280px (28%) vs sidebar 706px (72%),
+ * the inverse of what a puzzle page should prioritize. Golden-ratio split
+ * instead, same pattern (flex ratio + max-width + min-width:0) already used
+ * for this identical osgc-card-in-a-split-layout shape elsewhere in this
+ * file (.v1-home-tea .osgc-card, .v1-learn-practice .osgc-card). */
+.play-layout .osgc-card{flex:1.618 1 0%;max-width:640px;min-width:0}
+/* Breaks the .osgc-body align-items:center collapse above — without this,
+   raising osgc-card's own width above doesn't reach the actual board,
+   since #playCardBody (and everything inside it) still shrinks to fit-content. */
+#playCardBody{align-self:stretch}
+/* #play's board/cell/numpad/toolrow ruleset (formerly here, duplicating
+   orbace-grid.css's .og-* classes) was removed in the move-event-fidelity
+   project's Phase 4 (2026-09-04) once #play started rendering through
+   OrbaceGrid.mountControlled()'s own generated markup instead of a
+   hand-rolled DOM — see js/orbace-grid.js and orbace-grid.css for the
+   canonical board/keypad/toolrow styles now shared by every Su-Pu surface. */
+.sidebar{flex:1;min-width:230px;max-width:420px;display:flex;flex-direction:column;gap:14px}
+.pinfo{display:flex;flex-direction:column;gap:6px;font-size:14px}
+.pinfo .title{font-family:var(--cjk);font-size:18px;font-weight:700}
+/* Shown when a puzzle/record fetch fails on a genuine network problem —
+   matches the homepage Tea Moment's retry treatment (.v1-home-tea-error)
+   instead of leaving stale/misleading text with no way to recover but a
+   full page reload. Standalone (not scoped to .pinfo) so it works inside
+   any meta/status text — e.g. the Su-Pu detail page's card meta line. */
+.v1-meta-error{color:var(--amber-deep);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.pinfo .timer{font-family:var(--mono);font-size:26px;margin-top:4px}
+.kbd-help{font-size:12px;color:var(--light);line-height:1.8}
+.kbd-help b{font-family:var(--mono);background:var(--ivory);border:1px solid var(--line);border-radius:4px;padding:0 5px;color:var(--mid);font-weight:500}
+.stamp-overlay{position:fixed;inset:0;background:rgba(241,234,216,.88);display:none;align-items:center;justify-content:center;
+  flex-direction:column;gap:18px;z-index:99;text-align:center}
+.stamp-overlay.show{display:flex}
+.stamp-overlay .bigseal{width:130px;height:130px;font-size:56px;border-radius:16px;animation:stamp .4s cubic-bezier(.2,1.6,.4,1)}
+@keyframes stamp{0%{transform:scale(0);opacity:0}70%{transform:scale(1.15)}100%{transform:scale(1);opacity:1}}
+.stamp-overlay h3{font-family:var(--serif);font-size:26px}
+.stamp-overlay p{color:var(--mid)}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:flex-start;justify-content:center;
+  z-index:98;padding:20px;overflow-y:auto}
+/* ---------- Toast ----------
+   Single site-wide toast component (SPA #toast + static Su-Pu pages
+   #supuToast). Anchored top-centre, just under the sticky shell header.
+
+   2026-09-05 fix: the Su-Pu static pages used to ship their own inline
+   `.toast{position:fixed;bottom:24px;...}` block on top of this rule. Both
+   `top` (here) and `bottom` (there) ended up applying to the same fixed,
+   auto-height element, so the box stretched the full height of the viewport
+   and "Link copied!" wrapped one word per line — the tall vertical bar
+   reported on /su-pu/:id. Those inline blocks are gone; this is the only
+   place `.toast` may be positioned. Do not re-declare it per page.
+
+   Toggling visibility/opacity (not display) so the entrance can animate;
+   the global prefers-reduced-motion rule above neutralises it. */
+.toast{position:fixed;top:var(--toast-top,5rem);left:50%;z-index:100;
+  box-sizing:border-box;width:max-content;max-width:min(92vw,30rem);
+  padding:12px 18px;background:var(--brand-forest-dark,#17362a);color:#fff;
+  border:1px solid rgba(255,255,255,.14);border-radius:12px;
+  box-shadow:0 12px 32px rgba(23,54,42,.28),0 2px 8px rgba(23,54,42,.18);
+  font-size:14px;line-height:1.45;text-align:center;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transform:translate(-50%,-10px) scale(.97);
+  transition:opacity .22s ease,transform .22s cubic-bezier(.2,.9,.3,1),visibility 0s linear .22s}
+.toast.show{opacity:1;visibility:visible;pointer-events:auto;
+  transform:translate(-50%,0) scale(1);transition-delay:0s}
+
+/* Structured variant: icon + title + optional detail line. Plain-text
+   toasts (t.textContent = "...") keep working and stay centred. */
+.toast-row{display:flex;align-items:center;gap:11px;text-align:left}
+.toast-icon{flex:none;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;
+  background:rgba(255,255,255,.15);color:#d8ecdc}
+.toast-icon svg{display:block;width:15px;height:15px}
+.toast-body{min-width:0}
+.toast-title{display:block;font-weight:600;letter-spacing:.01em}
+.toast-detail{display:block;margin-top:2px;font-size:12.5px;color:rgba(255,255,255,.68);
+  font-family:var(--mono,ui-monospace,SFMono-Regular,Menlo,monospace);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.toast.is-warn{background:var(--state-warning-deep,#96591A)}
+.toast.is-warn .toast-icon{background:rgba(255,255,255,.18);color:#ffe7c2}
+@media (max-width:480px){
+  .toast{max-width:calc(100vw - 24px);padding:11px 14px}
+  .toast-detail{font-size:11.5px}
+}
+
+/* ---------- Ranking ---------- */
+.period-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.lb-table{width:100%;border-collapse:collapse;font-size:14px}
+.lb-table td{padding:11px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+.lb-table tr:last-child td{border-bottom:none}
+.lb-table .rank{font-family:var(--mono);width:52px;color:var(--mid)}
+.lb-table .name{font-weight:500}
+.lb-table .rp{font-family:var(--serif);font-weight:600;text-align:right;width:80px}
+.lb-table .time{font-family:var(--mono);color:var(--mid);text-align:right;width:70px}
+.badge{display:inline-block;font-family:var(--cjk);font-size:11px;border-radius:4px;padding:1px 7px;margin-left:6px}
+.badge.clean{background:rgba(91,140,90,.15);color:var(--green);border:1px solid rgba(91,140,90,.4)}
+.badge.errb{background:rgba(196,154,58,.14);color:var(--amber);border:1px solid rgba(196,154,58,.4)}
+tr.me td{background:rgba(196,154,58,.12);animation:pulse 1.4s ease-in-out 2}
+@keyframes pulse{0%,100%{background:rgba(196,154,58,.12)}50%{background:rgba(196,154,58,.26)}}
+.legend{font-size:12px;color:var(--light);margin-top:10px}
+.ellipsis-row td{text-align:center;color:var(--light);font-size:12px;padding:4px}
+.profile-card{display:flex;gap:16px;align-items:center}
+.profile-card .stats{font-size:14px;color:var(--mid);line-height:1.9}
+.profile-card .pname{font-family:var(--serif);font-size:19px;font-weight:600;color:var(--ink)}
+
+/* ---------- Su-Pu replay ---------- */
+/* Replay board/controls/move-list now use the canonical .og-board and
+   .osr-* styling (css/orbace-supu-replay.css) — see
+   docs/orbace-brand-standard.md §Su-Pu Replay Anatomy. */
+
+/* ---------- Account ---------- */
+.auth-card{max-width:420px;margin:0 auto;text-align:center}
+.auth-card .btn{width:100%;margin-bottom:10px}
+.auth-card .divider{display:flex;align-items:center;gap:12px;color:var(--light);font-size:12px;margin:14px 0}
+.auth-card .divider::before,.auth-card .divider::after{content:"";flex:1;height:1px;background:var(--line)}
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:24px}
+.tier{font-size:13px;color:var(--mid)}
+.tier h4{font-family:var(--serif);font-size:15px;color:var(--ink);margin-bottom:6px}
+.settings-group{margin-bottom:8px}
+.settings-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:1px solid var(--line);font-size:14px}
+.settings-row:last-child{border-bottom:none}
+.settings-row .lbl b{display:block}
+.settings-row .lbl span{font-size:12px;color:var(--light)}
+.radio-group{display:flex;gap:4px}
+.radio-group button{border:1px solid var(--line);background:var(--rice);padding:6px 12px;font-size:12px;color:var(--mid)}
+.radio-group button:first-child{border-radius:6px 0 0 6px}
+.radio-group button:last-child{border-radius:0 6px 6px 0}
+.radio-group button.sel{background:var(--tea);border-color:var(--tea);color:#fff}
+.danger{color:var(--err)}
+
+/* ---------- Account shell (Phase 4, 2026-07-22) ---------- */
+.account-shell{display:flex;gap:24px;margin-top:16px}
+.account-nav{width:160px;flex-shrink:0;display:flex;flex-direction:column;gap:2px}
+.account-nav a{display:block;padding:10px 14px;border-radius:8px;font-size:14px;color:var(--mid);text-decoration:none;transition:background .15s,color .15s}
+.account-nav a:hover{background:var(--ivory);color:var(--ink)}
+.account-nav a.sel{background:var(--tea);color:#fff;font-weight:600}
+.account-content{flex:1;min-width:0}
+.account-tab{display:none}
+.account-tab.visible{display:block}
+.acct-heading{font-family:var(--serif);font-size:16px;font-weight:600;margin:0 0 12px}
+.acct-stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
+.acct-stat,.acct-comp-stat{text-align:center;padding:16px 8px;background:var(--ivory);border-radius:10px}
+.acct-stat-val,.acct-comp-stat .acct-stat-val{display:block;font-family:var(--serif);font-size:24px;font-weight:700;color:var(--tea)}
+.acct-stat-lbl,.acct-comp-stat .acct-stat-lbl{display:block;font-size:12px;color:var(--mid);margin-top:4px}
+.acct-comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.acct-comp-period{border-bottom:1px solid var(--line);padding:10px 0}
+.acct-comp-period:last-child{border-bottom:none}
+.acct-comp-period b{display:block;font-size:14px;margin-bottom:2px}
+.acct-comp-period span{font-size:13px;color:var(--mid)}
+.acct-sub-list{display:flex;flex-direction:column;gap:0}
+.acct-sub-row{display:grid;grid-template-columns:100px 70px 70px 60px 90px 50px auto auto;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}
+.acct-sub-row:last-child{border-bottom:none}
+.acct-sub-date{color:var(--mid);font-family:var(--mono);font-size:12px}
+.acct-sub-type{font-size:12px;color:var(--light);text-transform:capitalize}
+.acct-sub-tier{font-size:12px}
+.acct-sub-time{font-family:var(--mono);color:var(--mid);text-align:right}
+.acct-sub-points{text-align:right;font-weight:600}
+.acct-sub-rank{text-align:center;font-weight:600}
+.acct-sub-replay{font-size:12px;color:var(--tea);text-decoration:none;white-space:nowrap;background:none;border:none;padding:0;font-family:inherit;cursor:pointer}
+.acct-sub-replay:hover{text-decoration:underline}
+@media(max-width:700px){
+  .account-shell{flex-direction:column;gap:12px}
+  .account-nav{width:100%;flex-direction:row;overflow-x:auto;gap:0;padding-bottom:4px}
+  .account-nav a{white-space:nowrap;padding:8px 12px;font-size:13px}
+  .acct-sub-row{grid-template-columns:80px 55px auto 50px 70px 40px;font-size:12px;gap:4px}
+  .acct-sub-tier,.acct-sub-type{display:none}
+  .acct-comp-grid{grid-template-columns:1fr}
+}
+
+/* ---------- Today dock ---------- */
+.dock-head{font-family:var(--serif);font-size:14px;color:var(--mid);margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.dock-head .cjk{font-family:var(--cjk);color:var(--tea);font-weight:700}
+.dock{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-bottom:10px}
+.dock .d{background:var(--ivory);border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;gap:12px;align-items:center}
+.dock .d.live{border-color:rgba(62,107,79,.45);box-shadow:0 0 0 1px rgba(62,107,79,.12)}
+.dock .d .tx{flex:1;min-width:0}
+.dock .d .tx b{font-size:14px;display:flex;gap:8px;align-items:center}
+.dock .d .tx span{font-size:12px;color:var(--mid);display:block;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dock .live-pill{font-size:10px;background:var(--tea);color:#fff;border-radius:10px;padding:1px 8px;letter-spacing:.06em}
+.dock .btn{white-space:nowrap;flex-shrink:0}
+
+/* ---------- V1 Marketing Homepage (Phase 1) ---------- */
+
+/* ---- Store buttons ----
+   Xuan-paper design (2026-07-12 refresh, E2E feedback item 1) — a bordered
+   pill with a paper-texture background and a vermilion icon+label, replacing
+   the old flat SVG image badges. Nav no longer carries its own store link at
+   all (item 11: hero + CTA band + footer already repeat this 3x, a 4th in
+   nav was pure clutter). */
+.v1-store-btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;min-width:190px;min-height:58px;
+  padding:9px 16px;box-sizing:border-box;border:1px solid rgba(139,26,43,.20);border-radius:14px;
+  color:var(--seal);text-decoration:none;
+  background:
+    radial-gradient(circle at 20% 25%, rgba(255,255,255,.45), transparent 28%),
+    repeating-linear-gradient(8deg, rgba(122,89,53,.035) 0, rgba(122,89,53,.035) 1px, transparent 1px, transparent 5px),
+    linear-gradient(180deg, var(--rice), var(--ivory));
+  box-shadow:0 4px 12px rgba(80,55,35,.12), inset 0 1px 0 rgba(255,255,255,.65);
+  transition:transform .15s ease, box-shadow .15s ease, color .15s ease}
+.v1-store-btn:hover{color:#A91831;transform:translateY(-1px);
+  box-shadow:0 7px 17px rgba(80,55,35,.17), inset 0 1px 0 rgba(255,255,255,.7)}
+.v1-store-btn__icon{width:26px;height:26px;margin-right:11px;flex:0 0 auto;fill:currentColor;position:relative;z-index:1}
+.v1-store-btn__text{display:flex;flex-direction:column;line-height:1.05;position:relative;z-index:1}
+.v1-store-btn__eyebrow{font-size:10px;letter-spacing:.03em;opacity:.88}
+.v1-store-btn__name{margin-top:2px;font-size:18px;font-weight:650;letter-spacing:-.02em}
+/* Footer variant — smaller, matches the old 36px-tall image badges' footprint. */
+.v1-store-btn.sm{min-width:150px;min-height:44px;padding:6px 12px}
+.v1-store-btn.sm .v1-store-btn__icon{width:20px;height:20px;margin-right:8px}
+.v1-store-btn.sm .v1-store-btn__eyebrow{font-size:9px}
+.v1-store-btn.sm .v1-store-btn__name{font-size:14px}
+
+/* ---- Dark hero section ---- */
+.v1-home-hero{background:var(--header);color:var(--ink);padding:40px 40px 44px;margin:-28px -24px 0;
+  border-bottom:1px solid var(--line);
+  display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap}
+/* Matches #page-home's 40px horizontal padding above 900px (see the .page
+   rule block) — must come after the base rule above since same-specificity
+   rules resolve by source order, not by which is behind a media query. */
+@media (min-width:901px){
+  .v1-home-hero{margin-left:-40px;margin-right:-40px}
+}
+/* flex-grow:0 (not flex:1) so the copy column stops eating the theater's
+   headroom on wide screens — flex:1 with no cap let it grow until the
+   theater was pushed out to exactly 50% across the viewport regardless of
+   how wide the window was, instead of sitting right after the copy
+   (E2E feedback item 4). Any leftover row width now sits unused to the
+   right of the theater instead of being absorbed by the copy column. */
+.v1-home-hero-copy{flex:0 1 460px;min-width:300px;max-width:460px}
+/* Now shows today's date (item 3) instead of the static "一局一茶 ONE PUZZLE,
+   ONE TEA" line, which moved up into the nav brand tag (item 2) — set
+   client-side in js/app.js boot(). */
+.v1-home-eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);
+  font-weight:600;margin-bottom:14px}
+.v1-home-headline{font-family:var(--serif);font-size:44px;font-weight:600;line-height:1.12;letter-spacing:-.015em;margin-bottom:18px;text-wrap:balance}
+.v1-home-headline em{font-style:normal;color:var(--tea)}
+.v1-home-sub{color:var(--mid);font-size:17px;max-width:500px;margin:0 0 26px;line-height:1.55}
+.v1-home-sub b{color:var(--ink)}
+/* Primary CTA gets its own row; store links sit together in a secondary row
+   below it (never sharing a line with the primary button). */
+.v1-home-cta-row{display:flex;margin-bottom:12px}
+.v1-home-hero-cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  background:var(--tea);color:#fff;border:none;border-radius:10px;
+  padding:15px 28px;text-decoration:none;font-weight:600;font-size:17px;cursor:pointer}
+.v1-home-hero-cta:hover{background:var(--tea-deep)}
+.v1-home-cta-row-secondary{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.v1-home-hero-trust{list-style:none;display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13px;color:var(--mid)}
+.v1-home-hero-trust li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--amber);margin-right:8px;vertical-align:2px}
+
+/* ---- Replay theater ----
+   Board/controls now use the canonical .og-board/.osr-* styling (brand
+   consistency, docs/orbace-brand-standard.md §Su-Pu Replay Anatomy) — this
+   rule only constrains size to fit the compact theater card, it no longer
+   overrides color/border/background. --og-cell must be redeclared here to
+   match this board's actual (narrower) width — it otherwise inherits the
+   :root default sized for the full min(540px,92vw) board, which would size
+   digits for a 60px cell while the real cell here is only ~47px, badly
+   overflowing the cell. */
+.v1-home-hero-board.og-board{width:420px;--og-cell:calc(min(420px,92vw) / 9);margin:0 auto}
+.v1-home-hero-controls{width:420px;margin:0 auto}
+/* #heroCardBody (board+controls) is now nested inside the .osgc-card
+ * OrbaceGameCard.wrap() inserts — .osgc-card, not #heroCardBody, is the
+ * actual flex item of .v1-home-hero now. flex-shrink alone doesn't help here
+ * (flex items have an implicit min-width:auto floor at their content's
+ * intrinsic size unless min-width is overridden), so without this the card
+ * can't shrink below the 420px board's natural width and overflows the
+ * viewport on narrow screens — see the equivalent width:100% override in the
+ * max-width:900px block below, which is what actually fixes it. */
+.v1-home-hero .osgc-card{min-width:0}
+/* .osgc-body's generic centering (css/orbace-game-card.css) shrink-wraps its
+ * child to fit-content and centers that box — which makes the child's own
+ * width indefinite, breaking the width:100% cascade the two rules above (and
+ * the max-width:900px override below) depend on to size the compact 420px
+ * board down on narrow phones. Force the hero's #heroCardBody back to a
+ * plain 100%-wide stretch (restoring the definite-width chain) and let the
+ * board/controls' own margin:0 auto above do the centering instead — same
+ * end result, doesn't fight the width:100% math. Confirmed via Playwright at
+ * 375px: without this, .v1-home-hero-board renders at its intrinsic 420px
+ * and overflows the card by ~55px instead of shrinking to fit. */
+.v1-home-hero .osgc-body{align-items:stretch}
+
+/* ---- Tea Moment ----
+   64-84px section rhythm per the style guide; halved on narrow phones
+   (see the max-width:720px block below) so the page doesn't get too tall. */
+.v1-home-section{margin:72px 0 20px}
+.v1-home-tea{display:flex;gap:26px;align-items:flex-start;flex-wrap:wrap}
+/* Board wrap is 60% of the row at desktop so the grid reads as the dominant
+   element and the sidebar takes the remaining ~40% (E2E feedback item 13,
+   2026-07-13). The max-width:900px block below resets both columns to full
+   width for the stacked mobile layout.
+   .v1-home-tea-board-wrap is now nested inside the .osgc-card
+   OrbaceGameCard.wrap() inserts — .osgc-card, not .v1-home-tea-board-wrap, is
+   the flex item of .v1-home-tea, so the 60%/40% split lives on .osgc-card
+   below. .v1-home-tea-board-wrap itself must NOT also carry flex-basis/
+   max-width here: OrbaceGameCard.wrap() moves it as-is to become a flex item
+   of the new .osgc-body (align-items:center) instead, and a stray
+   flex:0 0 60%/max-width:60% there shrinks it to 60% of the *card's* content
+   box, well under the 540px .og-board's own width — the grid then overflowed
+   its shrunk wrapper and rendered visibly off-center (game-card-branding-
+   cleanup Task 6 visual pass, 2026-07-15). position:relative stays: the
+    the score card overlay (position:fixed;inset:0) is rendered on top of
+    this element. */
+.v1-home-tea-board-wrap{position:relative;min-width:0}
+.v1-home-tea .osgc-card{flex:0 0 60%;max-width:60%;min-width:0}
+/* #v1TeaBoard is just a mount point for the canonical .og-board (js/orbace-grid.js)
+ * now — its own size/border/background/paused/font-size rules moved to
+ * css/orbace-grid.css's .og-board so this element and the reference page's
+ * board stay visually identical. It still needs an explicit size itself
+ * (matching .og-board's own min(540px,92vw) square) so the loading placeholder
+ * below has something to fill before the grid mounts into it. */
+#v1TeaBoard{position:relative;width:min(540px,92vw);aspect-ratio:1}
+.v1-home-tea-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-style:italic;color:var(--mid);font-family:var(--sans);background:rgba(251,248,239,.94);z-index:2;
+  text-align:center;padding:20px}
+/* Shown when the daily-puzzle fetch fails outright — was previously left as
+   an unrecoverable "Loading…" spinner forever with no retry path. */
+.v1-home-tea-loading.v1-home-tea-error{font-style:normal;color:var(--amber-deep);cursor:pointer;
+  text-decoration:underline;text-underline-offset:3px}
+.v1-home-tea-side{flex:1 1 34%;min-width:250px;display:flex;flex-direction:column;gap:14px}
+.v1-tea-card{background:var(--ivory);border:1px solid var(--line);border-radius:16px;padding:20px}
+/* Timer panel gets the tea-illustration treatment (mockup: img/tea-moment-bg.jpg
+   faded left-to-right so the label/timer text on the left stays legible). */
+.v1-tea-card-photo{position:relative;overflow:hidden;background:url("../img/tea-moment-bg.jpg") center/cover no-repeat}
+.v1-tea-card-photo::before{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(241,234,216,.92) 0%,rgba(241,234,216,.75) 55%,rgba(241,234,216,.15) 100%)}
+.v1-tea-card-photo>*{position:relative}
+.v1-tea-card-title{font-family:var(--cjk);font-size:23px;font-weight:700}
+.v1-tea-card-title span{font-family:var(--sans);font-size:15px;color:var(--mid);font-weight:500}
+.v1-tea-timer-row{display:flex;align-items:center;gap:10px;margin-top:6px}
+.v1-tea-timer{font-family:var(--mono);font-size:26px}
+.v1-tea-timer.paused{opacity:.5}
+.v1-tea-pause-btn{background:rgba(251,248,239,.8);border:1px solid var(--line);border-radius:50%;
+  width:30px;height:30px;display:flex;align-items:center;justify-content:center;color:var(--ink);cursor:pointer;flex-shrink:0}
+.v1-tea-pause-btn:hover{background:var(--ivory)}
+.v1-tea-pause-btn .v1-tea-play-icon{display:none}
+.v1-tea-pause-btn.on .v1-tea-pause-icon{display:none}
+.v1-tea-pause-btn.on .v1-tea-play-icon{display:block}
+.v1-tea-timer-hint{font-size:13px;color:var(--mid);margin-top:4px}
+
+/* Number pad + tools (#v1TeaNumpad, #v1TeaTools) are canonical .og-keypad/
+ * .og-toolrow mount points now (js/orbace-grid.js) — styling lives in
+ * css/orbace-grid.css. */
+.v1-tea-help{font-size:13px;color:var(--mid);line-height:1.8}
+.v1-tea-help b{font-family:var(--mono);background:var(--ivory);border:1px solid var(--line);border-radius:4px;
+  padding:0 5px;color:var(--mid);font-weight:500}
+.v1-amber{color:var(--amber-deep)}
+.v1-tea-prev{flex:1 1 100%;width:100%;max-width:100%;padding:16px 18px}
+.v1-tea-prev-head{font-family:var(--serif);font-size:14px;font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.v1-tea-prev-head .cjk{font-family:var(--cjk);color:var(--tea);font-weight:700;font-size:1.2em}
+.v1-tea-prev-list{}
+.v1-tea-prev-row{display:flex;align-items:baseline;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:13px}
+.v1-tea-prev-row:first-child{border-top:none}
+.v1-tp-date{color:var(--ink);font-weight:500;white-space:nowrap}
+.v1-tp-info{color:var(--mid);flex:1;min-width:0}
+.v1-tp-btn{background:none;border:none;color:var(--tea-deep);font-size:13px;font-weight:500;cursor:pointer;padding:0;white-space:nowrap}
+.v1-tp-btn:hover{color:var(--tea)}
+.v1-tea-prev-link{display:block;font-size:13px;color:var(--tea-deep);font-weight:500;margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.v1-tea-prev-link:hover{color:var(--tea)}
+/* Inline "Tea Moments" link inside the Home Tea Moment section title (E2E
+   feedback 2026-07-13, item 3) — routes to #teamoment. */
+.v1-tea-title-link{color:var(--tea);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.v1-tea-title-link:hover{color:var(--tea-deep)}
+/* #teamoment history: player's own result per row (E2E item 22, 2026-07-13). */
+.v1-tp-result{font-family:var(--mono);font-size:12px;color:var(--tea-deep);white-space:nowrap;margin-left:auto;padding-left:10px}
+.v1-tp-result.v1-tp-unsolved{color:var(--light);font-style:italic;font-family:var(--sans)}
+.v1-tea-prev-row .v1-tp-btn{margin-left:12px}
+/* Item 26 (2026-07-13): per-puzzle catalog stats — completed count + record time. */
+.v1-tp-stats{font-size:12px;color:var(--mid);white-space:nowrap;text-align:right;min-width:100px}
+
+/* Su-Pu library list (E2E item 23, 2026-07-13). */
+.v1-supu-lib-intro{color:var(--mid);font-size:14px;margin:-8px 0 16px;max-width:640px}
+.v1-supu-lib-controls{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.v1-supu-lib-tiers{margin:0}
+.v1-supu-clean-toggle{font-size:13px;color:var(--mid);display:inline-flex;align-items:center;gap:6px;cursor:pointer;user-select:none}
+.v1-supu-lib-list{display:flex;flex-direction:column;gap:0}
+.v1-supu-lib-row{display:flex;align-items:baseline;gap:12px;padding:12px 4px;border-top:1px solid var(--line);font-size:14px;flex-wrap:wrap}
+.v1-supu-lib-row:first-child{border-top:none}
+.v1-sl-tier{font-family:var(--serif);font-weight:600;white-space:nowrap;min-width:96px}
+.v1-sl-player{color:var(--ink);white-space:nowrap}
+.v1-sl-stats{color:var(--mid);font-size:13px;flex:1;min-width:160px}
+.v1-sl-date{color:var(--light);font-size:12px;white-space:nowrap}
+.v1-sl-replay{margin-left:auto}
+.v1-supu-lib-empty{color:var(--light);font-size:14px;padding:24px 4px;text-align:center}
+.v1-supu-lib-empty.v1-meta-error{color:var(--amber-deep);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
+/* Su-Pu library inline replay board (E2E feedback item 24, 2026-07-13).
+   Board/controls/move-list use the canonical .og-board/.osr-* styling
+   (css/orbace-supu-replay.css) — this rule only sizes the wrapper. */
+.v1-supu-lib-board-wrap{width:100%;max-width:860px;margin-bottom:20px}
+/* Active row highlight — mirrors the pattern of the current row in the
+   replay move list. */
+.v1-supu-lib-row.v1-sl-active{background:var(--ivory)}
+
+/* ---- Ad slot ----
+   Visual design matches the static editorial pages' .static-ad-slot
+   (css/static-ads.css) exactly — light tea surface + outlined CTAs,
+   centered label — so the homepage ad doesn't look like a different
+   product from /learn-sudoku's. Class names stay v1-home-ad-* (unchanged)
+   since js/app.js's initAdSlot() selects by them. */
+/* Wrapper spans the same content width as the sections around it (top AND
+   bottom breathing room, not just top -- 2026-08-10 PM feedback: the real
+   AdSense <ins> must stay at its fixed 728x90 declared footprint (Google
+   requirement, non-auto format) so that one is explicitly centered with its
+   own margin, but the house-ad fallback is just decorative HTML with no
+   such constraint -- it expands to the wrapper's full width instead of
+   also being pinned to 728px, matching .static-ad-slot's own behavior on
+   /learn-sudoku (which has no fixed-width house ad either). */
+.v1-home-ad-wrapper{padding:36px 0;max-width:72rem;margin:0 auto}
+.v1-home-ad-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--text-secondary);text-transform:uppercase;text-align:center;margin-bottom:.5rem}
+.v1-home-ad-placeholder{min-height:90px;border:1px dashed var(--line-forest);border-radius:.5rem;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.85rem;color:var(--text-secondary)}
+/* Fixed 728x90 footprint (see index.html comment) — display:none until
+   initAdSlot() (js/app.js) activates it post ADS.ENABLED check. Centered
+   within the now section-width wrapper. */
+.v1-home-ad-ins{display:none;width:728px;max-width:100%;height:90px;margin:0 auto}
+/* House ad — shown instead when Google's slot resolves unfilled (see
+   initAdSlot()'s data-ad-status watcher). Expands to the full wrapper
+   width (no fixed 728px) so it reads as a section, not a stranded banner. */
+.v1-home-ad-house{display:none;align-items:center;justify-content:center;gap:.9rem;flex-wrap:wrap;
+  width:100%;min-height:90px;
+  background:var(--surface-tea);border:1px solid var(--line-forest);border-radius:.5rem;
+  padding:1rem;color:var(--text-secondary);box-sizing:border-box;text-align:center}
+.v1-home-ad-house-brand{font-family:var(--font-cjk);font-weight:700;font-size:15px;white-space:nowrap;color:var(--brand-forest-dark)}
+.v1-home-ad-house-tag{font-size:.85rem;color:var(--text-secondary);flex:1;min-width:0}
+.v1-home-ad-house-cta{padding:.45rem .8rem;border:1px solid var(--brand-forest);border-radius:.35rem;
+  color:var(--brand-forest);font-size:.85rem;font-weight:700;white-space:nowrap;text-decoration:none;background:transparent}
+.v1-home-ad-house-cta:hover{color:#fff;background:var(--brand-forest)}
+@media (max-width:600px){
+  .v1-home-ad-house{padding:.75rem 1rem}
+  .v1-home-ad-house-tag{flex:0 0 100%}
+}
+
+/* ---- Feature cards ---- */
+.v1-home-features{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.v1-home-feat-card{background:var(--ivory);border:1px solid var(--line);border-radius:16px;padding:20px 18px}
+.v1-home-feat-seal{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;
+  background:var(--seal);color:#fff;font-family:var(--cjk);font-weight:700;font-size:18px;border-radius:7px;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.25)}
+.v1-home-feat-title{font-family:var(--serif);font-size:16px;font-weight:600;margin:12px 0 4px}
+.v1-home-feat-desc{font-size:13px;color:var(--mid);margin-bottom:10px}
+.v1-home-feat-tags{display:flex;flex-wrap:wrap;gap:5px;font-size:13px;color:var(--mid)}
+.v1-home-feat-tags span{background:var(--rice);border:1px solid var(--line);border-radius:10px;padding:2px 8px;white-space:nowrap}
+
+/* ---- Learn page: practice pack grid + blog teaser (Task 11; blog list
+   itself moved to standalone #blog, blog redesign 2026-07-18 — see
+   .v1-blog-* below) ---- */
+.v1-learn-pack-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:20px}
+.v1-learn-pack-card{display:block;padding:16px;border:1px solid var(--line);border-radius:10px;background:var(--ivory);text-decoration:none;color:inherit}
+.v1-learn-pack-title{font-weight:600;font-size:14px}
+/* Compact "From the Blog" teaser (2-3 rows, small thumbnail + title) —
+   deliberately smaller/plainer than the full .v1-blog-card grid, since
+   this is a secondary mention pointing at #blog, not the blog's own home. */
+.v1-learn-blog-teaser{display:flex;flex-direction:column;gap:8px;margin-bottom:8px}
+.v1-learn-blog-teaser-row{display:flex;align-items:center;gap:12px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;text-decoration:none;color:inherit}
+.v1-learn-blog-teaser-img{width:56px;height:40px;object-fit:cover;border-radius:6px;flex-shrink:0;background:var(--ivory)}
+.v1-learn-blog-teaser-title{font-size:14px}
+.v1-learn-qa-placeholder{font-size:13px;color:var(--mid)}
+
+/* ---- Standalone #blog section (blog redesign, 2026-07-18 —
+   docs/plans/2026-07-18-blog-redesign-design.md §6). Card grid reuses the
+   same visual language as .v1-learn-pack-card/.v1-home-feat-card
+   (bordered ivory card, 16px radius) rather than inventing a new pattern. */
+.v1-blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-bottom:20px}
+.v1-blog-card{display:block;border:1px solid var(--line);border-radius:16px;background:var(--ivory);text-decoration:none;color:inherit;overflow:hidden}
+.v1-blog-card-img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--rice)}
+.v1-blog-card-body{padding:14px 16px}
+.v1-blog-card-title{font-family:var(--serif);font-weight:600;font-size:16px;margin-bottom:4px}
+.v1-blog-card-excerpt{font-size:13px;color:var(--mid);line-height:1.5;margin-bottom:6px;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.v1-blog-card-date{font-size:12px;color:var(--light)}
+/* Detail page (#blog/<slug>) */
+.v1-blog-hero{display:block;width:100%;max-width:640px;aspect-ratio:16/9;object-fit:cover;border-radius:16px;margin-bottom:16px;background:var(--rice)}
+.v1-blog-post-meta{font-size:12px;color:var(--light);margin:-8px 0 16px}
+/* `image` content block (heading/paragraph/puzzle_embed already covered by
+   .v1-learn-block-* below — image is new, shares the same reading-width
+   container via .v1-learn-post-body). */
+.v1-blog-block-image{margin:16px 0}
+.v1-blog-block-image img{display:block;width:100%;border-radius:10px}
+.v1-blog-block-image figcaption{font-size:12px;color:var(--mid);margin-top:6px}
+/* `supu_replay` content block (2026-07-18 follow-up) — a full interactive
+   replay embed. Deliberately a plain bordered block, not an .osgc-card
+   (no brand seal/header) — reads as part of the article, not a separate
+   app surface. Reuses .osr-* styling (css/orbace-supu-replay.css)
+   unmodified for the board/controls/movelist/explain caption inside. */
+.v1-blog-block-replay{margin:16px 0;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--ivory)}
+
+/* ---- Learn page: practice pack detail view (Task 12) ---- */
+.v1-learn-puzzle-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+.v1-learn-puzzle-tile{padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--ivory);cursor:pointer;font-size:13px}
+
+/* ---- Learn page: practice grid, side-by-side board+keypad (validation
+   feedback, 2026-07-18) — mirrors .v1-home-tea's flex-row split so the
+   practice drill reads as the same component family as Tea Moment/#play
+   instead of a bare stacked column. OrbaceGameCard.wrap() (js/app.js's
+   loadPracticePuzzle()) wraps only #learnPracticeCardBody (the board), so
+   .osgc-card — not #learnPracticeCardBody itself — is the flex item of
+   .v1-learn-practice, same reasoning as .v1-home-tea's own comment above. */
+.v1-learn-practice{display:flex;gap:26px;align-items:flex-start;flex-wrap:wrap}
+.v1-learn-practice .osgc-card{flex:0 0 60%;max-width:60%;min-width:0}
+.v1-learn-practice-side{flex:1 1 34%;min-width:250px;display:flex;flex-direction:column;gap:14px}
+/* Title card at the top of the side column — same .v1-tea-card visual
+   language as Tea Moment's own timer card (validation feedback round 2,
+   2026-07-18: "a title box similar to tea moment"). .v1-tea-card-title is
+   reused as-is for the technique name; only the description line below it
+   is new here. */
+.v1-learn-practice-title-desc{font-size:13px;color:var(--mid);line-height:1.6;margin-top:6px}
+/* Caption explaining why the Show tool highlighted these cells — lives in
+   the side column, directly below the keypad (round 2 of validation
+   feedback, 2026-07-18; previously under the board). .v1-learn-practice-side
+   is a flex column with its own `gap`, so no extra top margin is needed
+   here. Hidden via the [hidden] attribute (js/app.js's
+   renderTechniqueExplanation()) until Show finds something. */
+.v1-learn-practice-explain{padding:12px 14px;border:1px solid var(--line);border-radius:10px;
+  background:var(--ivory);font-size:13px;color:var(--mid);line-height:1.6}
+
+/* ---- Learn page: blog post detail view + block rendering (Task 13) ----
+   Grid "breakout" pattern (2026-07-18 follow-up: "use the same su-pu
+   pattern — move the row-by-row stepping section to the right side of the
+   grid"): normal blocks (heading/paragraph/image/puzzle_embed) sit in the
+   middle 640px reading-width track for comfortable line length; the
+   supu_replay block alone spans the full width of this grid so its
+   .osr-layout (css/orbace-supu-replay.css) has enough room to lay the
+   move list out beside the board — same side-by-side arrangement the real
+   #supu detail page uses — instead of being squeezed into 640px and
+   stacking underneath. Every block is a direct child here (renderBlockHtml()
+   results are concatenated flat into this container), so this needs no
+   wrapper elements, just grid-column placement per child. */
+.v1-learn-post-body{display:grid;grid-template-columns:1fr min(640px,100%) 1fr}
+.v1-learn-post-body>*{grid-column:2}
+.v1-learn-post-body>.v1-blog-block-replay{grid-column:1/4;justify-self:center;width:100%;max-width:900px}
+.v1-learn-block-heading{margin:20px 0 8px;font-size:16px}
+.v1-learn-block-paragraph{margin:0 0 14px;line-height:1.6;font-size:14px}
+.v1-learn-block-embed{margin:16px 0}
+.v1-learn-block-caption{font-size:12px;color:var(--mid);margin-bottom:6px}
+
+/* ---- Score card ---- */
+.v1-home-score-wrap{display:flex;gap:40px;align-items:center;flex-wrap:wrap}
+.v1-home-score-card{width:350px;background:#FBF8EF;border:1px solid var(--line);border-radius:16px;padding:22px;
+  box-shadow:0 10px 26px rgba(63,79,53,.08);flex-shrink:0}
+.v1-home-score-head{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.v1-home-score-head b{font-size:15px}
+.v1-home-score-seal{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;
+  background:var(--seal);color:#fff;font-family:var(--cjk);font-weight:700;font-size:17px;border-radius:9px;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.25);flex-shrink:0}
+.v1-home-score-sub{font-size:13px;color:var(--mid)}
+.v1-home-score-big{text-align:center;font-family:var(--serif);font-size:52px;font-weight:600;margin:2px 0 10px}
+.v1-home-score-tags{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:14px;font-size:13px}
+.v1-tag{border-radius:6px;padding:2px 9px}
+.v1-tag.practice{border:1px solid #9DB8D2;background:rgba(157,184,210,.15)}
+.v1-tag.clean{border:1px solid #8AA894;background:rgba(138,168,148,.15)}
+.v1-tag.tier{border:1px solid #D2A49D;background:rgba(210,164,157,.15)}
+.v1-home-score-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:12px}
+.v1-ss-label{font-size:13px;color:var(--mid)}
+.v1-ss-val{font-family:var(--mono);font-size:14px;font-weight:500}
+.v1-home-score-breakdown{font-size:13px;color:var(--mid);display:flex;flex-direction:column;gap:4px}
+.v1-home-score-breakdown div{display:flex;justify-content:space-between}
+.v1-home-score-copy{flex:1;min-width:300px}
+.v1-home-score-heading{font-family:var(--serif);font-size:22px;font-weight:600;margin-bottom:12px}
+.v1-home-score-points{display:flex;flex-direction:column;gap:12px;font-size:14.5px;color:var(--mid);max-width:420px}
+.v1-home-score-point{display:flex;gap:10px}
+.v1-home-score-bullet{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;
+  background:var(--seal);color:#fff;font-family:var(--cjk);font-weight:700;font-size:13px;border-radius:6px;flex-shrink:0}
+
+/* ---- CTA band ----
+   Tea-illustration background (img/tea-moment-bg.jpg, from the "1a Red" design
+   pass) with a translucent rice-colored wash so cream text stays readable
+   over it at any crop. */
+.v1-home-cta{margin:36px 0 0;position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);
+  background:url("../img/cta-bg.jpg") center/cover no-repeat;
+  padding:40px 28px;text-align:center;color:var(--ink)}
+.v1-home-cta::before{content:"";position:absolute;inset:0;background:rgba(241,234,216,.62)}
+.v1-home-cta>*{position:relative}
+.v1-home-cta-zh{display:inline-block;height:34px;width:auto;margin-bottom:10px}
+.v1-home-cta-headline{font-family:var(--serif);font-size:26px;font-weight:600;margin-bottom:6px}
+.v1-home-cta-sub{color:var(--mid);font-size:14px;margin:0 0 20px}
+.v1-home-cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* ---- Responsive: hero + theater ---- */
+@media (max-width:900px){
+  /* hero bleed still matches .page's 24px side padding at this width */
+  .v1-home-hero{padding:20px 24px 36px;gap:28px}
+  .v1-home-headline{font-size:clamp(26px,5vw,34px)}
+  .v1-home-sub{font-size:15px}
+  /* Container-relative, not viewport-relative: the old min(420px,88vw) sized
+     against the raw viewport, ignoring .v1-home-hero's own side padding AND
+     .osgc-card's card padding stacked on top of it — on real phones
+     that nested padding (32px + 48px) ate into the 12vw margin the vw math
+     assumed was free, so the card overflowed past the viewport edge. 100%
+     of the actual (already-padded) parent box can't overflow it.
+     .osgc-card itself also needs the same width:100% now that it (not
+     #heroCardBody) is the direct flex item of .v1-home-hero — a flex item's
+     implicit min-width:auto floor otherwise keeps it pinned near the 420px
+     board's intrinsic width regardless of flex-shrink, overflowing the
+     viewport exactly like the .v1-home-theater bug this comment describes. */
+  .v1-home-hero .osgc-card{width:100%}
+  .v1-home-hero-board.og-board{width:100%;max-width:420px}
+  .v1-home-hero-controls{width:100%;max-width:420px}
+  .v1-home-tea-side{flex:1 1 100%;width:100%;max-width:100%}
+  /* Same fix as the hero card above: .osgc-card, not .v1-home-tea-board-wrap,
+     is the actual flex item of .v1-home-tea now — .v1-home-tea-board-wrap
+     itself gets no flex-basis/width overrides here, for the same reason the
+     desktop rule above doesn't (it's a flex item of .osgc-body now, not of
+     .v1-home-tea). */
+  .v1-home-tea .osgc-card{flex:1 1 100%;width:100%;max-width:min(540px,92vw);min-width:0}
+  /* Same board/side split as Tea Moment above, applied to the practice
+     grid (validation feedback, 2026-07-18: "mobile version use vertical
+     alignment"). */
+  .v1-learn-practice .osgc-card{flex:1 1 100%;width:100%;max-width:min(540px,92vw);min-width:0}
+  .v1-learn-practice-side{flex:1 1 100%;width:100%;max-width:100%}
+  .v1-home-score-card{width:100%}
+  .v1-home-score-wrap{gap:24px}
+}
+@media (max-width:720px){
+  /* .page padding drops to 16px 14px at this width — match the hero bleed to it */
+  .v1-home-hero{margin:-16px -14px 0;padding:18px 16px 30px}
+  .v1-home-section{margin:48px 0 16px}
+  .v1-home-hero-cta{width:100%}
+  .v1-home-cta-row-secondary{justify-content:center}
+  .v1-home-numpad,.numpad{gap:4px}
+  .v1-home-tea-numpad button{padding:13px 0}
+}
+
+/* ---------- Mobile layout ---------- */
+.tabbar{display:none}
+@media (max-width:900px){
+  .play-layout,.replay-layout{flex-direction:column}
+  /* Once stacked, the golden-ratio width caps added above (§2 fix) would
+     otherwise leave both the board and the sidebar narrow and centered
+     instead of filling the column — same width:100% reset this codebase
+     already applies to every other .osgc-card/.sidebar split at this kind
+     of breakpoint (see the hero/tea/learn-practice rules above). */
+  .play-layout .osgc-card{width:100%;max-width:min(540px,92vw)}
+  .play-layout .sidebar{width:100%;max-width:none}
+  nav.top{padding:10px 14px;flex-wrap:wrap}
+  nav.top .brand .tag{display:none}
+  .hero h2{font-size:30px}
+}
+@media (max-width:720px){
+  nav.top a.navlink,nav.top .navlink{display:none}
+  nav.top{padding:8px 14px}
+  .page{padding:16px 14px 108px}
+  .hero2{padding:22px 0 8px;gap:26px}
+  .hero2 .sub{font-size:15px}
+  .hero2 .ctas .btn{width:100%}
+  .statstrip{border:none;gap:1px;background:var(--line);border-radius:10px;overflow:hidden}
+  .stat{min-width:calc(50% - 1px);flex:1 1 40%;background:var(--rice);border:none!important;padding:16px 10px}
+  .stat .n{font-size:21px}
+  .dock{grid-template-columns:1fr}
+  .cta-band{padding:32px 18px}
+  .numpad{gap:4px}
+  .numpad button{padding:13px 0;font-size:18px}
+  .sidebar{width:100%;min-width:0}
+  footer{padding-bottom:96px}
+  .stamp-overlay{padding:20px}
+  .tabbar{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:60;background:var(--ivory);
+    border-top:1px solid var(--line);justify-content:space-around;padding:7px 2px calc(7px + env(safe-area-inset-bottom))}
+  /* 7 items as of Ranking Games (2026-07-18, added "Ranking Games") — was 6
+     as of the blog redesign (added "Blog"), min-width tightened from 52px to
+     44px then so 6 fit on a standard 390px-wide phone without overflowing;
+     7×44px + padding still comfortably fits down to 375px. font-size trimmed
+     to match. */
+  .tabbar a{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;color:var(--mid);padding:2px 3px;min-width:44px;font-weight:500}
+  .tabbar a .ts{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;
+    font-family:var(--cjk);font-weight:700;font-size:16px;color:var(--mid);box-shadow:inset 0 0 0 1.5px var(--light)}
+  .tabbar a.active{color:var(--tea)}
+  .tabbar a.active .ts{background:var(--tea);color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.25)}
+}
+
+/* ============ RANKING GAMES (Phase 4, 2026-07-18) ============
+   docs/plans/2026-07-18-web-ranking-games-implementation-plan.md. Reuses
+   .card/.btn/.period-tabs/.mode-tab/.lb-table/.badge/.og-* wholesale — only
+   the layout shells below are new. Two-column at 901px, matching this
+   codebase's existing breakpoint convention (not the 768px the brief/PRD
+   assumed — nothing else here uses that value). */
+.rgk-stats-bar{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:18px}
+.rgk-stat{display:flex;flex-direction:column;gap:2px}
+.rgk-stat b{font-family:var(--serif);font-size:20px}
+.rgk-stat span{font-size:12px;color:var(--mid)}
+
+.rgk-events{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:22px}
+@media (min-width:901px){.rgk-events{grid-template-columns:repeat(3,1fr)}}
+.rgk-event-card{display:flex;flex-direction:column;gap:8px}
+.rgk-event-card.rgk-event-empty{opacity:.7}
+.rgk-event-label{font-family:var(--serif);font-weight:600;font-size:16px}
+.rgk-event-meta{font-size:13px;color:var(--mid)}
+.rgk-event-countdown{font-size:12px;color:var(--tea);font-family:var(--mono)}
+.rgk-event-card .btn{align-self:flex-start;margin-top:4px}
+
+.rgk-playarea{margin-bottom:22px}
+.rgk-play-head{display:flex;align-items:center;justify-content:space-between;margin:12px 0}
+.rgk-play-label{font-family:var(--serif);font-weight:600;font-size:16px}
+.rgk-timer{font-family:var(--mono);font-size:18px;color:var(--tea)}
+.rgk-og-wrap{margin-top:8px}
+
+.rgk-result{text-align:center;padding:24px 12px}
+.rgk-result-title{font-family:var(--serif);font-size:18px;font-weight:600;margin-bottom:6px}
+.rgk-result-points{font-family:var(--serif);font-size:32px;font-weight:700;color:var(--tea)}
+.rgk-result-bonus{font-size:13px;color:var(--amber);margin-top:6px}
+.rgk-result-rank{font-size:13px;color:var(--mid);margin-top:4px}
+.rgk-result .btn{margin-top:16px}
+
+.rgk-loading,.rgk-signin{padding:24px;text-align:center;color:var(--mid)}
+.rgk-signin .btn{margin-top:12px}
+
+/* Leaderboard period title + Prev/Next (2026-07-22) */
+.rgk-lb-period-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.rgk-lb-period-title{font-family:var(--serif);font-weight:600;font-size:15px;color:var(--ink)}
+.rgk-lb-period-bar .btn[disabled]{opacity:.35;pointer-events:none}
+
+/* Inline "View my replay" board (2026-07-22) — reuses .og-board/.osr-controls */
+.rgk-replay-inline{margin-top:16px;text-align:left}
+.rgk-replay-inline .og-board{max-width:360px;margin:0 auto}
+
+/* V8 Weekly Cup semantic card (Team Web M1, js/app.js's renderWeeklyCupCard,
+ * variant data from js/compete-weekly.js). Reuses the site's existing
+ * tokens rather than a parallel palette -- --tea for the CTA, --seal never
+ * for state, --amber reserved for mistakes only (there are none on this
+ * card), matching the signed-off Pass 3 reference's own rule against a
+ * fourth visual system and its rule against red/green as generic state
+ * color. Provisional vs. final is carried by the quiet .wc-final-mark line
+ * and full-weight numerals, not by a color change. */
+.wc-card{text-align:left}
+.wc-kicker{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mid)}
+/* Phase 3 config title (Team Web M2) — "This Week's Official Cup" /
+ * "Today's Official Puzzle" / "Monthly Championship" — sits above the
+ * per-variant .wc-headline, same serif token, one step larger/bolder to
+ * read as the card's own name rather than a state line. */
+.wc-title{font-family:var(--serif);font-size:28px;font-weight:700;margin:4px 0 2px}
+.wc-headline{font-family:var(--serif);font-size:24px;font-weight:600;margin:6px 0;font-variant-numeric:tabular-nums}
+.wc-final-mark{font-size:13px;color:var(--tea);font-weight:600;margin:0 0 8px}
+.wc-body{margin:4px 0;color:var(--ink)}
+.wc-meta{margin:4px 0;font-size:13px;color:var(--mid)}
+.wc-lock{margin:12px 0;padding:10px 14px;background:var(--celadon);color:var(--tea-deep);border-radius:8px;font-size:13px}
+.wc-cta{margin-top:14px}

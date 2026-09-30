@@ -1,0 +1,29 @@
+/* ============================================================
+   Orbace Sudoku — canonical design tokens (site re-imagined v2 §4.1)
+   Single palette source for the static shell AND (progressively) the SPA.
+   Red is reserved for the brand seal / exceptional emphasis.
+   Player digits, selection, focus = green. Conflicts = amber + non-color cue.
+   ============================================================ */
+:root {
+  --brand-seal:        #C41E3A;
+  --brand-forest:      #244c3a;
+  --brand-forest-dark: #17362a;
+  --surface-paper:     #fbf8f1;
+  --surface-tea:       #f1e7d2;
+  --surface-paper-deep:#eee3cf;
+  --surface-mist:      #dce8dc;
+  --text-primary:      #252b28;
+  --text-secondary:    #686b65;
+  --state-warning:     #C9862B;
+  --state-warning-deep:#96591A;
+  --accent-gold:       #b58b42;
+  --line-forest:       rgba(36, 76, 58, .19);
+
+  /* Type stacks: Inter/Georgia for editorial surfaces; CJK-capable stack
+     kept for seals/glyphs so 数/榜/谱/茶 never fall back to system CJK. */
+  --font-body:   Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-cjk:    "Noto Serif SC", Georgia, serif;
+
+  --measure-max: 72rem;
+}

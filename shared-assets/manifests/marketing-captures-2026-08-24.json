@@ -1,0 +1,74 @@
+{
+  "manifestVersion": "1.0",
+  "capturedAt": "2026-08-24",
+  "purpose": "Orbace marketing discovery and review renders",
+  "immutability": "The two Desktop masters are source-of-truth and were not moved, renamed, or overwritten.",
+  "masters": [
+    {
+      "id": "teamomentplay",
+      "path": "/Users/justinzero/Desktop/os-iphone/ScreenRecording_08-24-2026 teamomentplay.MP4",
+      "sizeBytes": 783722223,
+      "durationSeconds": 639.856893,
+      "width": 1170,
+      "height": 2532,
+      "videoCodec": "hevc",
+      "audioCodec": "aac",
+      "pixelFormat": "yuvj420p",
+      "nominalFrameRate": "120/1",
+      "averageFrameRate": "36100/1049",
+      "timeBase": "1/600",
+      "variableFrameRate": true,
+      "sha256": "1056c4b7e3b80720959f5cdebecbe1ce87b7b643a5000997aa1faf3241445f46"
+    },
+    {
+      "id": "replay",
+      "path": "/Users/justinzero/Desktop/os-iphone/ScreenRecording_08-24-2026 replay.MP4",
+      "sizeBytes": 75947165,
+      "durationSeconds": 77.030816,
+      "width": 1170,
+      "height": 2532,
+      "videoCodec": "hevc",
+      "audioCodec": "aac",
+      "pixelFormat": "yuvj420p",
+      "nominalFrameRate": "60/1",
+      "averageFrameRate": "61675/1927",
+      "timeBase": "1/600",
+      "variableFrameRate": true,
+      "sha256": "1d8de8c12e36c546fcff10380515173fb9de2ab50bed6680101e697a66eaf2fc"
+    }
+  ],
+  "screenshots": [
+    {"filename":"IMG_0131.PNG","path":"/Users/justinzero/Desktop/os-iphone/IMG_0131.PNG","sizeBytes":233601,"width":1170,"height":2532,"sha256":"2cda973aaa1edd46c9334b86baa4fbbc29e7f1e453537307c32d14e99d4ae90c"},
+    {"filename":"IMG_0132.PNG","path":"/Users/justinzero/Desktop/os-iphone/IMG_0132.PNG","sizeBytes":233768,"width":1170,"height":2532,"sha256":"bd95bc4cd2599367494cd6cc5838eef67d881203112894df291fb0e218db1e57"},
+    {"filename":"IMG_0133.PNG","path":"/Users/justinzero/Desktop/os-iphone/IMG_0133.PNG","sizeBytes":233641,"width":1170,"height":2532,"sha256":"a11199baecf844670685693d0f44a36fe371b3fd6a08cca0f23d42ab493b1c6a"},
+    {"filename":"IMG_0134.PNG","path":"/Users/justinzero/Desktop/os-iphone/IMG_0134.PNG","sizeBytes":235319,"width":1170,"height":2532,"sha256":"715013b24ccce70a11868c43a26fcfba554d95b36585386e0d0c7b9ae5ec18fe"},
+    {"filename":"IMG_0135.PNG","path":"/Users/justinzero/Desktop/os-iphone/IMG_0135.PNG","sizeBytes":266329,"width":1170,"height":2532,"sha256":"8cb5ad6fbcc24892b7cbe3d0bcff4d3fdd9e93cac6a1b769d22b15119d1dc64c"},
+    {"filename":"IMG_0136.PNG","path":"/Users/justinzero/Desktop/os-iphone/IMG_0136.PNG","sizeBytes":241501,"width":1170,"height":2532,"sha256":"cfd0383ba962c82fbccf04e23e644c625d9a4d83123cb0303179c3d4eae87b7b"},
+    {"filename":"IMG_0137.PNG","path":"/Users/justinzero/Desktop/os-iphone/IMG_0137.PNG","sizeBytes":247072,"width":1170,"height":2532,"sha256":"7ed238f46c8b3c7cdab13391652d0b25b0459edfd881fcb02922cb250f488cad"},
+    {"filename":"IMG_0138.PNG","path":"/Users/justinzero/Desktop/os-iphone/IMG_0138.PNG","sizeBytes":172419,"width":1170,"height":2532,"sha256":"0675a5f653997111075c05258e416ab16730ba08020a016e4d8d2d5dcf979ab4"},
+    {"filename":"IMG_0139.PNG","path":"/Users/justinzero/Desktop/os-iphone/IMG_0139.PNG","sizeBytes":237304,"width":1170,"height":2532,"sha256":"a1d37a89c8ae8ff8b5c24613a2468c0baf1e1cffaa0defd9013d22430a6d715e"},
+    {"filename":"IMG_0140.PNG","path":"/Users/justinzero/Desktop/os-iphone/IMG_0140.PNG","sizeBytes":219507,"width":1170,"height":2532,"sha256":"9c5d6485124c9a38fcb9e314f1fa574ba35a21aa78d26b46de0efad95240b24a"},
+    {"filename":"IMG_0141.PNG","path":"/Users/justinzero/Desktop/os-iphone/IMG_0141.PNG","sizeBytes":240107,"width":1170,"height":2532,"sha256":"0b1baaaa95d6fa6fd3078c47cbc729e3f57c3e8044070680e2e4f9ce29443d66"},
+    {"filename":"IMG_0142.PNG","path":"/Users/justinzero/Desktop/os-iphone/IMG_0142.PNG","sizeBytes":223865,"width":1170,"height":2532,"sha256":"56c243323d50855e82634319a94e26ddf24815fbe8996fc7882f38bf78ae9575"},
+    {"filename":"IMG_0143.PNG","path":"/Users/justinzero/Desktop/os-iphone/IMG_0143.PNG","sizeBytes":244594,"width":1170,"height":2532,"sha256":"74d97fca1a87f074caefbfdb90d49304292c5d89fb953118a9a7d960497aeeab"}
+  ],
+  "proxies": {
+    "directory": "/Users/justinzero/orbacetech/DevProjects/orbace-sudoku/orbace-video/shared-assets/proxies/marketing-2026-08-24",
+    "files": [
+      {"filename":"replay-full-360p.mp4","source":"replay","durationSeconds":77.016667,"width":360,"height":780,"videoCodec":"h264","nominalFrameRate":"60/1","sha256":"d94caa02fda2ed96eeb1dab0de5cbcf65f75c8e62c8a5943f20737f4de312cd4"},
+      {"filename":"teamomentplay-0-30s-360p.mp4","source":"teamomentplay","sourceStartSeconds":0,"durationSeconds":30.008333,"width":360,"height":780,"videoCodec":"h264","nominalFrameRate":"120/1","sha256":"c5b6bf1af00b9de9f091e14d149a53f00c3c3c73df3351fb5d0d148e2308fa5e"},
+      {"filename":"teamomentplay-425-455s-360p.mp4","source":"teamomentplay","sourceStartSeconds":425,"durationSeconds":30,"width":360,"height":780,"videoCodec":"h264","nominalFrameRate":"120/1","sha256":"519dcad952bf89b9aa9bd375d7fc6ab063e2d274aec1bd27f3451116432344fe"},
+      {"filename":"teamomentplay-455-545s-360p.mp4","source":"teamomentplay","sourceStartSeconds":455,"durationSeconds":90.008333,"width":360,"height":780,"videoCodec":"h264","nominalFrameRate":"120/1","sha256":"c07c086669ba3931725af4d481089bc9e9672d5597b37ab8ff873a675df76f91"},
+      {"filename":"teamomentplay-545-640s-360p.mp4","source":"teamomentplay","sourceStartSeconds":545,"durationSeconds":94.825,"width":360,"height":780,"videoCodec":"h264","nominalFrameRate":"60/1","sha256":"a93627b7268a586a591e35b78a0ff73c761e49ab7b4cb03baa7d1e743b1925e2"}
+    ]
+  },
+  "discoveryArtifacts": {
+    "contactSheets": [
+      "marketing/replay-v2/review/contact-sheet-team-01.jpg",
+      "marketing/replay-v2/review/contact-sheet-team-02.jpg",
+      "marketing/replay-v2/review/contact-sheet-replay.jpg",
+      "marketing/replay-v2/review/contact-sheet-screens.jpg"
+    ],
+    "timecodeMap": "shared-assets/manifests/marketing-capture-timecode-map-2026-08-24.md"
+  }
+}

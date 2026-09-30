@@ -1,0 +1,35 @@
+{
+  "project": "Orbace Replay App Store Preview V2",
+  "renderedAt": "2026-08-26",
+  "composition": "OrbaceReplayStoreV2",
+  "durationSeconds": 18,
+  "fps": 30,
+  "outputs": [
+    {
+      "role": "app-store-master",
+      "path": "final/orbace-replay-app-preview-v2-app-store-886x1920.mp4",
+      "sha256": "75e608409716a7b51157e62df4a50b69ed2e91344a3d35ade41c298dd25874d2",
+      "sizeBytes": 2316991,
+      "video": "H.264 High Profile Level 4.0, yuv420p, 886x1920, 30 fps",
+      "audio": "none"
+    },
+    {
+      "role": "archive-master",
+      "path": "final/orbace-replay-app-preview-v2-1080x1920.mp4",
+      "sha256": "f4e0398758d210b74479d0f43207f23f7a876137f9764651c6eb00c20bfb5604",
+      "sizeBytes": 1879755,
+      "video": "H.264 High Profile Level 4.0, yuv420p, 1080x1920, 30 fps",
+      "audio": "AAC source track; use the App Store master for submission"
+    },
+    {
+      "role": "muted-review",
+      "path": "review/orbace-replay-app-preview-v2-muted-review.mp4",
+      "sha256": "4913a5f0e5fd364b4ce5ab2afc9a47d02ce4d03a7ed80f0a592b22c11abc8a60"
+    },
+    {
+      "role": "poster",
+      "path": "final/orbace-replay-app-preview-v2-poster.png",
+      "sha256": "b3e899dca3ed08b2ccdf256f8d7f3cba88c10aa9c2bfe5238fc56f507ef101e8"
+    }
+  ]
+}

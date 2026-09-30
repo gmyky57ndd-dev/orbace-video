@@ -1,0 +1,154 @@
+ORBACE SU-PU REPLAY TRAILER — V4
+Title: "One Contradiction Changed Everything"
+
+EDITORIAL RULE (read first, governs every decision below)
+Reveal the turning point. Never reveal the entire story. The trailer should
+satisfy curiosity just enough to create a stronger desire to watch the
+complete Su-Pu replay. The replay is the product. The trailer is not.
+
+OUTPUT
+- Primary: 9:16, 1080x1920, 30fps, 48.0 seconds exactly.
+- Secondary: 16:9, 1920x1080, cropped from the same master. Do not regenerate.
+- Source: Orbace Su-Pu replay SP-20260925-683633.
+
+SOURCE FIDELITY (hard rules)
+- Use only genuine screen-recorded Su-Pu replay footage.
+- Preserve real replay timing, order, chapter titles, branch visualization,
+  timeline, and controls exactly as rendered.
+- Allowed: freeze frames, speed changes, scrubbing, cropping.
+- Forbidden: invented moves, fabricated solver states, artificial branches,
+  redrawn overlays, invented UI, invented chapter names.
+- If a beat below has no matching replay footage, delete the beat.
+  Never fabricate.
+
+SAFE AREA
+Keep all critical elements inside the center 60% width of the 9:16 frame so
+they survive the 16:9 crop:
+- contradiction node
+- branch visualization
+- chapter title
+- replay progress bar
+- burned captions
+- any text card
+
+CAPTIONS
+- Burn captions for every narration sentence.
+- Clean sans-serif, white, subtle drop shadow.
+- Maximum two lines. Upper-middle third. Clear of platform UI.
+- Text cards and captions never exceed 60% of frame width.
+
+AUDIO
+Voice: warm, thoughtful documentary narrator. Original synthetic voice.
+Slow delivery, approximately 130 words per minute.
+Do not imitate, clone, or resemble any identifiable narrator or public figure.
+Music: minimal ambient. 60–70 BPM. No percussion. No trailer impacts.
+No cinematic risers.
+
+SILENCE RULE
+At the contradiction, cut everything: music, room tone, ambience.
+Hold 1.5 seconds of true silence. Resume only after the freeze ends.
+
+STORY SOURCE
+The replay contains three real chapters. Use them as-is. Do not rename.
+The chapter transitions are part of the story.
+
+TIMING (48 seconds, fixed)
+1. 0:00-0:05  Question
+2. 0:05-0:10  Replay begins
+3. 0:10-0:18  Chapter One
+4. 0:18-0:27  Contradiction
+5. 0:27-0:38  Turning Point
+6. 0:38-0:44  Resolution
+7. 0:44-0:48  Invitation
+
+SCENE 1 — QUESTION (0:00-0:05)
+Open on the replay mid-solve, before the contradiction. Hold the frame static
+for 1.0 second. No motion, no zoom.
+Then cut to a centered text card (inside center 60% width):
+"Can one contradiction solve an impossible Sudoku?"
+VO: "This puzzle looked impossible."
+(pause 1.0s)
+VO: "Until one contradiction changed everything."
+Do not say "Extreme." Do not say "IB Tree." Do not explain technique.
+
+SCENE 2 — REPLAY BEGINS (0:05-0:10)
+Use the real replay rewind. Scrubbing only. No added effects.
+The real replay timeline must be visible.
+VO: "Let's replay the exact moment everything changed."
+
+SCENE 3 — CHAPTER ONE (0:10-0:18)
+Play forward at 1x. Let the first real chapter title appear naturally.
+Do not cover it. Do not comment on technique.
+VO: "Every solve begins with a simple decision."
+(pause 0.8s)
+VO: "This one would change the entire puzzle."
+
+SCENE 4 — CONTRADICTION (0:18-0:27)
+Replay reaches the contradiction. Freeze.
+Cut all audio. Hold 1.5 seconds of silence.
+Nothing moves. Nothing speaks.
+After silence ends, VO: "The contradiction proved the other path had to be true."
+This is the emotional peak. Do not add music under this line for at least
+1.5 seconds after it begins.
+
+SCENE 5 — TURNING POINT (0:27-0:38)
+Resume replay. Increase to 2x. Use 4x only if chapter title and branch remain
+readable at 1080x1920.
+Do not add any lower-third label. No on-screen text in this scene.
+VO: "From that single proof..."
+(pause 0.8s)
+VO: "...the rest of the puzzle unfolds."
+
+SCENE 6 — RESOLUTION (0:38-0:44)
+Continue replay to the solved state at 1x. Do not interrupt.
+Do not overlay statistics, counters, or UI cards.
+VO: "Every step remains."
+(pause 0.8s)
+VO: "Every decision can be replayed."
+
+SCENE 7 — INVITATION (0:44-0:48)
+Dissolve from the final solved frame to a minimal Orbace end card.
+No feature list. No screenshots. No app UI.
+Centered text, inside 60% width:
+"Watch the complete replay"
+Below, smaller: "orbacesudoku.com/su-pu"
+Below, smallest: "Every solve has a story."
+VO: none.
+Final on-screen line only: "Replay the thinking."
+Hold 0.5 seconds after the final line before end.
+
+PACING
+Never rush. Long pauses are intentional. The replay provides motion.
+The trailer provides meaning. Silence is a feature.
+
+CAMERA
+No shake. No whip pans. Maximum one slow push per scene.
+
+COLOR
+Do not stylize. Respect the real Su-Pu interface.
+No neon. No cinematic grading. No exaggerated contrast.
+
+NEGATIVE
+Do not invent replay events, chapters, UI, or narration about replay states.
+Do not explain IB Tree.
+Do not add solver diagrams, stock footage, actors, or lifestyle footage.
+Do not add fake branch graphics.
+Do not over-edit.
+Do not interrupt the replay unnecessarily.
+Do not render statistics as UI panels.
+Do not add on-screen labels not present in the product.
+Do not use risers, whooshes, or trailer impacts.
+Do not exceed two lines per caption.
+
+SUCCESS CRITERIA
+Viewers should leave wanting to know:
+- What happened after the contradiction?
+- Why did that branch fail?
+- What are the other two chapters?
+- How did the puzzle finish?
+If the trailer answers all four, it has revealed too much.
+
+DELIVERY
+- 9:16 master: 1080x1920, 30fps, H.264, ~12 Mbps.
+- 16:9: cropped from master, 1920x1080, 30fps, H.264.
+- Captions: burned in + optional SRT sidecar matching VO.

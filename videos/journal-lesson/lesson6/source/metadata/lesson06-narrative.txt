@@ -1,0 +1,11 @@
+This is a real story. A single mother sent her son to a summer camp where there had sudoku class. One day her son were struggling with a very hard sudoku puzzle, the mother post the problem online and lots of people replied that the solution is very hard to explain. [insert lesson06-1.jpg here].
+
+Indeed this is also an extreme sudoku puzzle rated as "Hell" (level 9), its hodoku value is 2240, and SE rating 7.0. It may not be as hard as the one presented in lesson05, but following canred method and applying several advanced techniques to solve it would cause experienced sudoku players to scratch their heads, let alone a young learner. But ...
+
+Take a close look at the features and positions of digit 7, we could have better ideas with ibtree method. Before we identify the right chain trigger, let's use basic cross-hatching to get some low hanging fruit. As expected, we can get three digits and a naked pair to complete box 4, which are of great help down the line. [insert lesson06-2.jpg here] We notice that there are three possible home for digit 7 in the Box 9, all of them can cause a long chain of reaction.
+
+As we explained in lesson 03, three way fork can be conceptually re-structured as a two layers of binary decision tree. Let's first test 7/R8C8, [insert lesson06-3.jpg here] after a quick tracing around board, we find that there is no room for 7 in the Box 6. [insert lesson06-4.jpg here] Similarly, we can test 7/R8C9, [insert lesson06-5.jpg here], this time it takes a few extra steps with 3, but again there is another contradiction: there is no room for 5 in the Box 1. [insert lesson06-6.jpg here]
+
+Combining these two separate tests, we know for certain that in the Box 9, 7 must be in R7C8. [insert lesson06-7.jpg.here] Once we have this critical determination, the rest of the solving will be straightforward. [insert lesson06-8.jpg here] Had the poor boy learned the ibtree method, he would save a lot of struggling time and enjoy his sudoku play.
+
+[create a inferential binary tree of two layers of forks for determining 7's position in the box 9].

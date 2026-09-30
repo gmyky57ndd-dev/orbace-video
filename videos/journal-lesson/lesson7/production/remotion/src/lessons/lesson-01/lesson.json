@@ -1,0 +1,28 @@
+{
+  "lessonId": "lesson-01",
+  "lessonNumber": 1,
+  "title": "Two Homes for a Nine",
+  "slug": "two-homes-for-a-nine",
+  "compositionId": "OrbaceJournalLesson01",
+  "source": {
+    "publishedUrl": "https://orbacesudoku.com/journal/two-homes-for-a-nine/journal-two-homes-for-a-nine",
+    "htmlSnapshot": "../../../lesson1/source/html/published.html",
+    "screenshotsDir": "/Users/justinzero/orbacetech/DevProjects/orbace-sudoku/orbace-video/os-journal/lesson1/source/screenshots",
+    "sourceOriginScreenshotsDir": "/Users/justinzero/orbacetech/DevProjects/os-journal/lesson1/cropped"
+  },
+  "learningObjective": "Recognize a binary fork and use proof by contradiction to confirm the other candidate.",
+  "keyTerms": ["binary fork", "ibtree", "proof by contradiction"],
+  "scenes": [
+    {"id":"opening","purpose":"Hook and title","asset":"lesson01-1_main.png","start":0,"duration":5.6,"kicker":"SU-PU STUDIES · LESSON 01","title":"Two homes.\nOne nine.","body":"Which one breaks the puzzle?","evidence":"Page title and dek"},
+    {"id":"setup","purpose":"Establish the stalled Extreme grid","asset":"lesson01-1_main.png","start":5.6,"duration":5.4,"kicker":"EXTREME","title":"Basic methods stall.","body":"The givens offer a structural way in.","evidence":"The starting grid"},
+    {"id":"fork","purpose":"Identify the binary fork","asset":"lesson01-2_main.png","start":11,"duration":7.5,"kicker":"BINARY FORK · BOX 1","title":"9 has two homes.","body":"R1C1 or R2C3. One must be true.","evidence":"Finding the fork"},
+    {"id":"assume","purpose":"Choose and trace the false branch","asset":"lesson01-3_main.png","start":18.5,"duration":8,"kicker":"ASSUME","title":"R2C3 = 9","body":"Follow every forced consequence.","evidence":"The false branch"},
+    {"id":"contradiction","purpose":"Reach the contradiction","asset":"lesson01-3_main.png","start":26.5,"duration":7,"kicker":"FIVE FORCED STEPS","title":"Two 9s.\nOne row.","body":"The branch is impossible.","evidence":"False branch figure and explanation"},
+    {"id":"proof","purpose":"Confirm the other fork candidate","asset":"lesson01-4_main.png","start":33.5,"duration":7,"kicker":"PROOF BY CONTRADICTION","title":"R1C1 = 9","body":"The other home is confirmed.","evidence":"The confirmation"},
+    {"id":"opens","purpose":"Show the puzzle opening","asset":"lesson01-5_main.png","start":40.5,"duration":6.5,"kicker":"RESOLUTION","title":"The grid opens.","body":"Basic techniques can carry the solve forward.","evidence":"Confirmation follow-through"},
+    {"id":"verify","purpose":"Restate the reusable method","asset":"lesson01-6_main.png","start":47,"duration":8,"kicker":"IBTREE","title":"Find. Trace. Prove.","body":"A fork is not a guess when its consequences are checked.","evidence":"Ibtree versus canred and Why binary tree"},
+    {"id":"end","purpose":"Series end card","asset":"lesson01-4_main.png","start":55,"duration":5,"kicker":"TECHNIQUE","title":"ibtree","body":"Inferential Binary Tree","evidence":"Lesson 7 V4 end-card treatment"}
+  ],
+  "verification": {"falseAssumption":"R2C3 = 9","contradiction":"Two 9s forced into the same row","confirmedPlacement":"R1C1 = 9"},
+  "endCard": {"lessonLabel":"SU-PU STUDIES · LESSON 01","journalUrl":"orbacesudoku.com/journal","downloadUrl":"orbacesudoku.com/download"}
+}

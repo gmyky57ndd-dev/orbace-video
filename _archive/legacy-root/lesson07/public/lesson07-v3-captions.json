@@ -1,0 +1,142 @@
+[
+  {
+    "text": "An Extreme puzzle begins simply enough.",
+    "startMs": 5600,
+    "endMs": 8111,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "A few cross-hatching moves reveal a confined group: one and seven.",
+    "startMs": 8391,
+    "endMs": 12357,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "Then comes the fork.",
+    "startMs": 12937,
+    "endMs": 14376,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "Two positions remain for two.",
+    "startMs": 14696,
+    "endMs": 16577,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "We choose one—not because we know it's right, but because we can follow where it leads.",
+    "startMs": 16857,
+    "endMs": 21592,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "One placement forces another.",
+    "startMs": 22172,
+    "endMs": 24186,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "Box six resolves.",
+    "startMs": 24386,
+    "endMs": 25951,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "Still, no conflict.",
+    "startMs": 26271,
+    "endMs": 28174,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "The branch holds.",
+    "startMs": 29094,
+    "endMs": 30437,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "Now two boxes constrain seven in parallel.",
+    "startMs": 31517,
+    "endMs": 34299,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "That fixes another seven, and the puzzle begins to open.",
+    "startMs": 34549,
+    "endMs": 37876,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "Soon, every cell is filled.",
+    "startMs": 38496,
+    "endMs": 40526,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "But completion isn't proof.",
+    "startMs": 41476,
+    "endMs": 43442,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "Return to the assumption.",
+    "startMs": 44222,
+    "endMs": 45948,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "Trace it through the finished grid.",
+    "startMs": 46198,
+    "endMs": 48096,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "No duplicate.",
+    "startMs": 48346,
+    "endMs": 49656,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "No contradiction.",
+    "startMs": 49956,
+    "endMs": 51522,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "Verified.",
+    "startMs": 52442,
+    "endMs": 53625,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "Sometimes the branch doesn't break.",
+    "startMs": 54575,
+    "endMs": 56734,
+    "timestampMs": null,
+    "confidence": null
+  },
+  {
+    "text": "It leads all the way home.",
+    "startMs": 57254,
+    "endMs": 59108,
+    "timestampMs": null,
+    "confidence": null
+  }
+]

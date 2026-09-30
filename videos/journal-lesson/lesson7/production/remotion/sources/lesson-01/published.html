@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Two Homes for a Nine | Orbace Sudoku Journal</title>
+<meta name="description" content="When basic methods stall, look for a binary fork—two candidates in one box—and trace one forward to find your proof by contradiction.">
+<link rel="stylesheet" href="/css/tokens.css?v=2">
+<link rel="stylesheet" href="/css/shell.css?v=2">
+<style>
+:root{
+  --green:#244C3A;
+  --green-deep:#173E2C;
+  --cream:#F5F0E5;
+  --panel:#FBF3E3;
+  --ink:#26241F;
+  --ink-soft:#57534A;
+  --crimson:#8A1F2B;
+  --crimson-soft:#B0473F;
+  --gold:#D98C2B;
+  --line:#E4DBC7;
+  --serif:"Iowan Old Style","Georgia","Noto Serif SC",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --tea:var(--green); --tea-deep:var(--green-deep);
+  --seal:var(--crimson); --amber:var(--gold); --amber-deep:#96591A;
+  --mid:var(--ink-soft); --light:var(--ink-soft);
+  --ivory:var(--cream); --rice:var(--panel);
+  --celadon:#DCE8DC; --celadon-d:#B5C9BC;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,monospace;
+}
+body{
+  margin:0;
+  font-family:var(--serif);
+  font-size:17px;
+  line-height:1.7;
+  color:var(--ink);
+  background:var(--cream);
+}
+main{
+  max-width:680px;
+  margin:0 auto;
+  padding:40px 20px 60px;
+}
+.kicker{
+  font-family:var(--sans);
+  font-size:13px;
+  font-weight:600;
+  color:var(--ink-soft);
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.kicker .dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--gold);
+}
+h1{
+  font-size:2.6em;
+  line-height:1.15;
+  color:var(--green);
+  margin:0 0 16px;
+  font-weight:700;
+}
+.dek{
+  font-size:1.25em;
+  line-height:1.5;
+  color:var(--ink-soft);
+  margin:0 0 24px;
+}
+.byline{
+  font-family:var(--sans);
+  font-size:14px;
+  color:var(--ink-soft);
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  align-items:center;
+  margin-bottom:20px;
+}
+.byline b{
+  color:var(--ink);
+}
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:32px;
+}
+.tags span{
+  display:inline-block;
+  padding:4px 12px;
+  background:var(--panel);
+  border-radius:16px;
+  font-family:var(--sans);
+  font-size:13px;
+  font-weight:600;
+  color:var(--green);
+}
+.toc{
+  background:var(--panel);
+  border-radius:12px;
+  padding:24px 28px;
+  margin:32px 0 48px;
+}
+.toc h3{
+  font-size:1.1em;
+  color:var(--green);
+  margin:0 0 16px;
+}
+.toc ol{
+  margin:0;
+  padding:0 0 0 20px;
+  list-style:decimal;
+}
+.toc li{
+  margin-bottom:8px;
+}
+.toc a{
+  color:var(--ink);
+  text-decoration:none;
+}
+.toc a:hover{
+  color:var(--green);
+}
+.section-label{
+  font-family:var(--sans);
+  font-size:13px;
+  font-weight:700;
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+  margin:48px 0 8px;
+}
+h2{
+  font-size:1.8em;
+  line-height:1.3;
+  color:var(--green);
+  margin:0 0 20px;
+  font-weight:700;
+}
+h3{
+  font-size:1.3em;
+  color:var(--green);
+  margin:32px 0 16px;
+  font-weight:700;
+}
+p{
+  margin:0 0 20px;
+}
+.figure{
+  margin:32px 0;
+}
+.figure img{
+  width:100%;
+  max-width:380px;
+  display:block;
+  margin:0 auto;
+  border-radius:10px;
+  border:1px solid var(--line);
+  box-shadow:0 6px 18px rgba(36,76,58,.08);
+}
+.figure figcaption{
+  font-family:var(--sans);
+  font-size:14px;
+  line-height:1.5;
+  color:var(--ink-soft);
+  text-align:center;
+  margin-top:12px;
+}
+.step-chip{
+  display:inline-block;
+  background:var(--green);
+  color:var(--cream);
+  font-weight:700;
+  font-size:12px;
+  padding:3px 10px;
+  border-radius:10px;
+  margin-right:6px;
+}
+.callout{
+  background:var(--panel);
+  border-left:4px solid var(--green);
+  border-radius:8px;
+  padding:20px 24px;
+  margin:32px 0;
+}
+.callout p:last-child{
+  margin-bottom:0;
+}
+table.compare{
+  width:100%;
+  border-collapse:collapse;
+  margin:32px 0;
+  font-family:var(--sans);
+  font-size:15px;
+}
+table.compare th{
+  background:var(--green);
+  color:var(--cream);
+  padding:12px;
+  text-align:left;
+  font-weight:700;
+}
+table.compare td{
+  padding:12px;
+  border-bottom:1px solid var(--line);
+  vertical-align:top;
+}
+table.compare tr:last-child td{
+  border-bottom:none;
+}
+.diagram{
+  margin:40px 0;
+  text-align:center;
+}
+.diagram svg{
+  max-width:100%;
+  height:auto;
+}
+.replay-embed{
+  width:100vw;
+  max-width:900px;
+  margin:48px 0 0;
+  margin-left:50%;
+  transform:translateX(-50%);
+  padding:24px;
+  background:var(--panel);
+  border-radius:12px;
+}
+.replay-fallback-link{
+  font-size:13px;
+  margin-top:8px;
+}
+.cta{
+  background:var(--green);
+  color:var(--cream);
+  border-radius:12px;
+  padding:32px;
+  margin:48px 0 32px;
+  text-align:center;
+}
+.cta .cta-seal{
+  font-size:3em;
+  display:block;
+  margin-bottom:12px;
+}
+.cta h3{
+  color:var(--cream);
+  margin:0 0 12px;
+  font-size:1.5em;
+}
+.cta p{
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.6;
+  margin:0 0 20px;
+}
+.cta .btn{
+  display:inline-block;
+  background:var(--cream);
+  color:var(--green);
+  font-family:var(--sans);
+  font-size:15px;
+  font-weight:700;
+  padding:12px 24px;
+  border-radius:24px;
+  text-decoration:none;
+  margin:0 6px;
+}
+.cta .btn:hover{
+  background:var(--panel);
+}
+.standard{
+  font-family:var(--sans);
+  font-size:13px;
+  line-height:1.6;
+  color:var(--ink-soft);
+  border-top:1px solid var(--line);
+  padding-top:20px;
+  margin-top:32px;
+}
+.standard a{
+  color:var(--green);
+}
+@media print{
+  @page{ size:letter; margin:0.55in 0.65in; }
+  body{font-size:12.5px;}
+  main{padding:18px 0 30px; max-width:100%;}
+  h1{font-size:2em;}
+  .toc{break-inside:avoid;}
+  .figure, .diagram, table.compare, .callout{break-inside:avoid;}
+  h2, .section-label{break-after:avoid;}
+  .cta{break-inside:avoid;}
+  .no-print-replay{display:none;}
+  .byline a[href$=".pdf"]{display:none;}
+}
+</style>
+<link rel="canonical" href="https://orbacesudoku.com/journal/two-homes-for-a-nine/journal-two-homes-for-a-nine">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Orbace Sudoku">
+<meta property="og:title" content="Two Homes for a Nine | Orbace Sudoku Journal">
+<meta property="og:description" content="When basic methods stall, look for a binary fork—two candidates in one box—and trace one forward to find your proof by contradiction.">
+<meta property="og:url" content="https://orbacesudoku.com/journal/two-homes-for-a-nine/journal-two-homes-for-a-nine">
+<meta property="og:image" content="https://orbacesudoku.com/journal/two-homes-for-a-nine/a_lesson01-1_thumb.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "Two Homes for a Nine", "description": "When basic methods stall, look for a binary fork—two candidates in one box—and trace one forward to find your proof by contradiction.", "image": ["https://orbacesudoku.com/journal/two-homes-for-a-nine/a_lesson01-1_thumb.png"], "datePublished": "2026-07-31", "dateModified": "2026-07-31", "author": {"@type": "Organization", "name": "Orbace Sudoku Editorial Team"}, "publisher": {"@type": "Organization", "name": "Orbace Technologies LLC", "logo": {"@type": "ImageObject", "url": "https://orbacesudoku.com/img/og-default.png"}}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://orbacesudoku.com/journal/two-homes-for-a-nine/journal-two-homes-for-a-nine"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://orbacesudoku.com/"}, {"@type": "ListItem", "position": 2, "name": "Journal", "item": "https://orbacesudoku.com/journal"}, {"@type": "ListItem", "position": 3, "name": "Two Homes for a Nine", "item": "https://orbacesudoku.com/journal/two-homes-for-a-nine/journal-two-homes-for-a-nine"}]}]}</script>
+</head>
+<body>
+<a class="osh-skip" href="#main">Skip to main content</a>
+<header class="osh-header">
+  <nav class="osh-nav" aria-label="Primary navigation">
+    <a class="osh-brand" href="/" aria-label="Orbace Sudoku home"><span class="osh-seal" aria-hidden="true">数</span><span class="osh-brand-copy"><strong>Orbace Sudoku</strong><span class="osh-brand-tag"><span lang="zh">一局一茶</span><span>ONE PUZZLE, ONE TEA</span></span></span></a>
+    <div class="osh-links">
+      <a href="/play" data-nav-id="play">Tea Moment</a>
+      <a href="/puzzle-packs" data-nav-id="puzzle-packs">Puzzle Packs</a>
+      <a href="/compete" data-nav-id="compete">Compete</a>
+      <a href="/learn-sudoku" data-nav-id="learn-sudoku">Learn</a>
+      <a href="/su-pu" data-nav-id="su-pu">Su-Pu</a>
+      <a href="/journal" data-nav-id="journal">Journal</a>
+      <a href="/download" data-nav-id="download">Download</a>
+    </div>
+    <div id="authMount" class="osh-account"><a href="/signin" class="osh-auth-link osh-auth-signin" data-role="authsignin">Sign in</a></div>
+  </nav>
+</header>
+
+<main id="main">
+<div class="kicker"><span class="dot"></span> 谱 Su-Pu Studies · Lesson 01</div>
+<h1>Two Homes for a Nine</h1>
+<p class="dek">When basic methods stall, look for a binary fork—two candidates in one box—and trace one forward to find your proof by contradiction.</p>
+<div class="byline">
+  <span>Written by <b>the Orbace Sudoku Editorial Team</b></span>
+  <span>·</span>
+  <span>July 31, 2026</span>
+  <span>·</span>
+  <span>8 min read</span>
+  <span>·</span>
+  <span><a href="journal-two-homes-for-a-nine.pdf">Download PDF</a></span>
+</div>
+<div class="tags">
+  <span>Extreme</span>
+  <span>Ibtree</span>
+  <span>Proof by Contradiction</span>
+  <span>Binary Tree</span>
+</div>
+
+<div class="toc">
+  <h3>In this study</h3>
+  <ol>
+    <li><a href="#the-starting-grid">The starting grid</a></li>
+    <li><a href="#finding-the-fork">Finding the fork</a></li>
+    <li><a href="#the-false-branch">The false branch</a></li>
+    <li><a href="#the-confirmation">The confirmation</a></li>
+    <li><a href="#ibtree-vs-canred">Ibtree versus canred</a></li>
+    <li><a href="#why-binary-tree">Why "binary tree"?</a></li>
+  </ol>
+</div>
+
+<p class="section-label">01 · Opening</p>
+<h2 id="the-starting-grid">The starting grid</h2>
+
+<p>Let's take a close look at this Extreme-tier puzzle. At first glance, it seems impossible to place a single digit using only basic Sudoku methods—no naked singles leap out, no obvious hidden singles present themselves. You could fill the entire grid with candidate pencilmarks and systematically reduce them until a naked single appears, but even that won't get you very far. The puzzle demands something more.</p>
+
+<div class="figure">
+  <img src="lesson01-1_main.png" alt="The starting grid: an Extreme-tier puzzle with only seventeen given digits scattered across the board">
+  <figcaption>The starting grid. Seventeen givens, no obvious entry point for basic techniques.</figcaption>
+</div>
+
+<p>Sudoku puzzles can be solved creatively by looking at the special formation of the givens—the structural opportunities they create. This puzzle is a perfect example.</p>
+
+<p class="section-label">02 · Opportunity</p>
+<h2 id="finding-the-fork">Finding the fork</h2>
+
+<p>Observe Box 1 (the top-left box). There are only two possible homes for the digit 9: one cell in the top row, and one cell a row below. This is a <b>binary fork</b>—exactly two candidates for the same digit in the same region. It's the structural trigger the ibtree method looks for.</p>
+
+<div class="figure">
+  <img src="lesson01-2_main.png" alt="Box 1 highlighted, showing two possible positions for 9: R1C1 and R2C3">
+  <figcaption>Box 1 has exactly two homes for 9. One must be true; one must be false.</figcaption>
+</div>
+
+<p>One of these two cells must hold 9—Sudoku's rules guarantee it. That means if we assume one candidate is true and reach a logical contradiction, we've proven the other candidate must be correct. This is proof by contradiction, the logical foundation of the ibtree method.</p>
+
+<p class="section-label">03 · Trace</p>
+<h2 id="the-false-branch">The false branch</h2>
+
+<p>Let's assume 9 is in the highlighted cell (R2C3) and trace forward. What happens next?</p>
+
+<div class="figure">
+  <img src="lesson01-3_main.png" alt="The grid after assuming R2C3 = 9, showing a five-step forced chain leading to a contradiction">
+  <figcaption><span class="step-chip">Steps 1–5</span> Assuming R2C3 = 9 triggers a forced chain. Step by step, each new placement is determined by the last—until the chain reaches an impossible state: two 9s would be forced into the same row.</figcaption>
+</div>
+
+<p>This assumption triggers a chain reaction—a sequence of forced placements where each step leaves only one legal option for the next digit. After merely five steps, the chain reaches a contradiction: two 9s would occupy the same row, violating Sudoku's fundamental rule. The assumption was false.</p>
+
+<div class="callout">
+  <p><b>The Orbace rule for choosing a branch:</b> When you find a binary fork (two candidates for the same digit in one box), pick one and trace it forward. If it leads to a contradiction in a reasonable number of steps, you've proven the other candidate is correct. If it doesn't contradict quickly, backtrack and try the other branch—the puzzle's unique solution guarantees one path will resolve.</p>
+</div>
+
+<p class="section-label">04 · Proof</p>
+<h2 id="the-confirmation">The confirmation</h2>
+
+<p>By the logic of proof by contradiction, if R2C3 cannot hold 9, then the other candidate in Box 1 must be correct. The 9 belongs in the top-left corner.</p>
+
+<div class="figure">
+  <img src="lesson01-4_main.png" alt="The confirmed placement: 9 at R1C1, highlighted">
+  <figcaption>The confirmed placement. This single digit, proven by contradiction, unlocks the rest of the puzzle.</figcaption>
+</div>
+
+<p>After this one determination, the puzzle downgrades dramatically. What was an Extreme-tier wall becomes a straightforward solve using basic techniques—hidden singles, naked pairs, the standard toolkit. By identifying the binary fork and tracing one branch to its contradiction, you've leveraged the puzzle's structure to crack it open in seconds.</p>
+
+<div class="figure">
+  <img src="lesson01-5_main.png" alt="The grid several moves later, with many cells filled in using basic methods">
+  <figcaption>Once the fork resolves, the puzzle opens up. Basic methods carry you the rest of the way.</figcaption>
+</div>
+
+<p class="section-label">05 · Contrast</p>
+<h2 id="ibtree-vs-canred">Ibtree versus canred</h2>
+
+<p>Had you decided to use the traditional candidate reduction (canred) method instead, you would have needed to fill the grid with pencilmarks, then hunt for an advanced pattern—in this case, a <b>sashimi swordfish</b> on the 9s—to eliminate the same R2C3 candidate the ibtree method disproved in five steps. The sashimi swordfish is itself a valid theorem, but its logical proof is based on exactly the same principle: proof by contradiction.</p>
+
+<table class="compare">
+  <tr>
+    <th>Ibtree</th>
+    <th>Candidate reduction</th>
+  </tr>
+  <tr>
+    <td>Focus on structural opportunity—find a binary fork and trace one branch forward.</td>
+    <td>Focus on systematic elimination—fill all candidates, then apply increasingly advanced patterns.</td>
+  </tr>
+  <tr>
+    <td>Opportunistic: either you pick the correct branch (leading directly to the solution) or the false branch (leading to a quick contradiction).</td>
+    <td>Deterministic: every step removes candidates until a single digit is certain.</td>
+  </tr>
+  <tr>
+    <td>Faster in most cases, especially under time pressure (tournaments, competitions).</td>
+    <td>Thorough and methodical, but slower when advanced patterns are required.</td>
+  </tr>
+  <tr>
+    <td>Not guessing—still rigorously based on logical proof by contradiction.</td>
+    <td>Also rigorous, but the proof is encoded in the pattern names (swordfish, XY-wing, etc.) rather than traced explicitly.</td>
+  </tr>
+</table>
+
+<p>Comparing these two approaches reveals they operate in fundamentally different modes of thinking. Ibtree leverages the puzzle's structure to generate a chain reaction—you either prove or disprove a choice by tracing its consequences. Canred applies a library of reduction rules to answer what numbers are <em>not</em> possible in each cell, narrowing the field until certainty emerges.</p>
+
+<p>Both are valid. But ibtree is faster when the puzzle offers a clear fork, and it's the method of choice in time-constrained settings like Sudoku tournaments.</p>
+
+<p class="section-label">06 · Structure</p>
+<h2 id="why-binary-tree">Why "binary tree"?</h2>
+
+<p>We call this method a <b>binary tree</b> because it constructs a dynamic solution tree as you solve. Each fork—each choice between two candidates—is a branch point. When you trace one branch and reach a contradiction, you prune that sub-branch and confirm the other. The tree grows forward as you identify new forks, and proof by contradiction keeps it from growing out of control.</p>
+
+<div class="diagram">
+<svg viewBox="0 0 980 620" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'Noto Serif', serif">
+  <rect x="0" y="0" width="980" height="620" fill="#F5F0E5"/>
+  <!-- root: the fork itself -->
+  <rect x="360" y="18" width="260" height="72" rx="10" fill="#244C3A"/>
+  <text x="490" y="46" text-anchor="middle" fill="#F5F0E5" font-size="17" font-weight="bold">Box 1 · candidate 9</text>
+  <text x="490" y="70" text-anchor="middle" fill="#CFE0D6" font-size="13">R1C1 or R2C3?</text>
+  <!-- connectors from root to each branch -->
+  <path d="M 430 90 C 340 130, 260 150, 210 172" stroke="#244C3A" stroke-width="2.5" fill="none"/>
+  <path d="M 550 90 C 660 130, 740 150, 780 172" stroke="#244C3A" stroke-width="2.5" fill="none"/>
+  <text x="290" y="132" fill="#8a1f2b" font-size="14" font-style="italic">assume false (R2C3)</text>
+  <text x="690" y="132" fill="#1f5c3f" font-size="14" font-style="italic">assume true (R1C1)</text>
+  <!-- false branch: a chain of forced steps ending in contradiction, red palette -->
+  <rect x="80" y="172" width="260" height="64" rx="10" fill="none" stroke="#8a1f2b" stroke-width="2.5"/>
+  <text x="210" y="198" text-anchor="middle" fill="#5b1017" font-size="15" font-weight="bold">Step 1: R2C3 = 9</text>
+  <text x="210" y="220" text-anchor="middle" fill="#8a1f2b" font-size="13">Forces placements in row 1, column 3</text>
+  <path d="M 210 236 L 210 272" stroke="#8a1f2b" stroke-width="2.5" fill="none"/>
+  <rect x="80" y="272" width="260" height="64" rx="10" fill="none" stroke="#8a1f2b" stroke-width="2.5"/>
+  <text x="210" y="298" text-anchor="middle" fill="#5b1017" font-size="15" font-weight="bold">Step 2–4: Chain reaction</text>
+  <text x="210" y="320" text-anchor="middle" fill="#8a1f2b" font-size="13">Each placement forces the next</text>
+  <path d="M 210 336 L 210 372" stroke="#8a1f2b" stroke-width="2.5" fill="none"/>
+  <rect x="80" y="372" width="260" height="64" rx="10" fill="#8a1f2b"/>
+  <text x="210" y="398" text-anchor="middle" fill="#F5F0E5" font-size="15" font-weight="bold">Step 5: Contradiction</text>
+  <text x="210" y="420" text-anchor="middle" fill="#F5F0E5" font-size="13">Two 9s in the same row—invalid</text>
+  <!-- true branch: the confirmed placement, green palette -->
+  <rect x="640" y="172" width="260" height="64" rx="10" fill="#244C3A"/>
+  <text x="770" y="198" text-anchor="middle" fill="#F5F0E5" font-size="15" font-weight="bold">R1C1 = 9</text>
+  <text x="770" y="220" text-anchor="middle" fill="#CFE0D6" font-size="13">Confirmed by contradiction</text>
+  <path d="M 770 236 L 770 272" stroke="#1f5c3f" stroke-width="2.5" fill="none"/>
+  <rect x="640" y="272" width="260" height="64" rx="10" fill="#1f5c3f"/>
+  <text x="770" y="298" text-anchor="middle" fill="#F5F0E5" font-size="15" font-weight="bold">Puzzle unlocked</text>
+  <text x="770" y="320" text-anchor="middle" fill="#CFE0D6" font-size="13">Basic methods complete the solve</text>
+</svg>
+</div>
+
+<p>This diagram shows the fork at the top—Box 1's two candidates for 9—and the two branches descending from it. The left branch (red) traces the false assumption to its contradiction. The right branch (green) confirms the correct placement. This is the shape every ibtree solve takes: identify the fork, trace one branch, prune or confirm.</p>
+
+<section class="replay-embed no-print-replay">
+  <div class="oja-block-replay" data-block-index="0" data-supu-id="SP-20260730-365616">
+    <div id="blogReplay0CardBody"><div class="osr-layout"><div class="osr-board-col">
+      <div id="blogReplay0Board"></div><div id="blogReplay0Controls"></div>
+      <div id="blogReplay0Explain" class="osr-explain" hidden></div></div>
+    <div id="blogReplay0List"></div></div></div>
+  </div>
+  <p class="replay-fallback-link"><a href="https://orbacesudoku.com/su-pu/REPLACE_ME">View this replay directly on Su-Pu →</a></p>
+</section>
+
+<div class="cta">
+  <span class="cta-seal">数</span>
+  <h3>Try it yourself</h3>
+  <p>The next time you face an Extreme-tier puzzle that seems to stall, scan for a binary fork—two homes for the same digit in one box. Pick one, trace it forward, and see where it leads. You might just unlock the whole grid in seconds.</p>
+  <a href="/play" class="btn">Solve a Tea Moment puzzle</a>
+</div>
+
+<p class="standard">Reconstructed from a real personal Su-Pu replay and checked against the recorded grid. Spotted a step that doesn't hold up? <a href="/contact">Tell us</a>—every Journal article carries an accountable byline and an open correction channel.</p>
+
+</main>
+
+<footer class="osh-footer">
+  <div class="osh-footer-inner">
+    <div class="osh-footer-brand">
+      <strong>Orbace Sudoku</strong><br>
+      A product of Orbace Technologies LLC.<br>
+      <span lang="zh">一局一茶</span> · &copy; 2026 Orbace Technologies LLC.
+    </div>
+    <nav class="osh-footer-group" aria-label="Play">
+      <h4>Play</h4>
+      <ul>
+        <li><a href="/play">Tea Moment</a></li>
+        <li><a href="/puzzle-packs">Puzzle Packs</a></li>
+        <li><a href="/compete">Compete</a></li>
+        <li><a href="/su-pu">Su-Pu Library</a></li>
+        <li><a href="/su-pu/example">Featured Replay</a></li>
+      </ul>
+    </nav>
+    <nav class="osh-footer-group" aria-label="Learn">
+      <h4>Learn</h4>
+      <ul>
+        <li><a href="/learn-sudoku">Learn Sudoku</a></li>
+        <li><a href="/sudoku-strategies">Strategies</a></li>
+        <li><a href="/journal">Journal</a></li>
+        <li><a href="/download">Download the app</a></li>
+      </ul>
+    </nav>
+    <nav class="osh-footer-group" aria-label="Company and account">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+        <li><a href="/cookies">Cookies</a></li>
+        <li><button type="button" class="cookie-settings-button">Cookie Settings</button></li>
+        <li><a href="/terms">Terms</a></li>
+        <li><a href="/sitemap">Sitemap</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+<script src="/js/auth-session.js?v=7"></script>
+<script src="/js/auth-utility.js?v=5"></script>
+<link rel="stylesheet" href="/css/orbace-grid.css?v=6">
+<link rel="stylesheet" href="/css/orbace-supu-replay.css?v=7">
+<script src="/js/config.js?v=19"></script>
+<script src="/js/mock-data.js?v=30"></script>
+<script src="/js/api.js?v=48"></script>
+<script src="/js/orbace-supu-replay.js?v=7"></script>
+<script src="/js/journal-embed.js?v=1"></script>
+</body>
+</html>

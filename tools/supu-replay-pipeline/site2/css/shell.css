@@ -1,0 +1,173 @@
+/* ============================================================
+   Orbace Sudoku — shared static-page shell (header/footer/skip-link).
+   Classes are namespaced `osh-*` so per-page styles carried from the
+   re-imagined templates can never restyle the shared chrome.
+   Markup source of truth: site-src/shell/{header,footer}.html
+   (assembled by scripts/build-pages.mjs — do not hand-edit built pages).
+   ============================================================ */
+
+.osh-skip {
+  position: absolute;
+  left: 1rem;
+  top: -5rem;
+  z-index: 40;
+  padding: .65rem 1rem;
+  border-radius: .35rem;
+  color: #fff;
+  background: var(--brand-forest-dark);
+}
+.osh-skip:focus { top: 1rem; }
+
+.osh-header {
+  position: relative;
+  z-index: 30;
+  border-bottom: 1px solid var(--line-forest);
+  background: rgba(251, 248, 241, .93);
+  backdrop-filter: blur(12px);
+}
+
+.osh-nav {
+  max-width: var(--measure-max);
+  min-height: 4.75rem;
+  margin: 0 auto;
+  padding: .75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Brand lockup — red 数 seal + two live text lines. No image dependency. */
+.osh-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .72rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.osh-seal {
+  display: inline-grid;
+  place-items: center;
+  width: 2.6rem;
+  aspect-ratio: 1;
+  border-radius: .32rem;
+  color: #fff;
+  background: var(--brand-seal);
+  box-shadow: 0 .18rem .35rem rgba(196, 30, 58, .28);
+  font: 700 1.4rem/1 var(--font-cjk);
+  transform: rotate(-1.5deg);
+}
+.osh-brand-copy { display: grid; gap: .12rem; text-align: left; }
+.osh-brand-copy strong {
+  color: var(--text-primary);
+  font: 600 1.25rem/1.05 var(--font-display);
+  letter-spacing: -.02em;
+}
+.osh-brand-tag {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  color: var(--text-secondary);
+  font: 700 .62rem/1.1 var(--font-body);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.osh-brand-tag [lang="zh"] {
+  font: 500 .82rem/1.1 var(--font-cjk);
+  letter-spacing: .08em;
+  text-transform: none;
+}
+
+.osh-links { display: flex; flex-wrap: wrap; align-items: center; gap: 1.15rem; }
+/* Shared nav-link typography token (BUG-HOME-02): pinned explicitly rather
+   than inherited from body, since each static page's own local <style>
+   block sets a different body font (or none at all) — inheritance alone
+   let nav typography silently drift page to page. nav.top .navlink in
+   css/home-v2.css (the SPA's own header, used on / itself) mirrors these
+   same five properties so the nav reads identically everywhere. */
+.osh-links a {
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: .93rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-decoration: none;
+}
+.osh-links a:hover { color: var(--brand-seal); }
+.osh-links a:focus-visible { outline: 2px solid var(--brand-forest); outline-offset: 2px; border-radius: 2px; }
+.osh-links a[aria-current="page"] { color: var(--brand-forest); font-weight: 700; }
+
+.osh-account { display: flex; align-items: center; gap: .6rem; }
+.osh-account a {
+  font-size: .88rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #fff;
+  background: var(--brand-forest);
+  padding: .5rem .85rem;
+  border-radius: .35rem;
+}
+.osh-account a:hover { background: var(--brand-forest-dark); color: #fff; }
+.osh-account a:focus-visible { outline: 2px solid var(--brand-seal); outline-offset: 2px; background: var(--brand-forest-dark); }
+
+.osh-footer {
+  padding: 2.5rem 1.5rem 3rem;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--line-forest);
+  font-size: .9rem;
+  background: transparent;
+}
+.osh-footer a { color: var(--brand-forest); text-decoration: none; }
+.osh-footer a:hover { color: var(--brand-seal); }
+/* Cookie Settings control — a real <button> (native keyboard support) styled
+   to match the surrounding footer <a> links exactly, so it reads as one of
+   the list rather than a stray form control. Shared by every static/hybrid
+   page (site-src/shell/footer.html) and the SPA footer (index.html).
+   Scoped to .osh-footer — the /cookies page's own inline button reusing this
+   class keeps that page's local CTA-button styling instead. */
+.osh-footer .cookie-settings-button {
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: var(--brand-forest);
+  text-decoration: none;
+  cursor: pointer;
+}
+.osh-footer .cookie-settings-button:hover { color: var(--brand-seal); }
+.osh-footer .cookie-settings-button:focus-visible { outline: 2px solid var(--brand-seal); outline-offset: 2px; }
+.osh-footer-inner {
+  max-width: var(--measure-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
+.osh-footer-brand strong { color: var(--text-primary); font-family: var(--font-display); font-weight: 600; }
+.osh-footer-group h4 {
+  margin: 0 0 .6rem;
+  color: var(--text-primary);
+  font: 700 .72rem/1.2 var(--font-body);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.osh-footer-group ul { margin: 0; padding: 0; list-style: none; }
+.osh-footer-group li + li { margin-top: .4rem; }
+
+@media (max-width: 860px) {
+  .osh-footer-inner { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .osh-nav { gap: .8rem 1rem; }
+  .osh-links { gap: .5rem .9rem; }
+  .osh-links a { font-size: .88rem; }
+  .osh-seal { width: 2.3rem; font-size: 1.2rem; }
+  .osh-brand-copy strong { font-size: 1.05rem; }
+  .osh-brand-tag { font-size: .53rem; letter-spacing: .06em; gap: .4rem; }
+  .osh-brand-tag [lang="zh"] { font-size: .7rem; }
+  .osh-footer-inner { grid-template-columns: 1fr; }
+}

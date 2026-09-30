@@ -1,0 +1,129 @@
+/* Orbace Sudoku — canonical Su-Pu replay block (docs/orbace-brand-standard.md
+ * §Su-Pu Replay Anatomy). Namespaced under .osr- (Orbace Supu Replay).
+ *
+ * Replaces 3 previously-divergent replay implementations that each had their
+ * own board container style, transport-control style, and (on two of them) a
+ * move-list style: #supu detail (.replay-controls / .movelist), #supu library
+ * inline (.v1-supu-lib-controls-bar), and the Home hero theater (.v1-rp-btn /
+ * a single-line readout, no list at all). See docs/2026-07-14-grid-cta-audit.md.
+ *
+ * The board itself reuses .og-board/.og-cell from orbace-grid.css directly —
+ * same border weights, same digit sizing formula, same given/user/err colors
+ * — so a replay board and a live play board read as the same visual object.
+ * This file adds only what's new for playback: a non-interactive board
+ * modifier, unified transport controls, and the two move-list presentation
+ * modes (sidebar / strip).
+ */
+
+/* ---- Board (non-interactive variant of .og-board/.og-cell) ---- */
+.osr-board.og-board{cursor:default}
+.osr-board .og-cell{cursor:default}
+.osr-board .og-cell.justplaced{animation:osrJustPlaced .5s ease-out}
+@keyframes osrJustPlaced{from{background:var(--celadon)}to{background:#FFF}}
+.osr-board .og-cell.err{animation:none} /* err is momentary during replay, not a persistent state */
+
+.osr-layout{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start}
+/* UAT feedback (2026-09-24, live on production against a real mobile
+ * browser): "the replay still rendering the grid partially" on
+ * /su-pu/:id. Root cause: flex-shrink:0 alone leaves flex-grow:0 and
+ * flex-basis:auto at their initial values — an item with grow:0/shrink:0
+ * ignores the container's available width entirely and sizes itself
+ * purely from content (here, .og-board's own width:100% against an
+ * indefinite auto-basis parent), so it never shrinks to fit a narrow
+ * viewport. This is the exact BUG-PACKS-01/02 bug class
+ * css/orbace-grid.css's own .og-board-col fix already documents, just
+ * never applied to THIS file's own separate board-column class — the two
+ * evolved independently (.og-board-col for the interactive/canonical
+ * grid, .osr-board-col for the read-only replay board) and only one got
+ * the fix. min-width:0 (no floor) rather than og-board-col's 280px: this
+ * bug has now been reported twice after a narrower floor seemed
+ * sufficient in earlier testing, so this file errs toward "can never
+ * overflow" over "never gets uncomfortably small" — width:100% + this
+ * max-width + the page's own padding keep it from ever getting small in
+ * any viewport that actually exists. */
+.osr-board-col{flex:1 1 540px;min-width:0;max-width:540px}
+
+/* ---- Per-move "why" caption (round 3 of validation feedback, 2026-07-18)
+ * — sits under the board+controls column, same card treatment as the
+ * practice grid's .v1-learn-practice-explain. Hidden via [hidden]
+ * (orbace-supu-replay.js's renderExplain()) when the current move carries
+ * no explanation (most moves — only naked_single/hidden_single ones do). */
+.osr-explain{margin-top:14px;max-width:min(540px,92vw);padding:12px 14px;border:1px solid var(--line);
+  border-radius:10px;background:var(--ivory);font-size:13px;color:var(--mid);line-height:1.6}
+
+/* ---- Transport controls — one style everywhere ---- */
+.osr-controls{display:flex;gap:8px;align-items:center;margin-top:14px;flex-wrap:wrap}
+.osr-btn{background:var(--ivory);border:1px solid var(--line);border-radius:10px;padding:9px 14px;
+  font-size:15px;color:var(--ink);cursor:pointer}
+.osr-btn:not(:disabled):hover{background:var(--celadon)}
+.osr-btn:disabled{opacity:.35;cursor:default}
+.osr-btn-play{background:var(--tea);border-color:var(--tea);color:#FFF;padding:9px 18px}
+.osr-btn-play:not(:disabled):hover{background:var(--tea-deep)}
+.osr-speed{border:1px solid var(--line);background:var(--ivory);border-radius:10px;padding:8px 10px;
+  font-size:13px;font-family:var(--sans);color:var(--ink)}
+.osr-step{font-family:var(--mono);font-size:13px;color:var(--mid);margin-left:auto}
+
+/* ---- Sidebar mode (#supu page only) — full vertical move list, same
+ * height as the board so the two visually pair as one unit. Full words,
+ * never abbreviations: "Correct" / "Mistake" / "Hint", or a technique name
+ * (e.g. "Naked Single") when the move carries one. ---- */
+.osr-movelist{flex:1;min-width:220px;max-height:min(540px,92vw);overflow-y:auto;
+  background:var(--ivory);border:1px solid var(--line);border-radius:12px;padding:8px}
+.osr-mv{font-family:var(--mono);font-size:13px;padding:7px 10px 7px 12px;border-radius:6px;
+  color:var(--mid);cursor:pointer;border-left:3px solid transparent;display:flex;gap:8px}
+.osr-mv:hover{background:var(--rice)}
+.osr-mv.done{color:var(--ink)}
+.osr-mv.cur{background:var(--celadon);color:var(--ink);font-weight:500}
+.osr-mv-label{font-weight:600;min-width:92px}
+.osr-mv.correct .osr-mv-label,.osr-mv.technique .osr-mv-label{color:var(--tea-deep)}
+.osr-mv.mistake{border-left-color:var(--amber)}
+.osr-mv.mistake .osr-mv-label{color:var(--amber-deep)}
+.osr-mv.hint .osr-mv-label{color:var(--mid)}
+.osr-mv.correct,.osr-mv.technique{border-left-color:var(--tea)}
+.osr-mv.note{border-left-color:#006FE6}
+.osr-mv.note .osr-mv-label{color:#006FE6}
+/* Erase (2026-07-27) — a mistake being cleared before the correction. Muted
+ * gray (--mid, same neutral tone .hint already uses), distinct from
+ * mistake's amber (the wrong entry itself already got that treatment) and
+ * from note's blue. */
+.osr-mv.erase{border-left-color:var(--mid)}
+.osr-mv.erase .osr-mv-label{color:var(--mid)}
+/* Note (pencil-mark) rendering inside a board cell (bug fix, 2026-07-26)
+ * reuses .og-notes as-is from orbace-grid.css (shared since .osr-board
+ * mounts .og-cell directly) — no replay-specific note styling needed. */
+
+/* ---- Strip mode (multi-section pages, e.g. Home) — a single current-move
+ * chip that relabels itself each step, instead of the sidebar's full scrolling
+ * list. A condensed cousin of the sidebar list for pages that can't spare a
+ * tall sidebar. orbace-supu-replay.js moves this element into .osr-controls
+ * itself (right after the step counter), so it's a flex child of the controls
+ * row, not a separate block — .osr-controls .osr-strip lets it shrink in
+ * place instead of forcing the row to wrap onto its own line. ---- */
+.osr-strip{display:flex;gap:6px;padding:4px 2px}
+.osr-controls .osr-strip{flex:1 1 140px;min-width:0}
+.osr-chip{flex:0 0 auto;font-family:var(--mono);font-size:12px;padding:6px 10px;border-radius:8px;
+  background:var(--ivory);border:1px solid var(--line);color:var(--mid);white-space:nowrap}
+.osr-chip.correct,.osr-chip.technique{border-color:var(--tea);color:var(--tea-deep)}
+.osr-chip.mistake{border-color:var(--amber);color:var(--amber-deep);background:rgba(201,134,43,.1)}
+.osr-chip.hint{border-color:var(--celadon-d);color:var(--mid)}
+.osr-chip.note{border-color:#006FE6;color:#006FE6}
+.osr-chip.cur{background:var(--celadon);color:var(--ink);font-weight:600;box-shadow:inset 0 0 0 1px var(--celadon-d)}
+
+@media (max-width:720px){
+  .osr-layout{gap:16px}
+  /* UAT feedback (2026-09-24): "the details section are showing 8 [rows]
+   * which cannot be fully displayed with the grid. reduce the number to
+   * 3... so the grid and [rows] can be on one page entirely." 280px was
+   * already ~8 rows at a real measured row height (~35px + the list's
+   * own 16px padding) — shortened to fit roughly 3 rows before the
+   * player needs to scroll the list itself, so a stacked mobile page
+   * (story + board + explain + controls + list) has a real chance of
+   * fitting one screen. Paired with the orbace-supu-replay-v2.js
+   * syncListHeight() fix that stops a JS-set inline max-height (matched
+   * to the board's own full height) from silently overriding this value
+   * whenever the list has actually wrapped below the board — this rule
+   * only had teeth once that override was fixed. */
+  .osr-movelist{max-height:130px;width:100%}
+  .osr-controls{gap:6px}
+  .osr-btn{padding:8px 11px;font-size:14px}
+}

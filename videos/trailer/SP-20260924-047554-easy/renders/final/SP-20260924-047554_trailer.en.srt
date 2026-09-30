@@ -1,0 +1,32 @@
+1
+00:00:00,200 --> 00:00:03,000
+You'd call this puzzle easy.
+Would you have seen this move?
+
+2
+00:00:03,200 --> 00:00:05,400
+This puzzle looked simple.
+
+3
+00:00:06,000 --> 00:00:08,400
+Every move felt obvious.
+
+4
+00:00:14,500 --> 00:00:17,600
+Then the obvious moves ran out.
+
+5
+00:00:18,600 --> 00:00:19,900
+Look closer.
+
+6
+00:00:21,300 --> 00:00:24,000
+That was the missing piece.
+
+7
+00:00:25,000 --> 00:00:28,900
+From there, the rest of the solve unwinds.
+
+8
+00:00:32,000 --> 00:00:35,900
+The full replay is linked in the description.

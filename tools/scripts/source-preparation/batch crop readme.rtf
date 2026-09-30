@@ -1,0 +1,133 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2870
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 HelveticaNeue-Bold;\f2\fnil\fcharset0 .SFNS-Regular_wdth_opsz110000_GRAD_wght2580000;
+\f3\fnil\fcharset0 HelveticaNeue;\f4\fnil\fcharset0 Menlo-Regular;\f5\fswiss\fcharset0 ArialMT;
+}
+{\colortbl;\red255\green255\blue255;\red13\green14\blue17;\red255\green255\blue255;\red247\green249\blue250;
+\red230\green234\blue239;\red0\green0\blue0;\red16\green60\blue192;}
+{\*\expandedcolortbl;;\cssrgb\c5882\c6667\c8235;\cssrgb\c100000\c100000\c100000;\cssrgb\c97647\c98039\c98431;
+\cssrgb\c92157\c93333\c94902;\csgray\c0;\cssrgb\c6667\c33333\c80000;}
+\margl1440\margr1440\vieww34020\viewh17880\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Readme\
+\
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f1\b\fs44 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\'a0How to Run\
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f2\fs32 \cf2 Prerequisite
+\f3\b0 : Make sure the two reference files are in the\'a0
+\f2\b same folder as the script
+\f3\b0 \'a0(or provide full paths).\
+Then, from your terminal, navigate to that folder and run:\
+\pard\pardeftab720\partightenfactor0
+
+\f4\fs24 \cf2 \cb4 bash
+\f3\fs26 \cb1 \
+
+\f4 \cb4 python batch_crop.py --input-dir ./lesson5\cb1 \
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f3\fs32 \cf2 \cb3 If your references are inside\'a0
+\f4\fs28 \cb5 lesson5
+\f3\fs32 \cb3 \'a0(not the current folder), specify their paths:\
+\pard\pardeftab720\partightenfactor0
+
+\f4\fs24 \cf2 \cb4 bash
+\f3\fs26 \cb1 \
+
+\f4 \cb4 python batch_crop.py --input-dir ./lesson5 --main-ref ./lesson5/lesson5_image1.png --thumb-ref ./lesson5/lesson05-image1-thumbnail.png\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \kerning1\expnd0\expndtw0 \
+\pard\pardeftab720\partightenfactor0
+
+\f4\fs26 \cf2 \expnd0\expndtw0\kerning0
+\
+cd orbacetech/DevProjects/os-journal\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\fs30 \cf6 \kerning1\expnd0\expndtw0 \CocoaLigature0 cd orbacetech\
+cd devprojects\
+cd os-journal
+\fs26 \cf2 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \kerning1\expnd0\expndtw0 bash\
+\'97 use new app ui\
+python batch_crop.py --input-dir ./lesson4 --main-ref ./lesson4/image_new_ref.png --thumb-ref ./lesson4/image_new_thumbnail_ref.png\
+\
+\
+Use old ui (lesson 5)\
+python batch_crop.py --input-dir ./lesson5 --main-ref ./lesson5/image_old_ref.png --thumb-ref ./lesson5/image_old_thumbnail_ref.png\
+\
+python batch_crop.py --input-dir ./lesson3 --main-ref ./lesson3/lesson_img_ref.png --thumb-ref ./lesson3/lesson_thumbnail_ref.png\
+\
+python batch_crop.py --input-dir ./lesson2 --main-ref ./lesson2/lesson_img_ref.png --thumb-ref ./lesson2/lesson_thumbnail_ref.png\
+\
+python batch_crop.py --input-dir ./lesson1 --main-ref ./lesson1/lesson_img_ref.png --thumb-ref ./lesson1/lesson_thumbnail_ref.png\
+\
+\
+python batch_crop.py --input-dir ./lesson6 --main-ref ./lesson6/lesson_img_ref.png --thumb-ref ./lesson6/lesson_thumbnail_ref.png\
+\
+\'97 lesson7 process\
+\
+1. Download the folder zip file from drive\
+2. Unzip and rename the folder to lesson7\
+3. Crop and save the lesson07-1.jpg to lesson_img_ref.png and lesson_thumbnail_ref.png\
+4. Run following script under \
+	cd os-journal\
+	python batch_crop.py --input-dir ./lesson7 --main-ref ./lesson7/lesson_img_ref.png --thumb-ref ./lesson7/lesson_thumbnail_ref.png\
+\
+\'97 feedbacks\
+\uc0\u55357 \u56514  Found 6 images in './lesson7'.\
+   Main reference:  ./lesson7/lesson_img_ref.png\
+   Thumb reference: ./lesson7/lesson_thumbnail_ref.png\
+   Output folder:   ./lesson7/cropped\
+\uc0\u9989  Main crop (1080\'d71277) -> ./lesson7/cropped/lesson07-1_main.png\
+\uc0\u9989  Thumb crop (1080\'d71067) -> ./lesson7/cropped/lesson07-1_thumb.png\
+\uc0\u9989  Main crop (1080\'d71277) -> ./lesson7/cropped/lesson07-2_main.png\
+\uc0\u9989  Main crop (1080\'d71277) -> ./lesson7/cropped/lesson07-3_main.png\
+\uc0\u9989  Main crop (1080\'d71277) -> ./lesson7/cropped/lesson07-4_main.png\
+\uc0\u9989  Main crop (1080\'d71277) -> ./lesson7/cropped/lesson07-5_main.png\
+\uc0\u9989  Main crop (1080\'d71278) -> ./lesson7/cropped/lesson07-6_main.png\
+\
+\uc0\u55356 \u57225  All done!\
+\'97 end feedbacks\
+\
+A)  Rename thumbnail with a_\
+B) get the su-pu id: {\field{\*\fldinst{HYPERLINK "https://orbacesudoku.com/su-pu/SP-20260801-567421"}}{\fldrslt 
+\f5\fs20 \cf7 \cb3 \expnd0\expndtw0\kerning0
+\ul \ulc7 \outl0\strokewidth0 \strokec7 SP-20260801-567421}}\
+\
+5. Go to admin portal and generate lesson 7\
+\
+http://localhost:5500/admin.html\
+Sign in with orbace_admin_local\
+Go to study blog\
+\
+Load script, image, thumbnail and su-pu id\
+Hit generate, save draft to file, visual inspection and publish\
+\
+Then request team D to stage and deploy\
+\
+To actually go live:\
+1. git add the new/changed files (the journal/when-the-branch-holds/ folder, site-src/pages/journal.html, the rebuilt journal.html/sitemap.xml/index.html/learn-sudoku.html/play.html, both su-pu-studies.json files, and the build-pages.mjs fix)\
+2. git commit\
+3. git push origin main \'97 Vercel auto-deploys on push, live in ~15-20s\
+4. Then verify against the real site (curl https://orbacesudoku.com/journal/when-the-branch-holds/journal-when-the-branch-holds \uc0\u8594  200, card shows on /journal, replay embed actually renders)\
+\
+\
+\
+\
+\
+\
+\
+}

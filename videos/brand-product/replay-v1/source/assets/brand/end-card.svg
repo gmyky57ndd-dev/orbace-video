@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <rect width="1080" height="1920" fill="#f7f2e8" fill-opacity="0.88"/>
+  <rect x="472" y="680" width="136" height="136" rx="12" fill="#b5233a"/>
+  <text x="540" y="773" text-anchor="middle" font-family="Songti SC, STSong, serif" font-size="72" font-weight="700" fill="#fffaf0">数</text>
+  <text x="540" y="900" text-anchor="middle" font-family="Avenir Next, Helvetica, sans-serif" font-size="70" font-weight="600" fill="#1f2b25">Orbace Sudoku</text>
+  <text x="540" y="978" text-anchor="middle" font-family="Avenir Next, Helvetica, sans-serif" font-size="42" font-weight="400" fill="#526159">Replay your solve.</text>
+</svg>
