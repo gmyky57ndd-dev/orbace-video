@@ -1,0 +1,217 @@
+/* Orbace Sudoku — canonical grid block (docs/orbace-brand-standard.md §Grid & Keypad
+ * Anatomy). Namespaced under .og- so this can be dropped into any page without
+ * colliding with the legacy .board/.numpad/.toolrow (Play) or .v1-tea-* (Home/Tea
+ * Moment) styles it is meant to eventually replace. Reads the same :root tokens
+ * defined in styles.css (--tea, --seal, --amber, --ink, --rice, --ivory, --line,
+ * --celadon) — no new palette introduced.
+ *
+ * Reconciles the two legacy button styles: SVG icons (Tea Moment) + always-visible
+ * text label (Play) so an icon is never the sole label, and Erase is its own tool
+ * button rather than a hidden 10th keypad key (both per docs/plans/
+ * orbace-phase1-style-recommendations.md §1.2 / §2.3).
+ */
+
+/* --og-cell tracks the board's actual cell width (board is min(540px,92vw),
+ * 9 cells across) so grid digits and keypad digits can both be sized as an
+ * exact percentage of the same reference square, not two independent guesses.
+ * Declared on :root (not .og-wrap) because mountControlled() renders the
+ * board/keypad/toolrow into separate host-supplied elements that don't share
+ * a common .og-* ancestor (e.g. Tea Moment's board and sidebar keypad live in
+ * different DOM subtrees) — a custom property needs a shared ancestor to
+ * inherit through, and :root is the one every mount mode has in common. */
+:root{--og-cell:calc(min(540px,92vw) / 9)}
+.og-wrap{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start;max-width:100%}
+
+/* BUG-PACKS-01/02 fix (Puzzle Packs V8.1 optimization): width used to be
+ * min(540px,92vw) — relative to the VIEWPORT, not this element's actual
+ * container. That's an approximation that happens to hold on pages where
+ * the board is the widest thing on the page (Tea Moment's ~960px column,
+ * the homepage hero's ~50% grid track still being wide enough at typical
+ * viewports) but breaks down wherever the real container is genuinely
+ * narrower than 92% of the viewport — e.g. Puzzle Packs' two-column
+ * split-panel layout, where the practice panel is only ~45% of the page
+ * width. flex-shrink:0 then locked in that oversized, viewport-derived
+ * width regardless, so the board overflowed its card.
+ * Now: .og-board-col has a real flex range (280-540px) and can shrink;
+ * .og-board fills 100% of whatever width the flex algorithm actually gives
+ * its own column — always the true available space, never the viewport.
+ * flex-wrap on .og-wrap (already present) then naturally stacks board
+ * under controls once even the 280px floor won't fit alongside the
+ * controls column, instead of clipping/overflowing. */
+.og-board-col{flex:1 1 540px;min-width:280px;max-width:540px}
+
+/* Row/column coordinate reference (r1-r9 / c1-c9), applied to every board
+ * site-wide — play and replay alike (UAT feedback 2026-09-28: "like the
+ * board in su-pu/capture"). su-pu-capture.html used to be the one page
+ * with its own hand-authored copy of exactly this (.spcap-board-grid/
+ * -corner/-col-headers/-row-headers, retired in the same change this
+ * comment landed with, since it's now redundant with the canonical
+ * version every board gets automatically); this is that canonical
+ * version. js/orbace-grid.js's addCoordinateFrame() (called from every
+ * board-building function — createController()'s buildBoard(), and
+ * js/orbace-supu-replay.js / -v2.js's own buildBoard()s, which all reuse
+ * this one helper rather than each hand-rolling the wrap) inserts this
+ * structure around an existing .og-board/.osr-board element in place,
+ * idempotently — it never needs the host page's own markup to know about
+ * it. Sized in lockstep with the board itself via the shared grid tracks
+ * (not fixed pixels), so it stays aligned at any width the board's own
+ * max-width/aspect-ratio resolves to; the board simply renders slightly
+ * narrower within its column to make room for the label gutter, same
+ * trade-off su-pu-capture's own version already made. */
+.og-board-frame{display:grid;grid-template-columns:20px 1fr;grid-template-rows:18px auto;gap:3px;width:100%}
+.og-board-corner{grid-column:1;grid-row:1}
+.og-board-colheads{grid-column:2;grid-row:1;display:grid;grid-template-columns:repeat(9,1fr)}
+.og-board-colheads span{text-align:center;font-size:11px;letter-spacing:.04em;color:var(--mid);font-family:var(--sans)}
+.og-board-rowheads{grid-column:1;grid-row:2;display:grid;grid-template-rows:repeat(9,1fr)}
+.og-board-rowheads span{display:flex;align-items:center;justify-content:flex-end;padding-right:3px;
+  font-size:11px;letter-spacing:.04em;color:var(--mid);font-family:var(--sans)}
+.og-board-frame .og-board,.og-board-frame .osr-board{grid-column:2;grid-row:2}
+
+.og-board{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));grid-template-rows:repeat(9,minmax(0,1fr));
+  width:100%;aspect-ratio:1;background:#FFF;border:2px solid var(--ink);border-radius:6px;overflow:hidden;
+  container-type:inline-size}
+/* Now that .og-board's own width tracks its real container (BUG-PACKS-01/02
+ * fix above) instead of a viewport guess, the :root --og-cell (still vw-
+ * derived, for the keypad's erase-icon and mountControlled()'s split-host
+ * case below) would be stale here — a 60px cell assumption on an actual
+ * ~30px shrunk board, overlapping/illegible digits. container-type on
+ * .og-board (already declared, now actually used) lets this local
+ * redeclaration measure the board's REAL size via a container query unit;
+ * .og-cell reads this scoped value, not the stale :root one, since it's a
+ * descendant of .og-board. Doesn't touch --og-cell for anything outside
+ * .og-board's own subtree. */
+.og-board{--og-cell:calc(100cqw / 9)}
+
+.og-cell{border:1px solid var(--line);display:flex;align-items:center;justify-content:center;position:relative;
+  font-family:var(--mono);font-size:max(16px,calc(var(--og-cell) * .68));cursor:pointer;user-select:none;background:#FFF}
+.og-cell.bt{border-top:2px solid var(--ink)}
+.og-cell.bl{border-left:2px solid var(--ink)}
+.og-cell.given{color:var(--ink);font-weight:500}
+/* Bright green, not --tea — UAT feedback 2026-09-24: --tea read as nearly the
+ * same color as --ink at a glance. See --fill-green's own comment in
+ * styles.css. Applies everywhere .og-cell.user is toggled on: live play,
+ * Su-Pu Capture's solve grid, and every replay board (orbace-supu-replay.js/
+ * -v2.js mount .og-cell directly and rely on this file for given/user/notes
+ * treatment — see orbace-supu-replay.css's own note on that). */
+.og-cell.user{color:var(--fill-green,#128A3E);font-weight:600}
+.og-cell.sel{background:var(--celadon)!important;box-shadow:inset 0 0 0 2px var(--celadon-d)}
+.og-cell.peer{background:#EFE7D6}
+.og-cell.same{background:#DCE6DF}
+/* Mistakes are amber, never red — brand promise, see kbd-help copy on Play page. */
+.og-cell.err{background:rgba(201,134,43,.16)!important;color:var(--amber-deep)}
+.og-cell:focus-visible{outline:2px solid var(--tea);outline-offset:-2px}
+
+/* Su-Pu Library redesign (2026-08-06): static browse-card thumbnail —
+ * OrbaceGrid.renderThumb(). No digits/candidates/interaction, just a
+ * given-vs-empty mosaic using the same box-line + palette tokens as the
+ * real board so it reads as "the same grid, smaller" rather than a
+ * separate visual language. */
+.og-thumb{display:grid;grid-template-columns:repeat(9,1fr);grid-template-rows:repeat(9,1fr);
+  width:100%;aspect-ratio:1;background:#FFF;border:1.5px solid var(--ink);border-radius:4px;overflow:hidden}
+.og-thumb-cell{border:.5px solid var(--line);background:#FFF}
+.og-thumb-cell.bt{border-top:1.5px solid var(--ink)}
+.og-thumb-cell.bl{border-left:1.5px solid var(--ink)}
+.og-thumb-cell.given{background:var(--celadon)}
+
+/* Technique-hint tool (Phase 3 of the technique-playbook proposal,
+ * 2026-07-18) — a ring, not a fill, so it layers cleanly over .sel/.peer/
+ * .err instead of fighting them for the cell's background. Seal vermilion
+ * ties it visually to the brand mark, distinct from amber (mistakes) and
+ * celadon (selection/peers). */
+.og-cell.tech-hint{box-shadow:inset 0 0 0 2px var(--seal);animation:ogTechPulse 1.6s ease-in-out 2}
+@keyframes ogTechPulse{0%,100%{box-shadow:inset 0 0 0 2px var(--seal)}50%{box-shadow:inset 0 0 0 2px var(--seal),inset 0 0 0 5px rgba(196,30,58,.18)}}
+/* Round 2 of validation feedback (2026-07-18): a fill on top of the ring,
+ * for the specific cell(s) the explanation caption's text literally
+ * refers to ("This cell…", "These two cells…") — distinct from any other
+ * .tech-hint cell that's only lit up as row/col/box reasoning context
+ * (naked/hidden single's peer set). See orbace-grid.js's techHighlightPrimary. */
+.og-cell.tech-hint-primary{background:rgba(196,30,58,.16)}
+
+/* Pause (mountControlled() hosts only — instance.pause()/resume()). Mirrors
+ * the wording/treatment Tea Moment already used on .v1-home-tea-board, now
+ * owned by the grid itself so any host gets it for free. */
+.og-board.og-paused{position:relative}
+.og-board.og-paused .og-cell{visibility:hidden}
+.og-board.og-paused::after{content:"Paused — click ▶ to resume";position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;
+  background:rgba(251,248,239,.96);font-family:var(--sans);font-size:14px;color:var(--mid);z-index:3;border-radius:6px}
+
+/* UAT feedback 2026-09-24: notes spilled outside the cell (visible on
+ * su-pu-capture.html, e.g. r2c4/r2c6 with a note in the bottom row). Root
+ * cause: no line-height was set here, so it fell back to the font's own
+ * "normal" — fine for the site default --mono (IBM Plex Mono, ~1.2), but
+ * su-pu-capture.html's page-scoped :root swaps --mono to IBM Plex Sans (a
+ * non-monospace font with a taller ~1.4-1.5 normal line-height) for the
+ * digit look it wants, and that taller line-box no longer fit each row's
+ * 1/3 share of the 2px-inset box, so a populated bottom row rendered past
+ * the cell's own border. line-height:1 makes each note's line-box track
+ * font-size directly regardless of which font a page substitutes in for
+ * --mono; overflow:hidden is a second layer of insurance against any
+ * future font swap doing the same thing again. */
+.og-notes{position:absolute;inset:2px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);
+  font-family:var(--mono);font-size:clamp(9px,3.4cqw,13px);line-height:1;color:var(--mid);overflow:hidden}
+.og-notes span{display:flex;align-items:center;justify-content:center;line-height:1}
+
+/* UAT feedback (2026-09-24): "the number keys are disproportionally big
+ * that it is hard to get the grid, key pad and tools on one page." Root
+ * cause: .og-board-col has a max-width (540px, BUG-PACKS-01/02 fix above)
+ * but .og-side never did — on a wide viewport, flexbox reassigns
+ * .og-board-col's now-unusable growth share to .og-side instead of
+ * leaving it unclaimed, so .og-side (and therefore .og-keypad's
+ * aspect-ratio:1 buttons, whose size is purely a function of this
+ * column's width) could grow far past a usable keypad size, pushing
+ * total page height past one screen. 320px comfortably fits the 5-column
+ * keypad at a normal key size (5 keys + 4×6px gaps ≈ 60px keys) without
+ * capping .og-meta/.og-help's text width down to anything cramped. */
+.og-side{flex:1 1 260px;min-width:240px;max-width:320px;display:flex;flex-direction:column;gap:14px}
+
+.og-meta{background:var(--ivory);border:1px solid var(--line);border-radius:16px;padding:16px 20px}
+.og-meta-title{font-family:var(--serif);font-weight:600;font-size:15px;color:var(--ink)}
+.og-meta-sub{font-size:13px;color:var(--mid);margin-top:2px}
+.og-timer{font-family:var(--mono);font-size:22px;color:var(--ink);margin-top:8px}
+
+/* Keypad format (play.html + puzzle-packs.html parity, 2026-08-10 — row
+ * count revised 2026-09-05 UAT feedback: 9-across made each key a thin
+ * rectangle, not the square keys mobile uses; 5 columns lets the 9 keys
+ * auto-flow into 2 rows (5 + 4) instead. Erase still lives separately in
+ * the icon row below, unchanged since 2026-08-10 — this only revisits the
+ * digit grid's own shape. aspect-ratio:1 (not a fixed padding-driven
+ * height) keeps each key square regardless of the sidebar's actual width. */
+.og-keypad{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.og-keypad button{background:var(--ivory);border:1px solid var(--line);border-radius:8px;aspect-ratio:1;
+  font-family:var(--mono);font-size:max(14px,calc(var(--og-cell) * .5));color:var(--ink);cursor:pointer;
+  display:flex;align-items:center;justify-content:center}
+.og-keypad button:hover{background:var(--celadon)}
+.og-keypad button:disabled{opacity:.35;cursor:default}
+.og-keypad.notes-on button{font-style:italic}
+
+/* Icon row: Erase · Undo · Notes · Hint — one line beneath the digit row,
+ * same 4-up rhythm on both play.html and puzzle-packs.html. Icon + always-
+ * visible text label so the icon is never the sole affordance (phase1
+ * style doc §1.2). */
+.og-toolrow{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+/* Practice mode's 5th tool (Show — technique-hint, Phase 3). */
+.og-toolrow.og-toolrow--5{grid-template-columns:repeat(5,1fr)}
+.og-tool{background:var(--ivory);border:1px solid var(--line);border-radius:8px;padding:8px 4px 6px;
+  display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--ink);cursor:pointer}
+.og-tool svg{width:19px;height:19px}
+.og-tool span{font-size:11px;font-weight:500}
+.og-tool:not(:disabled):hover{background:var(--celadon)}
+.og-tool:disabled{opacity:.4;cursor:default}
+.og-tool.on{background:var(--tea);border-color:var(--tea);color:#FFF}
+.og-tool.flash{animation:ogFlash .35s ease-out}
+@keyframes ogFlash{from{background:var(--celadon)}to{background:var(--ivory)}}
+
+.og-help{font-size:12px;color:var(--light);line-height:1.8;background:var(--ivory);
+  border:1px solid var(--line);border-radius:16px;padding:14px 18px}
+.og-help b{font-family:var(--mono);background:#FFF;border:1px solid var(--line);border-radius:4px;
+  padding:0 5px;color:var(--mid);font-weight:500}
+.og-help .amber{color:var(--amber-deep)}
+.og-mistake-toggle{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--light);cursor:pointer}
+
+@media (max-width:720px){
+  .og-wrap{gap:16px}
+  .og-side{min-width:0}
+  .og-keypad button{padding:14px 0}
+  .og-tool span{font-size:11px}
+}
