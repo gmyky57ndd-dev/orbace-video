@@ -80,13 +80,13 @@ def intro():
         b,bw=B(760); im.paste(b,((W-bw)//2,560*K),b)
         ctext(d,760*K,"Full step-by-step replay",F('plex400',38),GREY)
         y=wrapc(d,840*K,st['title'],F('serif700',60),INK,920*K)
-        y=wrapc(d,y+30*K,st['opening_question']+"?",F('serif500',44),GREEN,920*K)
+        y=wrapc(d,y+30*K,st['opening_question'].rstrip('?')+'?',F('serif500',44),GREEN,920*K)
         ctext(d,y+50*K,FACT.replace("  ·  "," · "),F('plex400',38),GREY)
     else:
         b,bw=B(560); im.paste(b,((W-bw)//2,250*K),b)
         ctext(d,420*K,"Full step-by-step replay",F('plex400',34),GREY)
         y=wrapc(d,490*K,st['title'],F('serif700',58),INK,1760*K)
-        y=wrapc(d,y+20*K,st['opening_question']+"?",F('serif500',40),GREEN,1760*K)
+        y=wrapc(d,y+20*K,st['opening_question'].rstrip('?')+'?',F('serif500',40),GREEN,1760*K)
         ctext(d,y+40*K,FACT.replace(" · ","  ·  "),F('plex400',34),GREY)
     return im
 def endcard():
