@@ -5,7 +5,8 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 if command -v apt-get >/dev/null; then
-  (sudo -n true 2>/dev/null && SUDO=sudo) || SUDO=""
+  SUDO=""
+  if [ "$(id -u)" -ne 0 ] && sudo -n true 2>/dev/null; then SUDO=sudo; fi
   $SUDO apt-get update -qq
   $SUDO apt-get install -y -qq git-lfs ffmpeg >/dev/null
 fi
