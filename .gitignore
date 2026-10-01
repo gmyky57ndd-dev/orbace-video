@@ -44,3 +44,5 @@ npm-debug.log*
 tools/supu-replay-pipeline/out/
 tools/supu-replay-pipeline/shots/
 tools/supu-replay-pipeline/hd/*.info
+**/hd/v7/
+**/hd/v7.info
