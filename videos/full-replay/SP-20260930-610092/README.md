@@ -1,6 +1,6 @@
 # Full replay — SP-20260930-610092
 
-"Three levels of nested trial branches." Opening question: "What do you do to get out of stuck quickly?" Sub-level not yet assigned by the expert (the su-pu is `unrated`). 125 steps: hidden singles, a hidden triple and a hidden pair, then trial branch a (r8c3 = 7, abandoned), branch b (r3c5 = 6, confirmed) and branch c (r4c5 = 3, nested in b and merged).
+"Three levels of nested trial branches." Opening question: "What do you do to get out of stuck quickly?" Extreme · Hell (confirmed 2026-10-01; the page shows `unrated`). 125 steps: hidden singles, a hidden triple and a hidden pair, then trial branch a (r8c3 = 7, abandoned), branch b (r3c5 = 6, confirmed) and branch c (r4c5 = 3, nested in b and merged).
 
 Replay: https://orbacesudoku.com/su-pu/SP-20260930-610092
 

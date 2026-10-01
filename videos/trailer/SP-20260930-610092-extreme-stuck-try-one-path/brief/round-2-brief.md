@@ -16,4 +16,4 @@ Steps 63 → 93 in recorded order, frozen at the unfinished step 93; CTA "See wh
 ## Open items
 - Voice: real recording from `script/vo-recording-sheet.md` replaces the scratch guide voice.
 - Thumbnails: the package's AI-art thumbnails (1536×864, 864×1536, 1024×1024) were not in the Drive file; these are real-frame thumbnails from step 63 per standard v2.0. The package's own portrait and square prompts read "undefined" and need re-supplying if AI art is wanted.
-- Expert sub-level not assigned (`unrated`).
+- Level: Extreme · Hell (confirmed by the PM, 2026-10-01). The level stays out of the opening; the video leads with the player's problem, not terminology.
