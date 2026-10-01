@@ -66,6 +66,12 @@ videos/<type>/<id>/
 
 > **Videos stay local.** `tools/githooks/pre-commit` (enabled by `tools/cloud-setup.sh`; on a Mac run `git config core.hooksPath tools/githooks` once) refuses new video/audio commits. A PR never contains videos.
 
+## Roles and handoff
+
+- **Claude** (cloud or local) produces the full video package: 4K videos, captions, YouTube title/description/chapters/pinned comment, thumbnails (1280×720, 1080×1920, 1:1 for trailers), README. Copy and thumbnails go in `videos/<type>/<id>/publishing/` and ship in the PR.
+- **PM** downloads the videos from the chat (cloud sessions send them with the file-delivery tool), stores them in `videos/<type>/<id>/renders/final/` locally, **uploads to YouTube**, and logs each upload in `publishing/publish-log.csv`. Claude never uploads.
+- Full steps and package contents: `CLAUDE.md` → "Video package and handoff".
+
 ## Workflows
 
 - Su-pu videos (full replay, lesson, trailer): `tools/supu-replay-pipeline/README.md`

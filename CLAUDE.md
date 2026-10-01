@@ -20,10 +20,31 @@ Video files are large and get iterated constantly, so they are **never** pushed 
 
 - Do not `git add -f`, do not work around `.gitignore`, do not set up LFS uploads, and do not retry a push that fails over a video. If a video is staged, unstage it (`git reset -q -- <file>`); `tools/githooks/pre-commit` blocks new video/audio commits.
 - Finals still go in `renders/final/` with the standard names (git-ignored). Record each file's size, duration and `sha256sum` in the video's README so the local copy can be verified.
-- In a cloud session the container is temporary: hand finished videos to the user with the file-delivery tool (`SendUserFile`) before the session ends, and say that they are not in the PR.
+- In a cloud session the container is temporary: send the finished videos to the PM in chat with the file-delivery tool (`SendUserFile`) before the session ends, and say that they are not in the PR. The PM downloads them from the chat and stores them locally (see "Video package and handoff").
 - The PR carries everything except the videos. Do not wait on, or block a PR for, video upload.
 - Legacy: the 12 finals committed before this decision stay tracked as Git LFS pointers; do not add more.
 - Su-pu IDs keep the form `SP-YYYYMMDD-NNNNNN`; other names are lowercase kebab-case.
+
+## Video package and handoff (playbook, 2026-10-01)
+
+Roles: **Claude** makes the package; the **PM** collects the videos and uploads them. Claude never uploads or posts.
+
+A finished video is a package, not just an MP4. Claude delivers all of it:
+
+| Item | Where | How the PM gets it |
+| --- | --- | --- |
+| 4K finals (9:16 + 16:9; + 1:1 for trailers) | `renders/final/` (local-only) | Sent in chat with `SendUserFile`; PM downloads |
+| Captions `<SUPU-ID>_<type>.en.srt` | `renders/final/` | In the PR |
+| **YouTube copy**: title (+2 alternates), description (UTM-tagged su-pu link first, chapters if over 1 min, hashtags), pinned comment, one set per format (16:9 upload, 9:16 Short) | `publishing/youtube-copy.md` | In the PR |
+| **Thumbnails**: 1280×720 (16:9), 1080×1920 (9:16), 1080×1080 (1:1, trailers), each from a real replay frame, as JPG | `publishing/thumbnails/` | In the PR; also send the JPGs in chat with the videos |
+| README: su-pu, steps, length, file sizes, sha256 | video's `README.md` | In the PR |
+
+Handoff steps:
+1. Claude opens the PR (text, captions, copy, thumbnails, scripts; no videos) and sends the videos and thumbnails in chat, stating each file's name and sha256.
+2. **PM downloads the videos from the chat** and saves them to the matching local path in their own clone: `videos/<type>/<id>/renders/final/` (checks the sha256 in the README), then merges the PR and pulls.
+3. **PM uploads to YouTube** (16:9 as a regular video, 9:16 as a Short linked to the 16:9) using `publishing/youtube-copy.md` and the thumbnails.
+4. **PM logs every upload** (`python3 tools/scripts/log-publish.py …`, in the same change) and sets the showcase entry live. Claude can prepare the log row and the `showcase-manifest.json` change on request once the PM gives the YouTube IDs.
+5. Claude does not upload, post or change YouTube settings unless the PM explicitly asks.
 
 ## Publishing
 

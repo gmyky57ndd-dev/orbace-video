@@ -27,9 +27,11 @@ Rules:
 
 ## Before publishing a video
 
+**Who:** the PM uploads and posts; Claude supplies the package (copy, thumbnails, captions) and never uploads. The PM first downloads the videos from the chat into `renders/final/` locally and checks the sha256 in the video's README.
+
 1. Final files are in `videos/<type>/<id>/renders/final/` on the local machine (never in Git), named to the standard. Publish and log from the machine that holds them; `log-publish.py` checks the file exists locally.
 2. Upload to YouTube unlisted: 16:9 as a regular video, 9:16 as a Short; set the Short's related video to the 16:9 upload.
-3. Title, description (UTM-tagged su-pu link first), chapters over 1 minute, pinned comment → `videos/<type>/<id>/publishing/`.
+3. Use the package Claude prepared in `videos/<type>/<id>/publishing/`: `youtube-copy.md` (title, description with UTM-tagged su-pu link first, chapters over 1 minute, pinned comment) and `thumbnails/` (1280×720 for 16:9, 1080×1920 for 9:16, 1080×1080 for 1:1). If anything is missing, ask Claude to generate it before uploading.
 4. Showcase entry in `showcase-manifest.json` (`status: draft` → preview → `live`), then set YouTube public.
 5. Post to channels per `docs/plans/SUPU-TRAILER-DISTRIBUTION-PLAN.md` (r/sudoku: no links, no full solves — use r/orbace_sudoku).
 6. Log every upload and post in `publish-log.csv`.
