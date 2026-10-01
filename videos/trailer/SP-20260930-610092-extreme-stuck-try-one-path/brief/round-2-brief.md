@@ -25,3 +25,6 @@ Steps 63 → 93 in recorded order, frozen at the unfinished step 93; CTA "See wh
 - After the return, steps 61–62 enter R9C1 = 7 and R2C3 = 7. With R8C3 = 7 rejected, R9C1 is the only remaining place for a 7 in the bottom-left box and R2C3 the only one in column 3 (checked by peer elimination on the pre-branch board). The video shows exactly these two moves and no third.
 - Not independently checked: that every trial placement between steps 42 and 57 is forced by the 7. The trailer relies on the replay's own "follow" labels and shows the placements in recorded order.
 Story: progress (steps 1–38 accelerated) → stuck → temporary assumption → consequences → contradiction → return → two recorded moves → unfinished CTA. The standalone "Breakthrough." overlay is now used, after the return.
+
+## v3 refinements (PM review of v2, 2026-10-01)
+Quiet the return (fade the app's gold cleared-cell outlines; about a second of calm before the first 7), give R2C3=7 more time and emphasis, drop the small captions that duplicate the headlines on N03 and N05. Verdict on v2: the cut satisfies the intended story and acceptance criteria. The outline fade is an editorial edit of the capture (`tools/supu-replay-pipeline/trailer3/make_quiet.py`: gold stroke pixels restored from the median of the pre-branch frames); no cell value or trial style is changed.

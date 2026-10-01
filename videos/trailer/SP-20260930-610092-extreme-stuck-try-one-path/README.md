@@ -2,7 +2,9 @@
 
 Round 2 campaign story (brief: `brief/round-2-brief.md`, from the Drive production package). v2 cut of the real replay: steps 1–62 (opening accelerated to step 38, branch A at 39–60, return and two moves 61–62), frozen unfinished at step 62. (v1 was the steps 63–93 working cut.) Replay: https://orbacesudoku.com/su-pu/SP-20260930-610092 (Extreme · Hell; 125 steps; branches A abandoned, B open, C nested in B).
 
-## Status (2026-10-01, v2)
+## Status (2026-10-01, v3)
+- **9:16 v3** (1080×1920, 30 fps, 38.0 s, −14.4 LUFS): `renders/v3/SP-20260930-610092_trailer_916_1080p_v3.mp4` — local only, sent in chat. PM review refinements on v2: (1) the replay's gold cleared-cell outlines at the return fade out over 0.6 s (24.0–24.8 s; digits, candidates, trial styling and pin markers untouched) so the restored board is quiet for about a second before R9C1=7 at 26.0 s; (2) R2C3=7 arrives earlier (28.2 s, was 30.6 s) with a subtle dashed pulse ring (R9C1 also pulses briefly); (3) no small caption under "Follow the consequences." and "Two 5s. One column." (the SRT still carries every spoken line). Voice, script and CTA timing unchanged.
+- v2 (below) is historical.
 - **9:16 v2** (1080×1920, 30 fps, 38.0 s, −14.4 LUFS): `renders/v2/SP-20260930-610092_trailer_916_1080p_v2.mp4` — local only, sent in chat. Follows the PM's v2 script (branch A contradiction, return, two moves) with the supplied natural-speech voice. Editorial annotation: dashed outlines on the two 5s (not app UI). v1 below is historical.
 
 - **9:16 v1 for review and voice development** (1080×1920, 30 fps, 37.5 s, −13.7 LUFS): `renders/v1/SP-20260930-610092_trailer_916_1080p_v1.mp4` — local only, sent in chat. Voice is a scratch guide (pico2wave en-GB) to fix timing; the release voice is "Generic".

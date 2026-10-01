@@ -23,7 +23,7 @@ Two fives in one column. That starting seven can't be right.
 Return to the board.
 
 7
-00:00:28,300 --> 00:00:29,370
+00:00:26,300 --> 00:00:27,370
 Now we can move again.
 
 8

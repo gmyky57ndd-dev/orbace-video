@@ -8,13 +8,16 @@ F=lambda n,s: ImageFont.truetype(f'fonts/{n}.ttf',int(s*K))
 SC=6; Sc=3.2*K; CX=177.5; CY=394; FCX=540*K; FCY=330*K; BAND=300*K
 fx=lambda x: FCX+(x-CX)*Sc; fy=lambda y: FCY+(y-CY)*Sc
 cache={}
-def base(k):
-    if k in cache: return cache[k]
-    src=Image.open(f'hd/v/s{k:03d}.png').convert('RGB'); PAD=3000
+def base(k,suffix=''):
+    key=(k,suffix)
+    if key in cache: return cache[key]
+    src=Image.open(f'hd/v/s{k:03d}{suffix}.png').convert('RGB'); PAD=3000
     d=ImageDraw.Draw(src); d.rectangle((0,0,src.width,int(395.5*SC)),fill=CARD); d.rectangle((0,int(707*SC),src.width,src.height),fill=CARD)   # only the board + r/c labels
     p=Image.new('RGB',(src.width+2*PAD,src.height+2*PAD),CARD); p.paste(src,(PAD,PAD))
     x0=PAD+(CX-FCX/Sc)*SC; y0=PAD+(CY-FCY/Sc)*SC
-    im=p.resize((W,H),Image.LANCZOS,box=(x0,y0,x0+W/Sc*SC,y0+H/Sc*SC)); cache.clear(); cache[k]=im; return im
+    im=p.resize((W,H),Image.LANCZOS,box=(x0,y0,x0+W/Sc*SC,y0+H/Sc*SC))
+    for kk in [c for c in cache if c[0]!=k]: del cache[kk]
+    cache[key]=im; return im
 def al(t,a,b,f=0.18): return max(0,min(1,(t-a)/f,(b-t)/f))
 def draw_band(im,cap,a):
     d=ImageDraw.Draw(im,'RGBA'); big=cap.get('big'); fs=cap.get('fs',104 if big else 64); f=F('plex600',fs)
@@ -43,6 +46,9 @@ def dashed_rect(d,box,col,wid,dash,gap):
             s=i*(dash+gap)/L; e=min(1,(i*(dash+gap)+dash)/L)
             if s>=1: break
             d.line((ax+(bx-ax)*s,ay+(by-ay)*s,ax+(bx-ax)*e,ay+(by-ay)*e),fill=col,width=wid)
+def draw_ring(im,r,c,a,grow=0):
+    d=ImageDraw.Draw(im,'RGBA'); cs=289/9; cx=42+(c+.5)*cs; cy=414+(r+.5)*cs; hw=cs/2+1.5+grow
+    dashed_rect(d,(fx(cx-hw),fy(cy-hw),fx(cx+hw),fy(cy+hw)),RED+(int(255*a),),int(4*K),int(16*K),int(10*K))
 def draw_annot(im,a):
     d=ImageDraw.Draw(im,'RGBA'); cs=289/9
     for r,c in PLAN['annot']['cells']:
@@ -72,9 +78,16 @@ def state(t):
     band=next(((i,q(al(t,c['t0'],c['t1']))) for i,c in enumerate(PLAN['band']) if c['t0']<=t<c['t1']),None)
     cap=next(((i,q(al(t,c['t0'],c['t1'],0.15))) for i,c in enumerate(PLAN['captions']) if c['t0']<=t<c['t1']),None)
     an=PLAN['annot']; ann=q(al(t,an['t0'],an['t1'],0.3)) if an['t0']<=t<an['t1'] else 0
-    return (k,band,cap,ann,cta)
+    dh=PLAN.get('dehighlight',{}).get(str(k)); q_=0
+    if dh: q_=q(min(1,max(0,(t-dh['t0'])/(dh['t1']-dh['t0']))))
+    pul=tuple((i,q((t-p['t0'])%p['period']/p['period'])) for i,p in enumerate(PLAN.get('pulses',[])) if p['t0']<=t<p['t1'])
+    return (k,band,cap,ann,cta,q_,pul)
 def render(s):
-    k,band,cap,ann,cta=s; im=base(k).copy()
+    k,band,cap,ann,cta,q_,pul=s; im=base(k).copy()
+    if q_>0:   # app's gold cleared-cell outlines fade out (quiet frame from trailer3/make_quiet.py)
+        qi=base(k,'q'); im=Image.blend(base(k),qi,q_) if q_<1 else qi.copy()
+    for i,ph in pul:
+        p=PLAN['pulses'][i]; wave=0.5+0.5*math.cos(2*math.pi*ph); draw_ring(im,p['cell'][0],p['cell'][1],0.55+0.45*wave,grow=3*(1-wave))
     if ann>0: draw_annot(im,ann)
     if cta>0: draw_band(im,PLAN['cta'],cta); draw_cta_bottom(im,cta)
     else:
