@@ -56,6 +56,8 @@ For another su-pu (2026-09-30 refresh): snapshot the live page into `site3/` (`S
 
 `trailer3/`: `plan_<id>_v1.py` (step cuts, captions, VO slots, music envelope) → `render_trailer.py` (9:16 from the phone capture; `K=1` review 1080×1920, `K=2` 4K) → `audio_trailer.py` (scratch voice via `pico2wave`, or recorded `voNN` files from a folder as the 3rd argument; pad, subtle placement tones, ducking) → ffmpeg (CRF 16, loudnorm −14) → `thumbs_trailer.py`. Needs `apt-get install libttspico-utils`. Voices for release come from recorded lines (`script/vo-recording-sheet.md`).
 
+v2 (`plan_610092_v2.py`, `render_trailer2.py`, `audio_trailer2.py <plan> <voice.mp3> <out.wav>`): board-only crop from the phone capture, band headline + spoken-line captions, optional editorial dashed outline, supplied voice take cut per line and placed on cue windows (forced alignment, no stretching). `THUMB_STEP=59 python3 trailer3/thumbs_trailer.py <dir>` builds thumbnails from any real frame.
+
 ## Known gaps
 
 - No 1:1 composition yet (needed for trailers per standard v2.0).

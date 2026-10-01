@@ -1,1 +1,8 @@
-Stuck? Try one path. Suppose this six is true, just for now. Don't guess the answer. Follow the consequences. One deduction leads to another. This path leads to another choice. Test it within the first. The trial continues, one consequence at a time. The board is moving. The path is still being tested. See where the solve goes next.
+Stuck? Try one path.
+Suppose this seven is true, just for now.
+Don't guess the answer. Follow the consequences.
+One deduction leads to another…
+Two fives in one column. That starting seven can't be right.
+Return to the board.
+Now we can move again.
+See where the solve goes next.

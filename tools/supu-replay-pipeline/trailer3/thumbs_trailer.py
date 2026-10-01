@@ -4,7 +4,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter
 OUT=sys.argv[1]; ID='SP-20260930-610092'
 F=lambda n,s: ImageFont.truetype(f'fonts/{n}.ttf',s)
 BG=(244,239,229); INK=(29,33,30); GREEN=(36,76,58); RED=(196,30,58); HI=(250,226,178)
-src=Image.open('hd/v/s063.png').convert('RGB'); board=src.crop((16*6,391*6,342*6,707*6))   # r/c labels + board, unsolved
+import os; src=Image.open(f"hd/v/s{int(os.environ.get('THUMB_STEP','63')):03d}.png").convert('RGB'); board=src.crop((16*6,391*6,342*6,707*6))   # r/c labels + board, unsolved
 brand=Image.open('shots/brand.png').convert('RGBA'); px=brand.load()
 for y in range(brand.height):
     for x in range(brand.width):

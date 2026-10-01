@@ -17,3 +17,11 @@ Steps 63 → 93 in recorded order, frozen at the unfinished step 93; CTA "See wh
 - Voice: real recording from `script/vo-recording-sheet.md` replaces the scratch guide voice.
 - Thumbnails: the package's AI-art thumbnails (1536×864, 864×1536, 1024×1024) were not in the Drive file; these are real-frame thumbnails from step 63 per standard v2.0. The package's own portrait and square prompts read "undefined" and need re-supplying if AI art is wanted.
 - Level: Extreme · Hell (confirmed by the PM, 2026-10-01). The level stays out of the opening; the video leads with the player's problem, not terminology.
+
+
+## v2 direction (PM review, 2026-10-01) — supersedes the B/C working cut above
+`brief/v1-review-v2-script.md`. The PM's screenshot establishes a contradiction in branch A, so the working-cut restriction ("no contradiction claim") no longer applies to branch A. Re-verified from the su-pu data:
+- Step 40 opens branch A (R8C3 = 7); steps 41–57 are trial placements; **step 58 places a trial 5 at R4C3 while R9C3 already holds a given 5 — two 5s in column 3.** Step 59 pins the endpoint; step 60 closes the branch ("abandoned").
+- After the return, steps 61–62 enter R9C1 = 7 and R2C3 = 7. With R8C3 = 7 rejected, R9C1 is the only remaining place for a 7 in the bottom-left box and R2C3 the only one in column 3 (checked by peer elimination on the pre-branch board). The video shows exactly these two moves and no third.
+- Not independently checked: that every trial placement between steps 42 and 57 is forced by the 7. The trailer relies on the replay's own "follow" labels and shows the placements in recorded order.
+Story: progress (steps 1–38 accelerated) → stuck → temporary assumption → consequences → contradiction → return → two recorded moves → unfinished CTA. The standalone "Breakthrough." overlay is now used, after the return.
