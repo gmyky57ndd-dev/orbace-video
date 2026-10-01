@@ -1,0 +1,67 @@
+1
+00:00:06,500 --> 00:00:08,100
+Hidden Single
+
+2
+00:00:10,400 --> 00:00:14,900
+confined group (hidden triple)
+
+3
+00:00:17,200 --> 00:00:18,800
+Hidden Single
+
+4
+00:00:19,200 --> 00:00:20,800
+Hidden Single
+
+5
+00:00:21,200 --> 00:00:22,800
+Hidden Single
+
+6
+00:00:24,800 --> 00:00:26,400
+Hidden Single
+
+7
+00:00:27,200 --> 00:00:31,400
+confined group (hidden pair)
+
+8
+00:00:31,400 --> 00:00:32,700
+Chapter · Branch a abandoned
+
+9
+00:00:32,700 --> 00:00:37,200
+What if r8c3 = 7?
+
+10
+00:00:48,300 --> 00:00:52,500
+Test abandoned
+
+11
+00:00:52,500 --> 00:00:57,000
+What if r3c5 = 6?
+
+12
+00:01:09,900 --> 00:01:12,600
+Chapter · Branch b does not solve
+
+13
+00:01:12,600 --> 00:01:13,900
+Chapter · Branch c prove correct and solve
+
+14
+00:01:13,900 --> 00:01:18,400
+What if r4c5 = 3?
+
+15
+00:01:45,400 --> 00:01:47,200
+Nested branch merged
+
+16
+00:01:47,200 --> 00:01:49,000
+Test confirmed
+
+17
+00:01:49,000 --> 00:01:53,500
+Solved in 125 steps
