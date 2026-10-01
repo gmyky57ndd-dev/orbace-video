@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Refuse to commit NEW video/audio files. Videos stay local; deliver them outside Git (see README.md "Videos stay local").
+bad=$(git diff --cached --name-only --diff-filter=AM | grep -Ei '\.(mp4|mov|m4v|webm|mkv|wav|aif|aiff|flac)$' | while read -r f; do git ls-files --error-unmatch "$f" >/dev/null 2>&1 && git cat-file -e "HEAD:$f" 2>/dev/null && continue; echo "$f"; done)
+if [ -n "$bad" ]; then
+  echo "pre-commit: video/audio files must not be committed or pushed (they stay local):" >&2
+  echo "$bad" | sed 's/^/  /' >&2
+  echo "Unstage with: git reset -q -- <file>   (keep them in renders/final/, which is git-ignored)" >&2
+  exit 1
+fi

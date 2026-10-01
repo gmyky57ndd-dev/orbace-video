@@ -102,3 +102,11 @@ Reorganized by the video types in standard v2.0 and prepared for GitHub (github.
 Path updates: `tools/remotion/package.json` render outputs, `tools/remotion/scripts/build-replay-store-v2.mjs`, `tools/remotion/scripts/journal-video.mjs`, the Journal template, the store shot list, and all READMEs.
 
 Git: the pre-GitHub local history (one commit, 2026-09-13, with videos committed as plain blobs) was set aside as `.git-local-history-2026-09-13/` on the Mac and ignored. The GitHub repo starts fresh from this layout. Iteration renders, WAV stems, raw captures and other media outside `renders/final/` are git-ignored and remain only on the Mac.
+
+## 2026-10-01 — videos stay local
+
+Decision: video/audio files are never pushed to Git, LFS or any server (size, constant iteration). `.gitignore` no longer un-ignores `renders/final/*.mp4|mov`; `.gitattributes` LFS rules are kept only for the 12 legacy finals; `tools/githooks/pre-commit` blocks new video/audio commits; `tools/cloud-setup.sh` no longer runs `git lfs pull`. Rules updated in `CLAUDE.md`, `README.md`, `publishing/README.md`, `tools/supu-replay-pipeline/README.md`.
+
+| From | To | Note |
+|---|---|---|
+| `videos/full-replay/SP-20260930-610092/renders/v1/*_4k.mp4` | `…/renders/final/` | Moved; local-only |

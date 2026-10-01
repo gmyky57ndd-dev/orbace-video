@@ -1,4 +1,4 @@
-# Approved final videos are stored in Git LFS
+# LEGACY ONLY: finals committed before 2026-10-01 are Git LFS pointers. New videos are never committed (see README.md).
 videos/**/renders/final/*.mp4 filter=lfs diff=lfs merge=lfs -text
 videos/**/renders/final/*.MP4 filter=lfs diff=lfs merge=lfs -text
 videos/**/renders/final/*.mov filter=lfs diff=lfs merge=lfs -text

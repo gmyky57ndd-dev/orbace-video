@@ -1,5 +1,6 @@
-# ---- Local-only media (kept on the production Mac, not in Git) ----
-# Only approved finals under videos/**/renders/final/ are versioned (via Git LFS).
+# ---- Video and audio files are NEVER pushed to Git or the cloud ----
+# Finals (renders/final/), iterations (renders/vN/), stems and captures all stay on the local machine.
+# The 12 finals committed before 2026-10-01 stay tracked as legacy Git LFS files; add no new ones.
 *.mp4
 *.MP4
 *.mov
@@ -12,9 +13,6 @@
 *.aif
 *.aiff
 *.flac
-!videos/**/renders/final/*.mp4
-!videos/**/renders/final/*.MP4
-!videos/**/renders/final/*.mov
 
 # Frame captures and render caches
 **/frames/

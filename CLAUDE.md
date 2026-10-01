@@ -11,8 +11,18 @@ This repo is the golden source for all Orbace Tech (Orbace Sudoku) video generat
 
 ## Files and naming
 
-- Finals: `renders/final/<SUPU-ID>_<full|lesson|trailer>_<169|916|11>_<4k|1080p>.mp4`, captions `<SUPU-ID>_<type>.en.srt`. Finals are Git LFS (`.gitattributes`).
-- Iterations go in a new `renders/vN/` and are git-ignored (local-only), as are WAV stems, raw captures, frames and node_modules. Never commit other video/audio files; never overwrite a numbered render.
+- Finals: `renders/final/<SUPU-ID>_<full|lesson|trailer>_<169|916|11>_<4k|1080p>.mp4`, captions `<SUPU-ID>_<type>.en.srt`. **Videos stay local: never commit or push any video/audio file** (see "Videos stay local" below).
+- Iterations go in a new `renders/vN/`; never overwrite a numbered render. Everything below is git-ignored and local-only: `renders/vN/`, `renders/final/` videos, WAV stems, raw captures, frames, node_modules.
+
+## Videos stay local (decision 2026-10-01)
+
+Video files are large and get iterated constantly, so they are **never** pushed to GitHub, LFS or any server. Git holds only the text around them: briefs, scripts, captions (`.srt`), JSON, thumbnails, copy, READMEs, code.
+
+- Do not `git add -f`, do not work around `.gitignore`, do not set up LFS uploads, and do not retry a push that fails over a video. If a video is staged, unstage it (`git reset -q -- <file>`); `tools/githooks/pre-commit` blocks new video/audio commits.
+- Finals still go in `renders/final/` with the standard names (git-ignored). Record each file's size, duration and `sha256sum` in the video's README so the local copy can be verified.
+- In a cloud session the container is temporary: hand finished videos to the user with the file-delivery tool (`SendUserFile`) before the session ends, and say that they are not in the PR.
+- The PR carries everything except the videos. Do not wait on, or block a PR for, video upload.
+- Legacy: the 12 finals committed before this decision stay tracked as Git LFS pointers; do not add more.
 - Su-pu IDs keep the form `SP-YYYYMMDD-NNNNNN`; other names are lowercase kebab-case.
 
 ## Publishing
@@ -24,6 +34,6 @@ This repo is the golden source for all Orbace Tech (Orbace Sudoku) video generat
 
 ## Working in a cloud session
 
-- The repo clones with LFS finals; iteration media is not available in the cloud, so rebuild what you need with the pipeline (live site: https://orbacesudoku.com/su-pu/<SUPU-ID>; su-pu data API: https://justinzero.fly.dev/supu/<SUPU-ID>).
-- Run `bash tools/cloud-setup.sh` first (git-lfs, ffmpeg, Python deps, Playwright). It is also the setup script for the Claude cloud environment.
+- Video media is not in the repo (only 12 legacy LFS pointers), so rebuild what you need with the pipeline (live site: https://orbacesudoku.com/su-pu/<SUPU-ID>; su-pu data API: https://justinzero.fly.dev/supu/<SUPU-ID>).
+- Run `bash tools/cloud-setup.sh` first (ffmpeg, Python deps, Playwright; sets the video guard hook). It is also the setup script for the Claude cloud environment.
 - Record every move/rename in `docs/REORGANIZATION-MAP.md`.

@@ -48,7 +48,9 @@ python3 render_hd.py 916               # → out/<file>_916_4k.mp4
 python3 thumbs.py
 ```
 
-Name finals `<supu-id>_<type>_<format>_4k.mp4` (type `full` / `lesson` / `trailer`, format `169` / `916` / `11`) and file them under the video's `renders/final/`.
+Name finals `<supu-id>_<type>_<format>_4k.mp4` (type `full` / `lesson` / `trailer`, format `169` / `916` / `11`) and file them under the video's `renders/final/` (local-only, git-ignored). **Do not commit or push the MP4s**; in a cloud session deliver them to the user with the file-delivery tool.
+
+For another su-pu (2026-09-30 refresh): snapshot the live page into `site3/` (`SITE=site3`), then run `node cap2.js <W> <H> <dpr> <dir> <SUPU-ID> <N> -1` for 1280×900@4 (`hd/w`) and 390×844@6 (`hd/v`), `python3 full_sched3.py <SUPU-ID>`, `python3 music_full3.py out/x.wav full/sched_<last6>.json`, `SUPU=<id> FACT="…" python3 render_hd3.py 169|916` (geometry in `geom.json`), encode with ffmpeg (libx264 CRF 14, `-tune stillimage`, AAC 256k, loudnorm −14), and `python3 thumbs3.py`. In this container set `CHROME=/opt/pw-browsers/chromium-1194/chrome-linux/chrome`.
 
 ## Known gaps
 

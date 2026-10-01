@@ -31,7 +31,7 @@ videos/<type>/<id>/
   production/      plans, config, audio stems (stems are local-only, see below)
   review/          QA stills, auditions, feedback
   renders/v1, v2…  iterations (local-only, never overwritten)
-  renders/final/   approved deliverables (in Git LFS)
+  renders/final/   approved deliverables (local-only, git-ignored; never pushed)
   publishing/      titles, descriptions, thumbnails, post copy
 ```
 
@@ -49,7 +49,8 @@ videos/<type>/<id>/
 ## Rules
 
 1. **Finals live only in `renders/final/`**, named `<SUPU-ID>_<type>_<format>_<res>.mp4` (type `full`/`lesson`/`trailer`; format `169`/`916`/`11`; res `4k`/`1080p`). Captions `<SUPU-ID>_<type>.en.srt`.
-2. **Never overwrite a numbered render.** Promote by copying into `final/` and updating the README.
+2. **Never overwrite a numbered render.** Promote by copying into `final/` and updating the README (size, duration, sha256).
+   **Videos stay local.** Never commit or push a video/audio file (no Git, no LFS, no server): files are large and iterated often. Git carries only the text, captions, JSON, thumbnails and code.
 3. **Log every publish** in `publishing/publish-log.csv` (use `tools/scripts/log-publish.py`), in the same change.
 4. **Standards change by new version file**, never by editing in place.
 5. **Downloads, chat attachments and cloud scratch folders are not sources** — file everything here before publishing.
@@ -60,8 +61,10 @@ videos/<type>/<id>/
 | Kind | Where it lives |
 | --- | --- |
 | Docs, briefs, scripts, captions, code, JSON, thumbnails, voice MP3s | Git |
-| `renders/final/**` videos | **Git LFS** (run `git lfs install` once; on a Mac `brew install git-lfs`) |
+| `renders/final/**` videos | **Local only** (git-ignored, never pushed). Record size/duration/sha256 in the video's README. In a cloud session, send them to the user with the file-delivery tool. Twelve finals committed before 2026-10-01 remain as legacy Git LFS pointers |
 | Iteration renders (`renders/v*`, `renders/review`), previews, raw captures, WAV stems, `node_modules`, frame caches | **Local only** (git-ignored). Kept on the production Mac; rebuildable or superseded |
+
+> **Videos stay local.** `tools/githooks/pre-commit` (enabled by `tools/cloud-setup.sh`; on a Mac run `git config core.hooksPath tools/githooks` once) refuses new video/audio commits. A PR never contains videos.
 
 ## Workflows
 

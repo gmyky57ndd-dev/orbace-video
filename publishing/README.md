@@ -13,7 +13,7 @@
 | `video_type` | full-replay, journal-lesson, trailer, brand-product |
 | `supu_id` | SP-YYYYMMDD-NNNNNN when the video is about a su-pu |
 | `title` | Title as published |
-| `final_file` | Repo path of the exact file uploaded (must be under `videos/<type>/<id>/renders/final/`) |
+| `final_file` | Repo-relative path of the exact file uploaded (must be under `videos/<type>/<id>/renders/final/`; the file itself is local-only, not in Git) |
 | `status` | `live`, `unlisted`, `scheduled`, `private`, `removed` |
 | `logged_by` | Who added the row |
 | `notes` | Anything worth knowing (re-upload, campaign, UTM content) |
@@ -27,7 +27,7 @@ Rules:
 
 ## Before publishing a video
 
-1. Final files are in `videos/<type>/<id>/renders/final/`, named to the standard.
+1. Final files are in `videos/<type>/<id>/renders/final/` on the local machine (never in Git), named to the standard. Publish and log from the machine that holds them; `log-publish.py` checks the file exists locally.
 2. Upload to YouTube unlisted: 16:9 as a regular video, 9:16 as a Short; set the Short's related video to the 16:9 upload.
 3. Title, description (UTM-tagged su-pu link first), chapters over 1 minute, pinned comment → `videos/<type>/<id>/publishing/`.
 4. Showcase entry in `showcase-manifest.json` (`status: draft` → preview → `live`), then set YouTube public.
