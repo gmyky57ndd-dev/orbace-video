@@ -41,3 +41,8 @@ __pycache__/
 npm-debug.log*
 .DS_Store
 **/.DS_Store
+
+# supu-replay-pipeline scratch output
+tools/supu-replay-pipeline/out/
+tools/supu-replay-pipeline/shots/
+tools/supu-replay-pipeline/hd/*.info
