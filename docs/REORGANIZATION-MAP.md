@@ -114,3 +114,7 @@ Decision: video/audio files are never pushed to Git, LFS or any server (size, co
 ## 2026-10-01 — SP-20260930-610092 story trailer
 
 New folder `videos/trailer/SP-20260930-610092-extreme-stuck-try-one-path/` (brief from Drive production package; 9:16 v1 render is local-only in `renders/v1/`). Pipeline additions under `tools/supu-replay-pipeline/trailer3/`.
+
+## 2026-10-01 — SP-20260930-610092 trailer finals
+
+`videos/trailer/SP-20260930-610092-extreme-stuck-try-one-path/renders/final/` holds the 9:16, 16:9 and 1:1 4K masters (local only, not in Git); renders/v1–v3 are earlier iterations (local only).

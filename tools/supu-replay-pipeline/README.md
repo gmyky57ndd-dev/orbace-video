@@ -58,6 +58,8 @@ For another su-pu (2026-09-30 refresh): snapshot the live page into `site3/` (`S
 
 v2 (`plan_610092_v2.py`, `render_trailer2.py`, `audio_trailer2.py <plan> <voice.mp3> <out.wav>`): board-only crop from the phone capture, band headline + spoken-line captions, optional editorial dashed outline, supplied voice take cut per line and placed on cue windows (forced alignment, no stretching). v3 (`plan_610092_v3.py`; same renderer/audio): `make_quiet.py <step>` writes `hd/v/s<step>q.png`, the capture with the app's gold cleared-cell outline strokes restored from the median of earlier frames; the plan's `dehighlight` fades to it, `pulses` adds subtle dashed rings on chosen cells.
 
+Final (`plan_610092_final.py`, `render_final.py`): `FORMAT=916|169|11 K=2 python3 trailer3/render_final.py <plan>` composes each format from its own capture (phone `hd/v7` at 7× for 9:16, desktop `hd/w` at 4× for 16:9 and 1:1); `make_quiet.py <step> <dir> <scale> <y0> <y1> 0 38 [x0 x1]` builds the quiet step-60 frame; encode with ffmpeg (CRF 14, `-tune stillimage`, loudnorm −14) using the v3 audio. The 16:9 end card has a QR; test it with `cv2.QRCodeDetectorAruco` at full size.
+
 `THUMB_STEP=59 python3 trailer3/thumbs_trailer.py <dir>` builds thumbnails from any real frame.
 
 ## Known gaps
