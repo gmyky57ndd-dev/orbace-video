@@ -1,0 +1,31 @@
+1
+00:00:00,400 --> 00:00:03,290
+Stuck? Try one path.
+
+2
+00:00:04,300 --> 00:00:08,010
+Suppose this six is true, just for now.
+
+3
+00:00:09,400 --> 00:00:13,620
+Don't guess the answer. Follow the consequences.
+
+4
+00:00:14,200 --> 00:00:16,600
+One deduction leads to another.
+
+5
+00:00:17,400 --> 00:00:22,390
+This path leads to another choice. Test it within the first.
+
+6
+00:00:23,400 --> 00:00:27,670
+The trial continues, one consequence at a time.
+
+7
+00:00:29,200 --> 00:00:33,470
+The board is moving. The path is still being tested.
+
+8
+00:00:33,600 --> 00:00:36,340
+See where the solve goes next.

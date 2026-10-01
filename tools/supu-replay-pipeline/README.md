@@ -52,6 +52,10 @@ Name finals `<supu-id>_<type>_<format>_4k.mp4` (type `full` / `lesson` / `traile
 
 For another su-pu (2026-09-30 refresh): snapshot the live page into `site3/` (`SITE=site3`), then run `node cap2.js <W> <H> <dpr> <dir> <SUPU-ID> <N> -1` for 1280×900@4 (`hd/w`) and 390×844@6 (`hd/v`), `python3 full_sched3.py <SUPU-ID>`, `python3 music_full3.py out/x.wav full/sched_<last6>.json`, `SUPU=<id> FACT="…" python3 render_hd3.py 169|916` (geometry in `geom.json`), encode with ffmpeg (libx264 CRF 14, `-tune stillimage`, AAC 256k, loudnorm −14), and `python3 thumbs3.py`. In this container set `CHROME=/opt/pw-browsers/chromium-1194/chrome-linux/chrome`.
 
+## Story trailer from a source-faithful cut (2026-10-01)
+
+`trailer3/`: `plan_<id>_v1.py` (step cuts, captions, VO slots, music envelope) → `render_trailer.py` (9:16 from the phone capture; `K=1` review 1080×1920, `K=2` 4K) → `audio_trailer.py` (scratch voice via `pico2wave`, or recorded `voNN` files from a folder as the 3rd argument; pad, subtle placement tones, ducking) → ffmpeg (CRF 16, loudnorm −14) → `thumbs_trailer.py`. Needs `apt-get install libttspico-utils`. Voices for release come from recorded lines (`script/vo-recording-sheet.md`).
+
 ## Known gaps
 
 - No 1:1 composition yet (needed for trailers per standard v2.0).

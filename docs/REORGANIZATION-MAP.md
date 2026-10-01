@@ -110,3 +110,7 @@ Decision: video/audio files are never pushed to Git, LFS or any server (size, co
 | From | To | Note |
 |---|---|---|
 | `videos/full-replay/SP-20260930-610092/renders/v1/*_4k.mp4` | `…/renders/final/` | Moved; local-only |
+
+## 2026-10-01 — SP-20260930-610092 story trailer
+
+New folder `videos/trailer/SP-20260930-610092-unrated-stuck-try-one-path/` (brief from Drive production package; 9:16 v1 render is local-only in `renders/v1/`). Pipeline additions under `tools/supu-replay-pipeline/trailer3/`.

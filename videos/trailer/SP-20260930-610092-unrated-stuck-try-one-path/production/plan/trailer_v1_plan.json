@@ -1,0 +1,418 @@
+{
+ "id": "SP-20260930-610092",
+ "version": "v1",
+ "fps": 30,
+ "total": 37.5,
+ "steps": [
+  [
+   0.0,
+   63
+  ],
+  [
+   4.0,
+   64
+  ],
+  [
+   5.7,
+   65
+  ],
+  [
+   7.3,
+   66
+  ],
+  [
+   9.0,
+   67
+  ],
+  [
+   9.35,
+   68
+  ],
+  [
+   9.7,
+   69
+  ],
+  [
+   10.05,
+   70
+  ],
+  [
+   10.4,
+   71
+  ],
+  [
+   11.5,
+   72
+  ],
+  [
+   12.6,
+   73
+  ],
+  [
+   13.7,
+   74
+  ],
+  [
+   14.8,
+   75
+  ],
+  [
+   15.9,
+   76
+  ],
+  [
+   17.0,
+   77
+  ],
+  [
+   17.4,
+   78
+  ],
+  [
+   17.8,
+   79
+  ],
+  [
+   18.2,
+   80
+  ],
+  [
+   18.6,
+   81
+  ],
+  [
+   19.0,
+   82
+  ],
+  [
+   19.4,
+   83
+  ],
+  [
+   19.8,
+   84
+  ],
+  [
+   20.2,
+   85
+  ],
+  [
+   20.45,
+   86
+  ],
+  [
+   20.7,
+   87
+  ],
+  [
+   21.05,
+   88
+  ],
+  [
+   21.4,
+   89
+  ],
+  [
+   23.0,
+   90
+  ],
+  [
+   26.0,
+   91
+  ],
+  [
+   29.0,
+   92
+  ],
+  [
+   30.6,
+   93
+  ]
+ ],
+ "cta_t": 33.0,
+ "captions": [
+  {
+   "t0": 0.2,
+   "t1": 1.6,
+   "lines": [
+    [
+     [
+      "Stuck?",
+      1
+     ]
+    ]
+   ],
+   "big": true
+  },
+  {
+   "t0": 1.6,
+   "t1": 3.9,
+   "lines": [
+    [
+     [
+      "Try one path.",
+      1
+     ]
+    ]
+   ],
+   "big": true
+  },
+  {
+   "t0": 4.2,
+   "t1": 8.9,
+   "lines": [
+    [
+     [
+      "Suppose this ",
+      0
+     ],
+     [
+      "six",
+      1
+     ],
+     [
+      " is true",
+      0
+     ]
+    ],
+    [
+     [
+      "just for now.",
+      0
+     ]
+    ]
+   ],
+   "big": false
+  },
+  {
+   "t0": 9.3,
+   "t1": 13.7,
+   "lines": [
+    [
+     [
+      "Don't guess the answer.",
+      0
+     ]
+    ],
+    [
+     [
+      "Follow the consequences.",
+      1
+     ]
+    ]
+   ],
+   "big": false
+  },
+  {
+   "t0": 14.1,
+   "t1": 17.0,
+   "lines": [
+    [
+     [
+      "One deduction",
+      0
+     ]
+    ],
+    [
+     [
+      "leads to another.",
+      0
+     ]
+    ]
+   ],
+   "big": false
+  },
+  {
+   "t0": 17.3,
+   "t1": 20.2,
+   "lines": [
+    [
+     [
+      "This path leads to",
+      0
+     ]
+    ],
+    [
+     [
+      "another choice.",
+      1
+     ]
+    ]
+   ],
+   "big": false
+  },
+  {
+   "t0": 20.2,
+   "t1": 22.9,
+   "lines": [
+    [
+     [
+      "Test it within",
+      0
+     ]
+    ],
+    [
+     [
+      "the first.",
+      1
+     ]
+    ]
+   ],
+   "big": false
+  },
+  {
+   "t0": 23.2,
+   "t1": 28.8,
+   "lines": [
+    [
+     [
+      "The trial continues,",
+      0
+     ]
+    ],
+    [
+     [
+      "one consequence at a time.",
+      0
+     ]
+    ]
+   ],
+   "big": false
+  },
+  {
+   "t0": 29.1,
+   "t1": 33.0,
+   "lines": [
+    [
+     [
+      "The board is moving.",
+      0
+     ]
+    ],
+    [
+     [
+      "The path is still being tested.",
+      0
+     ]
+    ]
+   ],
+   "big": false
+  }
+ ],
+ "cta": {
+  "t0": 33.0,
+  "t1": 37.5,
+  "lines": [
+   [
+    [
+     "See where the solve",
+     0
+    ]
+   ],
+   [
+    [
+     "goes ",
+     0
+    ],
+    [
+     "next.",
+     1
+    ]
+   ]
+  ],
+  "big": false
+ },
+ "pills": [
+  {
+   "t0": 4.0,
+   "t1": 9.0,
+   "text": "Temporary assumption"
+  },
+  {
+   "t0": 17.0,
+   "t1": 23.0,
+   "text": "Still exploring"
+  }
+ ],
+ "vo": [
+  [
+   "vo01",
+   0.4,
+   3.6,
+   "Stuck? Try one path."
+  ],
+  [
+   "vo02",
+   4.3,
+   8.6,
+   "Suppose this six is true, just for now."
+  ],
+  [
+   "vo03",
+   9.4,
+   13.6,
+   "Don't guess the answer. Follow the consequences."
+  ],
+  [
+   "vo04",
+   14.2,
+   17.0,
+   "One deduction leads to another."
+  ],
+  [
+   "vo05",
+   17.4,
+   22.8,
+   "This path leads to another choice. Test it within the first."
+  ],
+  [
+   "vo06",
+   23.4,
+   28.4,
+   "The trial continues, one consequence at a time."
+  ],
+  [
+   "vo07",
+   29.2,
+   33.4,
+   "The board is moving. The path is still being tested."
+  ],
+  [
+   "vo08",
+   33.6,
+   36.6,
+   "See where the solve goes next."
+  ]
+ ],
+ "music": [
+  [
+   0,
+   1.0
+  ],
+  [
+   21.0,
+   0.45
+  ],
+  [
+   22.8,
+   0.12
+  ],
+  [
+   24.2,
+   0.45
+  ],
+  [
+   29.0,
+   0.8
+  ],
+  [
+   33.0,
+   1.0
+  ]
+ ],
+ "source_steps": [
+  63,
+  93
+ ],
+ "freeze_step": 93
+}
