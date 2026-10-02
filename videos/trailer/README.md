@@ -6,8 +6,8 @@ Folder name: `<SUPU-ID>-<level>[-slug]`.
 
 | Trailer | Level | Version | Length | Final | YouTube |
 | --- | --- | --- | --- | --- | --- |
-| [SP-20260925-683633-extreme-ibtree](SP-20260925-683633-extreme-ibtree/) | Extreme · Hell | V6 | 0:43 | 9:16 + 16:9, 1080p | 0Zh2wJWnCrI, Short oOBIhpPqBd4 (2026-09-26) |
+| [SP-20260925-683633-extreme-ibtree](SP-20260925-683633-extreme-ibtree/) | Extreme · Hell | V6 | 0:43 | 9:16 + 16:9, 1080p; 1:1, 4K (local only) | 0Zh2wJWnCrI, Short oOBIhpPqBd4 (2026-09-26) |
 | [SP-20260924-047554-easy](SP-20260924-047554-easy/) | Easy | V4 | 0:38 | 9:16 + 16:9, 1080p | qz1zcqVdz2Q, Short j8hfxxkgIYg (2026-09-26) |
 | [SP-20260930-610092-extreme-stuck-try-one-path](SP-20260930-610092-extreme-stuck-try-one-path/) | Extreme · Hell | Final (v3 + green pulse) | 0:38 | 9:16 + 16:9 + 1:1, 4K (local only) | not yet published |
 
-Both earlier trailers still need the 1:1 version required by standard v2.0.
+The Extreme IB Tree trailer now has its 4K 1:1 (2026-10-02, local only). The Easy trailer still needs the 1:1 version required by standard v2.0.

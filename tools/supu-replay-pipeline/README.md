@@ -60,6 +60,8 @@ v2 (`plan_610092_v2.py`, `render_trailer2.py`, `audio_trailer2.py <plan> <voice.
 
 Final (`plan_610092_final.py`, `render_final.py`): `FORMAT=916|169|11 K=2 python3 trailer3/render_final.py <plan>` composes each format from its own capture (phone `hd/v7` at 7× for 9:16, desktop `hd/w` at 4× for 16:9 and 1:1); `make_quiet.py <step> <dir> <scale> <y0> <y1> 0 38 [x0 x1]` builds the quiet step-60 frame; encode with ffmpeg (CRF 14, `-tune stillimage`, loudnorm −14) using the v3 audio. The 16:9 end card has a QR; test it with `cv2.QRCodeDetectorAruco` at full size.
 
+1:1 of an earlier trailer (`capture_v6_sq.js` → `hd/t6w`, then `K=2 python3 trailer3/render_v6_square.py`): ports a 9:16/16:9 trailer's timeline unchanged to a square from a fresh desktop capture; encode the frames with ffmpeg and copy the existing audio track (`-c:a copy`).
+
 `THUMB_STEP=59 python3 trailer3/thumbs_trailer.py <dir>` builds thumbnails from any real frame.
 
 ## Known gaps
