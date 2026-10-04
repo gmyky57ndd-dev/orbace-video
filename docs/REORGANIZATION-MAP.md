@@ -126,3 +126,7 @@ New folder `videos/trailer/SP-20260930-610092-extreme-stuck-try-one-path/` (brie
 ## 2026-10-04 — production log
 
 Shared Google Sheet "Orbace video production log" created and backfilled with the 21 renders on disk (old finals, 610092 full replay and trailer versions, V6 1:1). Helper: `tools/scripts/production-log.py`. Rules in `CLAUDE.md` and `README.md`.
+
+## 2026-10-04 — marketing video agent playbook
+
+`docs/MARKETING-VIDEO-AGENT-PLAYBOOK.md` added (procedure for cloud and local agents; logging rules). Linked from `CLAUDE.md` and `README.md`.

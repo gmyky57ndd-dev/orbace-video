@@ -4,6 +4,8 @@ This repo is the golden source for all Orbace Tech (Orbace Sudoku) video generat
 
 ## Before making or changing a video
 
+Agents that make marketing videos (cloud or local): follow `docs/MARKETING-VIDEO-AGENT-PLAYBOOK.md` end to end. It covers setup, source checks, capture, render, voice, QA, the review loop, hand-off, and how to keep the production log current.
+
 1. Read `standards/ORBACE-VIDEO-GENERATION-STANDARD-v2.0.md` (it inherits `standards/ORBACE-REPLAY-TRAILER-STANDARD-v1.0.md`). Follow it exactly: genuine replay footage only, never fabricate UI/moves/techniques, trailers never show the solved board, CTA "Watch the complete replay", brand line "Replay the thinking."
 2. Put the work in the right type folder: `videos/full-replay/<SUPU-ID>/`, `videos/journal-lesson/lessonN/`, `videos/trailer/<SUPU-ID>-<level>[-slug]/`, or `videos/brand-product/<campaign>/`. Use the standard inner layout (brief, script, source, production, review, renders/vN, renders/final, publishing) and keep the video's README current.
 3. Su-pu videos are built with `tools/supu-replay-pipeline/` (Playwright capture of the real replay page → Python/PIL render → numpy audio → ffmpeg). Journal lessons of the older lineage use `tools/remotion/`.

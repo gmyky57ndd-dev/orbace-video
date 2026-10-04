@@ -78,6 +78,7 @@ Every render is listed in the shared Google Sheet [Orbace video production log](
 
 ## Workflows
 
+- Agent playbook (cloud and local, end to end, including logs): `docs/MARKETING-VIDEO-AGENT-PLAYBOOK.md`
 - Su-pu videos (full replay, lesson, trailer): `tools/supu-replay-pipeline/README.md`
 - Journal lessons (Remotion lineage): `videos/journal-lesson/_template/JOURNAL-VIDEO-PRODUCTION-TEMPLATE.md`
 - Publishing: `publishing/README.md`
