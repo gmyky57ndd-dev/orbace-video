@@ -66,6 +66,10 @@ videos/<type>/<id>/
 
 > **Videos stay local.** `tools/githooks/pre-commit` (enabled by `tools/cloud-setup.sh`; on a Mac run `git config core.hooksPath tools/githooks` once) refuses new video/audio commits. A PR never contains videos.
 
+## Production log
+
+Every render is listed in the shared Google Sheet [Orbace video production log](https://docs.google.com/spreadsheets/d/1P3-K7YcRJpS9sSG-beBCmZ0rTcyYPnuTeIYT3SeWQJU/edit) (columns: date, su-pu, work, type, format, version, resolution, length, file, size, sha256, status, made in, branch or PR, YouTube ID, notes). Cloud sessions add their rows (or hand them to the PM to paste); local work adds its own; `tools/scripts/production-log.py` measures a file and prints the row, and checks a machine's renders against the Sheet. Details: `CLAUDE.md` → "Production log". `publishing/publish-log.csv` remains the upload record.
+
 ## Roles and handoff
 
 - **Claude** (cloud or local) produces the full video package: 4K videos, captions, YouTube title/description/chapters/pinned comment, thumbnails (1280×720, 1080×1920, 1:1 for trailers), README. Copy and thumbnails go in `videos/<type>/<id>/publishing/` and ship in the PR.

@@ -40,11 +40,20 @@ A finished video is a package, not just an MP4. Claude delivers all of it:
 | README: su-pu, steps, length, file sizes, sha256 | video's `README.md` | In the PR |
 
 Handoff steps:
-1. Claude opens the PR (text, captions, copy, thumbnails, scripts; no videos) and sends the videos and thumbnails in chat, stating each file's name and sha256.
+1. Claude opens the PR (text, captions, copy, thumbnails, scripts; no videos), sends the videos and thumbnails in chat stating each file's name and sha256, and adds the render rows to the production log (see "Production log").
 2. **PM downloads the videos from the chat** and saves them to the matching local path in their own clone: `videos/<type>/<id>/renders/final/` (checks the sha256 in the README), then merges the PR and pulls.
 3. **PM uploads to YouTube** (16:9 as a regular video, 9:16 as a Short linked to the 16:9) using `publishing/youtube-copy.md` and the thumbnails.
 4. **PM logs every upload** (`python3 tools/scripts/log-publish.py …`, in the same change) and sets the showcase entry live. Claude can prepare the log row and the `showcase-manifest.json` change on request once the PM gives the YouTube IDs.
 5. Claude does not upload, post or change YouTube settings unless the PM explicitly asks.
+
+## Production log (shared Google Sheet)
+
+[Orbace video production log](https://docs.google.com/spreadsheets/d/1P3-K7YcRJpS9sSG-beBCmZ0rTcyYPnuTeIYT3SeWQJU/edit) is the one list of every render: what it is, which version, size, length, sha256, status, where it was made, and which branch or PR carries its files. Videos are not in Git, so this Sheet (not Git) is how everyone knows what exists. It is separate from `publishing/publish-log.csv`, which stays upload-only.
+
+- **One row per render that leaves draft** (sent to the PM, approved, or final). Superseded versions keep their row with status `superseded`; never delete rows.
+- **Cloud or local, the same way:** run `python3 tools/scripts/production-log.py row <file> --status final --made-in cloud|local --branch <branch or PR> --notes "…"` (add `--work`, `--version`, `--date`, `--youtube` as needed). It measures the file and prints a tab-separated row. If the session has the Google Sheets connector, append the row to the Sheet directly (Drive alone can create but not edit a sheet). Otherwise print the row in the final message so the PM can paste it at the bottom of the Sheet. Do this in the same session that produced the render.
+- **Statuses:** `draft`, `ready for review`, `approved`, `final`, `superseded`. The PM updates Status and the YouTube ID in the Sheet as work moves on; Claude does not upload.
+- **Reconcile on the machine that holds the videos:** download the Sheet as CSV and run `python3 tools/scripts/production-log.py check <file.csv>`. It lists renders that are not logged, logged files that are not on this machine, and hash mismatches. `production-log.py scan --csv` rebuilds rows for every local render.
 
 ## Publishing
 

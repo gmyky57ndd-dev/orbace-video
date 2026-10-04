@@ -1,5 +1,7 @@
 # Publishing
 
+The record of what has been *produced* (every render, version and status) is the shared Google Sheet linked in the root `README.md` ("Production log"); this folder's log is for what was *published*.
+
 `publish-log.csv` is the record of everything Orbace publishes: one row per upload or post. It starts on 2026-09-30. The 14 earlier uploads were imported from the YouTube channel ([@OrbaceSudoku](https://www.youtube.com/@OrbaceSudoku)); for anything older or missing, the channel itself is the history.
 
 ## The log

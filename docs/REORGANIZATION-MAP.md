@@ -122,3 +122,7 @@ New folder `videos/trailer/SP-20260930-610092-extreme-stuck-try-one-path/` (brie
 ## 2026-10-02 — V6 Extreme IB Tree trailer: 1:1
 
 `videos/trailer/SP-20260925-683633-extreme-ibtree/renders/final/SP-20260925-683633_trailer_11_4k.mp4` added (4K square, local only, not in Git). Tooling in `tools/supu-replay-pipeline/trailer3/`.
+
+## 2026-10-04 — production log
+
+Shared Google Sheet "Orbace video production log" created and backfilled with the 21 renders on disk (old finals, 610092 full replay and trailer versions, V6 1:1). Helper: `tools/scripts/production-log.py`. Rules in `CLAUDE.md` and `README.md`.
