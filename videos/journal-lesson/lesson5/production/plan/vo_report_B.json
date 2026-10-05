@@ -1,0 +1,79 @@
+[
+ {
+  "id": "B1",
+  "start": 0.3,
+  "end": 2.37,
+  "scratch": true,
+  "text": "Seven appears twice in one row."
+ },
+ {
+  "id": "B2",
+  "start": 2.4,
+  "end": 4.68,
+  "scratch": false,
+  "text": "How did the puzzle reach this impossible state?"
+ },
+ {
+  "id": "B3",
+  "start": 4.9,
+  "end": 5.39,
+  "scratch": false,
+  "text": "Rewind."
+ },
+ {
+  "id": "B4",
+  "start": 6.6,
+  "end": 9.87,
+  "scratch": false,
+  "text": "In Box Four, nine had only two possible homes."
+ },
+ {
+  "id": "B5",
+  "start": 10.0,
+  "end": 16.31,
+  "scratch": false,
+  "text": "We temporarily placed it at row six, column two, then followed every forced consequence."
+ },
+ {
+  "id": "B6",
+  "start": 22.8,
+  "end": 25.25,
+  "scratch": false,
+  "text": "Subscribe for more real Sudoku breakthroughs."
+ },
+ {
+  "id": "B7",
+  "start": 26.6,
+  "end": 30.17,
+  "scratch": true,
+  "text": "The chain returns: row three has two sevens."
+ },
+ {
+  "id": "B8",
+  "start": 30.4,
+  "end": 31.42,
+  "scratch": false,
+  "text": "The assumption fails."
+ },
+ {
+  "id": "B9",
+  "start": 32.0,
+  "end": 34.93,
+  "scratch": false,
+  "text": "Remove that nine, and its other position becomes certain."
+ },
+ {
+  "id": "B10",
+  "start": 35.3,
+  "end": 38.31,
+  "scratch": false,
+  "text": "The board moves again, but a second fork is still waiting."
+ },
+ {
+  "id": "B11",
+  "start": 38.8,
+  "end": 41.2,
+  "scratch": false,
+  "text": "Tap Play now to trace the complete replay."
+ }
+]

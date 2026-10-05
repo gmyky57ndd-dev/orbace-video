@@ -1,0 +1,586 @@
+{
+ "video": "A",
+ "total": 41.7,
+ "fps": 30,
+ "id": "SP-20261005-922508",
+ "vo": [
+  {
+   "id": "A1",
+   "text": "Where does nine belong?",
+   "src": "A",
+   "cut0": 0.0,
+   "cut1": 1.38,
+   "speech_in": 0.13,
+   "speech_dur": 1.03,
+   "scratch": 0,
+   "at": 0.35
+  },
+  {
+   "id": "A2",
+   "text": "In Box Four, it has only two possible homes.",
+   "src": "A",
+   "cut0": 1.38,
+   "cut1": 4.74,
+   "speech_in": 0.21,
+   "speech_dur": 2.97,
+   "scratch": 0,
+   "at": 2.0
+  },
+  {
+   "id": "A3",
+   "text": "Let's test the lower choice: row six, column two.",
+   "src": "A",
+   "cut0": 4.74,
+   "cut1": 8.63,
+   "speech_in": 0.18,
+   "speech_dur": 3.49,
+   "scratch": 0,
+   "at": 6.0
+  },
+  {
+   "id": "A4",
+   "text": "That nine forces a chain across the grid.",
+   "src": "A",
+   "cut0": 8.63,
+   "cut1": 11.23,
+   "speech_in": 0.21,
+   "speech_dur": 2.17,
+   "scratch": 0,
+   "at": 10.2
+  },
+  {
+   "id": "A5",
+   "text": "Each move looks completely logical.",
+   "src": "A",
+   "cut0": 11.23,
+   "cut1": 13.52,
+   "speech_in": 0.22,
+   "speech_dur": 1.88,
+   "scratch": 0,
+   "at": 12.9
+  },
+  {
+   "id": "A6",
+   "text": "Subscribe for more real Sudoku breakthroughs.",
+   "src": "A",
+   "cut0": 13.52,
+   "cut1": 16.28,
+   "speech_in": 0.18,
+   "speech_dur": 2.33,
+   "scratch": 0,
+   "at": 20.0
+  },
+  {
+   "id": "A7",
+   "text": "But the chain reaches row three, and now seven appears twice.",
+   "src": "A",
+   "cut0": null,
+   "cut1": null,
+   "speech_in": 0,
+   "speech_dur": 0,
+   "scratch": 1,
+   "at": 24.2
+  },
+  {
+   "id": "A8",
+   "text": "Contradiction.",
+   "src": "A",
+   "cut0": 20.62,
+   "cut1": 21.88,
+   "speech_in": 0.19,
+   "speech_dur": 0.77,
+   "scratch": 0,
+   "at": 28.3
+  },
+  {
+   "id": "A9",
+   "text": "The trial nine was wrong, so the other position is certain.",
+   "src": "A",
+   "cut0": 21.88,
+   "cut1": 25.47,
+   "speech_in": 0.31,
+   "speech_dur": 3.05,
+   "scratch": 0,
+   "at": 30.4
+  },
+  {
+   "id": "A10",
+   "text": "The puzzle starts moving again, but another fork is still waiting.",
+   "src": "A",
+   "cut0": 25.47,
+   "cut1": 29.68,
+   "speech_in": 0.23,
+   "speech_dur": 3.77,
+   "scratch": 0,
+   "at": 34.6
+  },
+  {
+   "id": "A11",
+   "text": "Tap Play now to follow the exact replay.",
+   "src": "A",
+   "cut0": 29.68,
+   "cut1": 32.47,
+   "speech_in": 0.2,
+   "speech_dur": 2.3,
+   "scratch": 0,
+   "at": 38.9
+  }
+ ],
+ "end": {
+  "t0": 35.7,
+  "line1": "PLAY THIS EXACT REPLAY",
+  "line2": "Tap Play now",
+  "line3": "A second fork is still waiting."
+ },
+ "sub": {
+  "t0": 20.4,
+  "t1": 22.2,
+  "text1": "More real Sudoku breakthroughs",
+  "text2": "SUBSCRIBE"
+ },
+ "steps": [
+  [
+   0.0,
+   "s002"
+  ],
+  [
+   6.0,
+   "s003"
+  ],
+  [
+   7.0,
+   "s004"
+  ],
+  [
+   7.8,
+   "s005"
+  ],
+  [
+   10.2,
+   "s006"
+  ],
+  [
+   10.557,
+   "s007"
+  ],
+  [
+   11.168,
+   "s008"
+  ],
+  [
+   11.779,
+   "s009"
+  ],
+  [
+   12.391,
+   "s010"
+  ],
+  [
+   13.002,
+   "s011"
+  ],
+  [
+   13.614,
+   "s012"
+  ],
+  [
+   14.225,
+   "s013"
+  ],
+  [
+   14.582,
+   "s014"
+  ],
+  [
+   14.918,
+   "s015"
+  ],
+  [
+   15.254,
+   "s016"
+  ],
+  [
+   15.59,
+   "s017"
+  ],
+  [
+   15.927,
+   "s018"
+  ],
+  [
+   16.263,
+   "s019"
+  ],
+  [
+   16.599,
+   "s020"
+  ],
+  [
+   16.935,
+   "s021"
+  ],
+  [
+   17.272,
+   "s022"
+  ],
+  [
+   17.608,
+   "s023"
+  ],
+  [
+   17.944,
+   "s024"
+  ],
+  [
+   18.28,
+   "s025"
+  ],
+  [
+   18.617,
+   "s026"
+  ],
+  [
+   18.953,
+   "s027"
+  ],
+  [
+   19.289,
+   "s028"
+  ],
+  [
+   19.625,
+   "s029"
+  ],
+  [
+   19.962,
+   "s030"
+  ],
+  [
+   20.298,
+   "s031"
+  ],
+  [
+   20.858,
+   "s032"
+  ],
+  [
+   21.419,
+   "s033"
+  ],
+  [
+   21.979,
+   "s034"
+  ],
+  [
+   22.54,
+   "s035"
+  ],
+  [
+   23.2,
+   "s036"
+  ],
+  [
+   24.0,
+   "s037"
+  ],
+  [
+   25.6,
+   "s038"
+  ],
+  [
+   30.2,
+   "s039"
+  ],
+  [
+   31.4,
+   "s040"
+  ],
+  [
+   32.4,
+   "s044"
+  ],
+  [
+   33.4,
+   "s045"
+  ],
+  [
+   34.4,
+   "s046"
+  ]
+ ],
+ "cam": [
+  [
+   0,
+   82,
+   267,
+   6.4,
+   540,
+   900
+  ],
+  [
+   7.6,
+   82,
+   267,
+   6.4,
+   540,
+   900
+  ],
+  [
+   10.0,
+   178,
+   262,
+   3.12,
+   540,
+   760
+  ],
+  [
+   23.2,
+   178,
+   262,
+   3.12,
+   540,
+   760
+  ],
+  [
+   24.4,
+   170,
+   203,
+   4.8,
+   540,
+   820
+  ],
+  [
+   30.0,
+   170,
+   203,
+   4.8,
+   540,
+   820
+  ],
+  [
+   31.2,
+   110,
+   262,
+   4.2,
+   540,
+   820
+  ],
+  [
+   35.2,
+   110,
+   262,
+   4.2,
+   540,
+   820
+  ],
+  [
+   35.9,
+   178,
+   262,
+   3.12,
+   540,
+   655
+  ]
+ ],
+ "heads": [
+  {
+   "t0": 0.0,
+   "t1": 2.0,
+   "lines": [
+    [
+     [
+      "WHERE DOES 9 GO?",
+      0
+     ]
+    ]
+   ]
+  },
+  {
+   "t0": 2.0,
+   "t1": 6.0,
+   "lines": [
+    [
+     [
+      "ONLY TWO PLACES",
+      0
+     ]
+    ]
+   ]
+  },
+  {
+   "t0": 6.0,
+   "t1": 10.0,
+   "lines": [
+    [
+     [
+      "ASSUME r6c2 = 9",
+      1
+     ]
+    ]
+   ]
+  },
+  {
+   "t0": 10.0,
+   "t1": 24.0,
+   "lines": [
+    [
+     [
+      "FOLLOW THE CONSEQUENCES",
+      0
+     ]
+    ]
+   ]
+  },
+  {
+   "t0": 24.2,
+   "t1": 28.1,
+   "lines": [
+    [
+     [
+      "TWO 7s IN ROW 3",
+      1
+     ]
+    ]
+   ]
+  },
+  {
+   "t0": 28.2,
+   "t1": 30.2,
+   "lines": [
+    [
+     [
+      "CONTRADICTION",
+      2
+     ]
+    ]
+   ]
+  },
+  {
+   "t0": 30.4,
+   "t1": 35.5,
+   "lines": [
+    [
+     [
+      "SO THE OTHER 9 IS CERTAIN",
+      1
+     ]
+    ]
+   ]
+  }
+ ],
+ "rings": [
+  {
+   "kind": "ink",
+   "cells": [
+    [
+     4,
+     0
+    ],
+    [
+     5,
+     1
+    ]
+   ],
+   "t0": 0.4,
+   "t1": 6.0,
+   "pulses": [
+    [
+     0,
+     2.3
+    ],
+    [
+     1,
+     3.3
+    ]
+   ]
+  },
+  {
+   "kind": "red",
+   "cells": [
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     6
+    ]
+   ],
+   "t0": 24.8,
+   "t1": 30.2
+  },
+  {
+   "kind": "green",
+   "cells": [
+    [
+     4,
+     0
+    ]
+   ],
+   "t0": 31.4,
+   "t1": 33.0,
+   "pulse": 1
+  }
+ ],
+ "dehighlight": {
+  "name": "s039",
+  "t0": 30.2,
+  "t1": 30.7
+ },
+ "sfx": {
+  "brush": [
+   2.3,
+   3.3
+  ],
+  "ink": [
+   7.8
+  ],
+  "impact": 28.2,
+  "release": 30.4,
+  "lift": 31.4,
+  "chain": [
+   10.557,
+   11.168,
+   11.779,
+   12.391,
+   13.002,
+   13.614,
+   14.582,
+   14.918,
+   15.254,
+   15.59,
+   15.927,
+   16.263,
+   16.599,
+   16.935,
+   17.272,
+   17.608,
+   17.944,
+   18.28,
+   18.617,
+   18.953,
+   19.289,
+   19.625,
+   19.962,
+   20.298,
+   20.858,
+   21.419,
+   21.979,
+   22.54,
+   23.2
+  ],
+  "confirm": [
+   31.4,
+   32.4,
+   33.4,
+   34.4
+  ]
+ },
+ "music": {
+  "chain0": 10.2,
+  "contra": 28.2,
+  "release": 30.4,
+  "lift": 31.4,
+  "end": 41.7
+ }
+}

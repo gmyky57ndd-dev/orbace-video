@@ -1,0 +1,79 @@
+[
+ {
+  "id": "A1",
+  "start": 0.35,
+  "end": 1.38,
+  "scratch": false,
+  "text": "Where does nine belong?"
+ },
+ {
+  "id": "A2",
+  "start": 2.0,
+  "end": 4.97,
+  "scratch": false,
+  "text": "In Box Four, it has only two possible homes."
+ },
+ {
+  "id": "A3",
+  "start": 6.0,
+  "end": 9.49,
+  "scratch": false,
+  "text": "Let's test the lower choice: row six, column two."
+ },
+ {
+  "id": "A4",
+  "start": 10.2,
+  "end": 12.37,
+  "scratch": false,
+  "text": "That nine forces a chain across the grid."
+ },
+ {
+  "id": "A5",
+  "start": 12.9,
+  "end": 14.78,
+  "scratch": false,
+  "text": "Each move looks completely logical."
+ },
+ {
+  "id": "A6",
+  "start": 20.0,
+  "end": 22.33,
+  "scratch": false,
+  "text": "Subscribe for more real Sudoku breakthroughs."
+ },
+ {
+  "id": "A7",
+  "start": 24.2,
+  "end": 28.07,
+  "scratch": true,
+  "text": "But the chain reaches row three, and now seven appears twice."
+ },
+ {
+  "id": "A8",
+  "start": 28.3,
+  "end": 29.07,
+  "scratch": false,
+  "text": "Contradiction."
+ },
+ {
+  "id": "A9",
+  "start": 30.4,
+  "end": 33.45,
+  "scratch": false,
+  "text": "The trial nine was wrong, so the other position is certain."
+ },
+ {
+  "id": "A10",
+  "start": 34.6,
+  "end": 38.37,
+  "scratch": false,
+  "text": "The puzzle starts moving again, but another fork is still waiting."
+ },
+ {
+  "id": "A11",
+  "start": 38.9,
+  "end": 41.2,
+  "scratch": false,
+  "text": "Tap Play now to follow the exact replay."
+ }
+]

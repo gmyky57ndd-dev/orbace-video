@@ -1,0 +1,11 @@
+Where does nine belong?
+In Box Four, it has only two possible homes.
+Let's test the lower choice: row six, column two.
+That nine forces a chain across the grid.
+Each move looks completely logical.
+Subscribe for more real Sudoku breakthroughs.
+But the chain reaches row three, and now seven appears twice.
+Contradiction.
+The trial nine was wrong, so the other position is certain.
+The puzzle starts moving again, but another fork is still waiting.
+Tap Play now to follow the exact replay.

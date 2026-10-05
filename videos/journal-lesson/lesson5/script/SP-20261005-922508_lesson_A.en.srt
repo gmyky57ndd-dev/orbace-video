@@ -1,0 +1,43 @@
+1
+00:00:00,350 --> 00:00:01,380
+Where does nine belong?
+
+2
+00:00:02,000 --> 00:00:04,970
+In Box Four, it has only two possible homes.
+
+3
+00:00:06,000 --> 00:00:09,490
+Let's test the lower choice: row six, column two.
+
+4
+00:00:10,200 --> 00:00:12,370
+That nine forces a chain across the grid.
+
+5
+00:00:12,900 --> 00:00:14,780
+Each move looks completely logical.
+
+6
+00:00:20,000 --> 00:00:22,330
+Subscribe for more real Sudoku breakthroughs.
+
+7
+00:00:24,200 --> 00:00:28,070
+But the chain reaches row three, and now seven appears twice.
+
+8
+00:00:28,300 --> 00:00:29,070
+Contradiction.
+
+9
+00:00:30,400 --> 00:00:33,450
+The trial nine was wrong, so the other position is certain.
+
+10
+00:00:34,600 --> 00:00:38,370
+The puzzle starts moving again, but another fork is still waiting.
+
+11
+00:00:38,900 --> 00:00:41,200
+Tap Play now to follow the exact replay.

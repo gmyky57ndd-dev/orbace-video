@@ -1,0 +1,11 @@
+Seven appears twice in one row.
+How did the puzzle reach this impossible state?
+Rewind.
+In Box Four, nine had only two possible homes.
+We temporarily placed it at row six, column two, then followed every forced consequence.
+Subscribe for more real Sudoku breakthroughs.
+The chain returns: row three has two sevens.
+The assumption fails.
+Remove that nine, and its other position becomes certain.
+The board moves again, but a second fork is still waiting.
+Tap Play now to trace the complete replay.

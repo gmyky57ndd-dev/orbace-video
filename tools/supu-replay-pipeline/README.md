@@ -62,6 +62,8 @@ Final (`plan_610092_final.py`, `render_final.py`): `FORMAT=916|169|11 K=2 python
 
 1:1 of an earlier trailer (`capture_v6_sq.js` → `hd/t6w`, then `K=2 python3 trailer3/render_v6_square.py`): ports a 9:16/16:9 trailer's timeline unchanged to a square from a fresh desktop capture; encode the frames with ffmpeg and copy the existing audio track (`-c:a copy`).
 
+Two-video creative test from one replay (`plan_l5.py` writes the A and B plans; `capture_l5.js` phone captures incl. a real Back-control pass; `VIDEO=A|B K=1|2 python3 trailer3/render_l5.py`; `audio_l5.py <plan> <voice.mp3> <out.wav>` cuts the supplied narration per sentence, scratch voice only for corrected sentences, one shared music/cue recipe). Check the brief against the data first: see `videos/journal-lesson/lesson5/brief/source-check.md`.
+
 `THUMB_STEP=59 python3 trailer3/thumbs_trailer.py <dir>` builds thumbnails from any real frame.
 
 ## Known gaps

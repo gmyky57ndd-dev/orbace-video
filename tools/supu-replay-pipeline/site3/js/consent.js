@@ -12,13 +12,11 @@
 function openConsentManager() {
   window.googlefc = window.googlefc || {};
   window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
-  window.googlefc.callbackQueue.push({
-    "CONSENT_DATA_READY": function () {
-      if (typeof window.googlefc.showRevocationMessage === "function") {
-        window.googlefc.showRevocationMessage();
-      }
-    }
-  });
+  /* Google Privacy & Messaging expects the revocation function itself on
+   * callbackQueue.  The previous CONSENT_DATA_READY wrapper was not part of
+   * the public API and was never invoked when consent data was already ready,
+   * leaving the footer control inert for returning EEA/UK/CH visitors. */
+  window.googlefc.callbackQueue.push(window.googlefc.showRevocationMessage);
 }
 window.openConsentManager = openConsentManager;
 

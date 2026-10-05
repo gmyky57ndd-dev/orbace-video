@@ -357,6 +357,7 @@ window.OrbaceAuthSession = (function () {
       bc = new BroadcastChannel('orbace-auth');
       bc.onmessage = function (evt) {
         if (!evt.data || evt.data.type !== 'session_change') return;
+        if (evt.data.state === state) return;
         if (_sending) { _sending = false; return; }
         setState(evt.data.state, evt.data.player || undefined);
       };

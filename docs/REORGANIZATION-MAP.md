@@ -130,3 +130,7 @@ Shared Google Sheet "Orbace video production log" created and backfilled with th
 ## 2026-10-04 — marketing video agent playbook
 
 `docs/MARKETING-VIDEO-AGENT-PLAYBOOK.md` added (procedure for cloud and local agents; logging rules). Linked from `CLAUDE.md` and `README.md`.
+
+## 2026-10-05 — Lesson 05 creative test
+
+New folder `videos/journal-lesson/lesson5/` (SP-20261005-922508): brief record, source check, edit plans, scratch/re-record sheet, supplied voice takes, SRTs. Two 9:16 review videos in `renders/v1/` (local only, not in Git). Tooling in `tools/supu-replay-pipeline/trailer3/` (`capture_l5.js`, `plan_l5.py`, `render_l5.py`, `audio_l5.py`).

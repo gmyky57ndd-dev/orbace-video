@@ -1,0 +1,43 @@
+1
+00:00:00,300 --> 00:00:02,370
+Seven appears twice in one row.
+
+2
+00:00:02,400 --> 00:00:04,680
+How did the puzzle reach this impossible state?
+
+3
+00:00:04,900 --> 00:00:05,390
+Rewind.
+
+4
+00:00:06,600 --> 00:00:09,870
+In Box Four, nine had only two possible homes.
+
+5
+00:00:10,000 --> 00:00:16,310
+We temporarily placed it at row six, column two, then followed every forced consequence.
+
+6
+00:00:22,800 --> 00:00:25,250
+Subscribe for more real Sudoku breakthroughs.
+
+7
+00:00:26,600 --> 00:00:30,170
+The chain returns: row three has two sevens.
+
+8
+00:00:30,400 --> 00:00:31,420
+The assumption fails.
+
+9
+00:00:32,000 --> 00:00:34,930
+Remove that nine, and its other position becomes certain.
+
+10
+00:00:35,300 --> 00:00:38,310
+The board moves again, but a second fork is still waiting.
+
+11
+00:00:38,800 --> 00:00:41,200
+Tap Play now to trace the complete replay.

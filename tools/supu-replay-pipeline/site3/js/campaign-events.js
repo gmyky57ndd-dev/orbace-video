@@ -1,4 +1,4 @@
-/* Google Ads campaign key events — replay_start + store_click (2026-09-26).
+/* Google Ads campaign key events — replay_start + replay_engaged + store_click.
  *
  * GA4 marks these two events as key events and Google Ads imports them as
  * conversions (replay_start = Primary, drives Demand Gen bidding;
@@ -35,6 +35,49 @@
     "play.google.com": { platform: "android", label: "Google Play Badge Click" }
   };
 
+  var replay = { key: "", started: false, engaged: false };
+
+  function replayKey() {
+    /* jsdom-based boot validation closes each document immediately after
+     * evaluation; a queued MutationObserver can then run with no live
+     * defaultView. Browsers keep the view alive for the document lifetime. */
+    if (typeof document === "undefined" || !document.defaultView) return "";
+    return window.location.pathname;
+  }
+
+  function resetReplayIfNeeded() {
+    var key = replayKey();
+    if (replay.key === key) return;
+    replay = { key: key, started: false, engaged: false };
+  }
+
+  function replayId() {
+    var parts = replayKey().split("/").filter(Boolean);
+    return parts[0] === "su-pu" && parts[1] ? parts[1] : "unknown";
+  }
+
+  function currentStep() {
+    var counter = document.querySelector(".osr-step");
+    var match = counter && counter.textContent.match(/Step\s+(\d+)/i);
+    return match ? Number(match[1]) : 0;
+  }
+
+  function maybeSendReplayEngaged() {
+    resetReplayIfNeeded();
+    if (!replay.key || !replay.started || replay.engaged) return;
+    var step = currentStep();
+    if (step < 10) return;
+    replay.engaged = true;
+    send("replay_engaged", {
+      event_category: "engagement",
+      event_label: "Reached Step 10",
+      engagement_method: "step_10",
+      steps_reached: step,
+      supu_id: replayId(),
+      page_path: replay.key
+    });
+  }
+
   /* A store link is any anchor to an App Store / Google Play host, or an
    * a[data-store] anchor (analytics.js's canonical badges — kept so nothing
    * its old store_click emitter tracked is lost, whatever the href holds). */
@@ -64,10 +107,13 @@
 
     var play = el.closest(".osr-btn-play");
     if (play) {
-      if (isStartingPlayback(play)) {
+      resetReplayIfNeeded();
+      if (isStartingPlayback(play) && !replay.started) {
+        replay.started = true;
         send("replay_start", {
           event_category: "engagement",
           event_label: "Play Button Click",
+          supu_id: replayId(),
           page_path: window.location.pathname
         });
       }
@@ -90,4 +136,14 @@
   }
 
   document.addEventListener("click", onClick, true);
+
+  /* The replay controls update their shared .osr-step counter for autoplay,
+   * next/previous, scrubbing and move-list navigation. Observing that one
+   * stable readout covers both replay implementations without coupling
+   * analytics to either player's internal state. */
+  new MutationObserver(maybeSendReplayEngaged).observe(document.documentElement, {
+    childList: true,
+    characterData: true,
+    subtree: true
+  });
 })();
