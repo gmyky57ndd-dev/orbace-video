@@ -134,3 +134,8 @@ Shared Google Sheet "Orbace video production log" created and backfilled with th
 ## 2026-10-05 — Lesson 05 creative test
 
 New folder `videos/journal-lesson/lesson5/` (SP-20261005-922508): brief record, source check, edit plans, scratch/re-record sheet, supplied voice takes, SRTs. Two 9:16 review videos in `renders/v1/` (local only, not in Git). Tooling in `tools/supu-replay-pipeline/trailer3/` (`capture_l5.js`, `plan_l5.py`, `render_l5.py`, `audio_l5.py`).
+
+## 2026-10-06: Lesson 05 revised forward cut (v2)
+- Added `videos/journal-lesson/lesson5/brief/lesson05-revised-forward-script.md` (PM script), `script/narration-F.txt`, `script/SP-20261005-922508_lesson_F.en.srt`, `production/plan/plan_F.json`, `production/plan/vo_report_F.json`, `review/v2-contact-sheet-F.png`.
+- Added `tools/supu-replay-pipeline/trailer3/plan_l5_fwd.py`. `render_l5.py` gains washes, a trial ring, the event rail and a URL end card (used only by plan F). `audio_l5.py` accepts `-` for scratch-only narration.
+- No moves or renames.

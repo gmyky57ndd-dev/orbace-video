@@ -28,3 +28,34 @@ Corrections applied in both review cuts:
 - Editorial overlays are distinct from the app's styling: neutral ink rings on the two candidate cells, red dashed on the contradiction, a green pulse on the confirmed 9.
 - The replay's gold "cleared cell" outlines at the trial close are faded out (`make_quiet.py`; values, candidates, colours and markers are untouched), the same treatment as the 610092 trailer.
 - Review cuts are 9:16 at 1080×1920 with the paid end-card wording ("Tap Play now").
+
+## Revised forward script (2026-10-06, Video F)
+
+Checked `brief/lesson05-revised-forward-script.md` against the same data, plus the Journal article it draws on (https://orbacesudoku.com/journal/a-puzzle-worth-remembering/journal-a-puzzle-worth-remembering, Lesson 05).
+
+**Where "Box 3 has no place for 6" comes from.** The Journal's figure `lesson05-4.png` shows a different, hand-pencilled chain from the same r6c2=9 trial (pencil digits, for example 6 at r1c2 and r3c5), and on that board Box 3 really has no cell for 6. The su-pu replay this video is cut from recorded another chain (solid trial placements, steps 5–36). It ends on **two 7s in row 3**: r3c2=7 at step 36 against the given 7 at r3c7, and the solver's note at step 37 reads "conflict - two 7s in row 3". On that board 6 can still go in r1c7 or r2c7. The video shows the replay, so it says what the replay shows:
+- Headline "ROW 3: TWO 7s / TRIAL FAILS" (replacing "BOX 3: NO PLACE FOR 6 / TRIAL FAILS"), red dashed on r3c2 and r3c7, faint red wash on row 3. The given 7 at r3c7 is in Box 3, so Box 3 is still where the chain hits the wall.
+- Narration: "Row three now holds two sevens. Contradiction."
+- To use the Box 3 / 6 story, the video would need footage of the Journal's chain. That chain is not a recorded su-pu replay, so it cannot be shown under the replay standard.
+
+**Verified for the new on-screen claims** (script: each move tested on the board it was played on):
+
+| Rail entry | Step | Technique on that board |
+| --- | --- | --- |
+| r5c1 = 9, r6c2 = 9 candidates | 1–2 | the only two cells for 9 in Box 4 |
+| r6c2 = 9 TRIAL | 5 | the trial (temporary) |
+| r5c7 = 9 | 7 | hidden single, box 6 (also row 5) |
+| r1c4 = 5 | 12 | hidden single, column 4 (also box 2) |
+| r5c3 = 7 | 24 | hidden single, box 4 (also row 5) |
+| r3c5 = 6 | 28 | naked single (also column 5, box 2) |
+| r1c8 = 1 | 33 | hidden single, box 3 (also column 8) |
+| r3c2 = 7 | 36 | the placement that duplicates 7 in row 3 |
+| r5c1 = 9 | 40 | confirmed by the failed trial (solver note step 43) |
+| r6c8 = 9 | 44 | hidden single, row 6 (also box 6) |
+| r6c9 = 2 | 45 | hidden single, row 6 (also box 6) |
+
+All 28 trial placements in steps 7–35 are singles on their board, so "the trial forces ordinary placements" holds. Steps 41–42 (r6c8=9 entered and cleared) are skipped. The cut stops at step 45: no second fork (step 57) and no solved grid.
+
+**Replay URL** https://orbacesudoku.com/su-pu/SP-20261005-922508 returns HTTP 200, and the su-pu data API returns 200 for the same ID (checked 2026-10-06). The end card shows it without `https://` so it fits on one line.
+
+**Level.** "Hell-tier" is spoken (from the script and the PM); the data says `unrated`. It is not shown on screen.

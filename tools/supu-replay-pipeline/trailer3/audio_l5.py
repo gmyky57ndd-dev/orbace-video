@@ -1,7 +1,7 @@
 """Audio for the Lesson 05 creative test. Same recipe for A and B: the supplied narration take cut per sentence (no stretching), a scratch voice only for the
 sentences corrected after the source check, one music bed (quiet pulse -> tension through the chain -> tonal drop at the contradiction -> warm unresolved lift),
 and the restrained cues from the brief (brush tap, ink, forced-deduction ticks, one low impact, gentle release).
-usage: python3 trailer3/audio_l5.py <plan.json> <voice.mp3> <out.wav>"""
+usage: python3 trailer3/audio_l5.py <plan.json> <voice.mp3 | - for scratch-only> <out.wav>"""
 import json, sys, subprocess, wave, os, numpy as np
 PLAN=json.load(open(sys.argv[1])); VOICE=sys.argv[2]; OUT=sys.argv[3]
 SR=48000; TOTAL=PLAN['total']; n=int(SR*TOTAL); t=np.arange(n)/SR; midi=lambda m:440*2**((m-69)/12)
@@ -22,18 +22,19 @@ def noise(L,amp,decay,lp=0.35,hp=0.02):
     return amp*x/np.max(np.abs(x))*np.exp(-tt*decay)*np.minimum(1,tt/0.004)
 # ---------- voice ----------
 tmp='/tmp/claude-0/l5_audio'; os.makedirs(tmp,exist_ok=True)
-subprocess.run(['ffmpeg','-y','-loglevel','error','-i',VOICE,'-af','highpass=f=70,loudnorm=I=-16:TP=-2','-ar',str(SR),'-ac','1',f'{tmp}/take_{PLAN["video"]}.wav'],check=True)
+if VOICE!='-': subprocess.run(['ffmpeg','-y','-loglevel','error','-i',VOICE,'-af','highpass=f=70,loudnorm=I=-16:TP=-2','-ar',str(SR),'-ac','1',f'{tmp}/take_{PLAN["video"]}.wav'],check=True)
 def readwav(p):
     w=wave.open(p); x=np.frombuffer(w.readframes(w.getnframes()),dtype=np.int16).astype(float)/32768; w.close(); return x
-take=readwav(f'{tmp}/take_{PLAN["video"]}.wav'); voice=np.zeros(n); rep=[]
+TRIM='silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse,'   # forward cut: trim pico's padding
+take=readwav(f'{tmp}/take_{PLAN["video"]}.wav') if VOICE!='-' else None; voice=np.zeros(n); rep=[]
 V=PLAN['vo']
 for i,v in enumerate(V):
     nxt=V[i+1]['at'] if i+1<len(V) else TOTAL
     if v['scratch']:
         raw=f"{tmp}/{v['id']}_raw.wav"; out=f"{tmp}/{v['id']}_p.wav"
-        subprocess.run(['pico2wave','-l','en-GB','-w',raw,f"<speed level='88'><pitch level='92'>{v['text']}"],check=True)
+        subprocess.run(['pico2wave','-l','en-GB','-w',raw,f"<speed level='{PLAN.get('pico_speed',88)}'><pitch level='92'>{v['text']}"],check=True)
         d=float(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration','-of','csv=p=0',raw])); slot=nxt-v['at']-0.25; tempo=1.0 if d<=slot else min(1.3,d/slot)
-        subprocess.run(['ffmpeg','-y','-loglevel','error','-i',raw,'-af',f'atempo={tempo:.4f},highpass=f=90,lowpass=f=6800,equalizer=f=170:t=q:w=1:g=3,loudnorm=I=-18:TP=-2','-ar',str(SR),'-ac','1',out],check=True)
+        subprocess.run(['ffmpeg','-y','-loglevel','error','-i',raw,'-af',(TRIM if 'pico_speed' in PLAN else '')+f'atempo={tempo:.4f},highpass=f=90,lowpass=f=6800,equalizer=f=170:t=q:w=1:g=3,loudnorm=I=-18:TP=-2','-ar',str(SR),'-ac','1',out],check=True)
         x=readwav(out); put(voice,x,v['at']); dur=len(x)/SR; rep.append(dict(id=v['id'],start=v['at'],end=round(v['at']+dur,2),scratch=True,text=v['text']))
     else:
         a,b=int(v['cut0']*SR),min(len(take),int(v['cut1']*SR)); seg=take[a:b].copy(); fd=int(0.012*SR); seg[:fd]*=np.linspace(0,1,fd); seg[-fd:]*=np.linspace(1,0,fd)

@@ -1,0 +1,31 @@
+1
+00:00:00,300 --> 00:00:02,390
+This Hell-tier grid begins with one sharp choice.
+
+2
+00:00:02,800 --> 00:00:09,230
+In Box Four, nine has only two possible homes: row five, column one, or row six, column two.
+
+3
+00:00:09,700 --> 00:00:13,010
+Let's test the lower position: row six, column two.
+
+4
+00:00:13,500 --> 00:00:18,460
+Now follow the chain. The trial forces ordinary placements across the grid.
+
+5
+00:00:25,200 --> 00:00:28,410
+Row three now holds two sevens. Contradiction.
+
+6
+00:00:28,900 --> 00:00:34,850
+That trial fails. The other position is certain: row five, column one, is nine.
+
+7
+00:00:35,400 --> 00:00:36,840
+Two more placements follow.
+
+8
+00:00:37,200 --> 00:00:41,070
+Play the exact Su-Pu replay, and trace the proof yourself.

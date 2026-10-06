@@ -1,0 +1,605 @@
+{
+ "video": "F",
+ "total": 41.8,
+ "fps": 30,
+ "id": "SP-20261005-922508",
+ "vo": [
+  {
+   "id": "F1",
+   "text": "This Hell-tier grid begins with one sharp choice.",
+   "src": null,
+   "cut0": null,
+   "cut1": null,
+   "speech_in": 0,
+   "speech_dur": 0,
+   "scratch": 1,
+   "at": 0.3
+  },
+  {
+   "id": "F2",
+   "text": "In Box Four, nine has only two possible homes: row five, column one, or row six, column two.",
+   "src": null,
+   "cut0": null,
+   "cut1": null,
+   "speech_in": 0,
+   "speech_dur": 0,
+   "scratch": 1,
+   "at": 2.8
+  },
+  {
+   "id": "F3",
+   "text": "Let's test the lower position: row six, column two.",
+   "src": null,
+   "cut0": null,
+   "cut1": null,
+   "speech_in": 0,
+   "speech_dur": 0,
+   "scratch": 1,
+   "at": 9.7
+  },
+  {
+   "id": "F4",
+   "text": "Now follow the chain. The trial forces ordinary placements across the grid.",
+   "src": null,
+   "cut0": null,
+   "cut1": null,
+   "speech_in": 0,
+   "speech_dur": 0,
+   "scratch": 1,
+   "at": 13.5
+  },
+  {
+   "id": "F5",
+   "text": "Row three now holds two sevens. Contradiction.",
+   "src": null,
+   "cut0": null,
+   "cut1": null,
+   "speech_in": 0,
+   "speech_dur": 0,
+   "scratch": 1,
+   "at": 25.2
+  },
+  {
+   "id": "F6",
+   "text": "That trial fails. The other position is certain: row five, column one, is nine.",
+   "src": null,
+   "cut0": null,
+   "cut1": null,
+   "speech_in": 0,
+   "speech_dur": 0,
+   "scratch": 1,
+   "at": 28.9
+  },
+  {
+   "id": "F7",
+   "text": "Two more placements follow.",
+   "src": null,
+   "cut0": null,
+   "cut1": null,
+   "speech_in": 0,
+   "speech_dur": 0,
+   "scratch": 1,
+   "at": 35.4
+  },
+  {
+   "id": "F8",
+   "text": "Play the exact Soo-Poo replay, and trace the proof yourself.",
+   "src": null,
+   "cut0": null,
+   "cut1": null,
+   "speech_in": 0,
+   "speech_dur": 0,
+   "scratch": 1,
+   "at": 37.2
+  }
+ ],
+ "pico_speed": 100,
+ "end": {
+  "t0": 37.0,
+  "line1": "PLAY THIS EXACT REPLAY",
+  "line2": "Tap Play now",
+  "url": "orbacesudoku.com/su-pu/SP-20261005-922508",
+  "line3": "The next fork is still waiting."
+ },
+ "sub": null,
+ "steps": [
+  [
+   0.0,
+   "s000"
+  ],
+  [
+   6.5,
+   "s001"
+  ],
+  [
+   8.2,
+   "s002"
+  ],
+  [
+   9.8,
+   "s003"
+  ],
+  [
+   10.4,
+   "s004"
+  ],
+  [
+   12.1,
+   "s005"
+  ],
+  [
+   13.5,
+   "s006"
+  ],
+  [
+   13.574,
+   "s007"
+  ],
+  [
+   14.361,
+   "s008"
+  ],
+  [
+   14.632,
+   "s009"
+  ],
+  [
+   14.903,
+   "s010"
+  ],
+  [
+   15.174,
+   "s011"
+  ],
+  [
+   15.444,
+   "s012"
+  ],
+  [
+   16.232,
+   "s013"
+  ],
+  [
+   16.306,
+   "s014"
+  ],
+  [
+   16.576,
+   "s015"
+  ],
+  [
+   16.847,
+   "s016"
+  ],
+  [
+   17.118,
+   "s017"
+  ],
+  [
+   17.389,
+   "s018"
+  ],
+  [
+   17.659,
+   "s019"
+  ],
+  [
+   17.93,
+   "s020"
+  ],
+  [
+   18.201,
+   "s021"
+  ],
+  [
+   18.472,
+   "s022"
+  ],
+  [
+   18.742,
+   "s023"
+  ],
+  [
+   19.013,
+   "s024"
+  ],
+  [
+   19.801,
+   "s025"
+  ],
+  [
+   20.071,
+   "s026"
+  ],
+  [
+   20.342,
+   "s027"
+  ],
+  [
+   20.613,
+   "s028"
+  ],
+  [
+   21.4,
+   "s029"
+  ],
+  [
+   21.671,
+   "s030"
+  ],
+  [
+   21.942,
+   "s031"
+  ],
+  [
+   22.213,
+   "s032"
+  ],
+  [
+   22.483,
+   "s033"
+  ],
+  [
+   23.271,
+   "s034"
+  ],
+  [
+   23.542,
+   "s035"
+  ],
+  [
+   23.812,
+   "s036"
+  ],
+  [
+   25.4,
+   "s037"
+  ],
+  [
+   27.0,
+   "s038"
+  ],
+  [
+   28.9,
+   "s039"
+  ],
+  [
+   32.4,
+   "s040"
+  ],
+  [
+   35.5,
+   "s044"
+  ],
+  [
+   36.3,
+   "s045"
+  ]
+ ],
+ "cam": [
+  [
+   0,
+   178,
+   262,
+   3.12,
+   540,
+   760
+  ],
+  [
+   36.6,
+   178,
+   262,
+   3.12,
+   540,
+   760
+  ],
+  [
+   37.4,
+   178,
+   262,
+   3.12,
+   540,
+   655
+  ]
+ ],
+ "heads": [
+  {
+   "t0": 0.0,
+   "t1": 2.7,
+   "lines": [
+    [
+     [
+      "ONE GRID. ONE CHOICE.",
+      0
+     ]
+    ]
+   ]
+  },
+  {
+   "t0": 2.7,
+   "t1": 9.6,
+   "lines": [
+    [
+     [
+      "WHERE DOES 9 GO?",
+      0
+     ]
+    ],
+    [
+     [
+      "r5c1",
+      1
+     ],
+     [
+      "  OR  ",
+      0
+     ],
+     [
+      "r6c2",
+      1
+     ]
+    ]
+   ]
+  },
+  {
+   "t0": 9.6,
+   "t1": 13.4,
+   "lines": [
+    [
+     [
+      "TEST ",
+      0
+     ],
+     [
+      "r6c2 = 9",
+      1
+     ]
+    ]
+   ]
+  },
+  {
+   "t0": 13.4,
+   "t1": 25.1,
+   "lines": [
+    [
+     [
+      "FOLLOW THE PROOF",
+      0
+     ]
+    ]
+   ]
+  },
+  {
+   "t0": 25.2,
+   "t1": 28.8,
+   "lines": [
+    [
+     [
+      "ROW 3: TWO 7s",
+      2
+     ]
+    ],
+    [
+     [
+      "TRIAL FAILS",
+      0
+     ]
+    ]
+   ]
+  },
+  {
+   "t0": 28.9,
+   "t1": 37.0,
+   "lines": [
+    [
+     [
+      "CONFIRM ",
+      0
+     ],
+     [
+      "r5c1 = 9",
+      1
+     ]
+    ],
+    [
+     [
+      "THE OTHER 9 IS CERTAIN",
+      0
+     ]
+    ]
+   ]
+  }
+ ],
+ "washes": [
+  {
+   "color": "amber",
+   "r0": 3,
+   "c0": 0,
+   "r1": 5,
+   "c1": 2,
+   "t0": 0.3,
+   "t1": 13.4
+  },
+  {
+   "color": "red",
+   "r0": 2,
+   "c0": 0,
+   "r1": 2,
+   "c1": 8,
+   "t0": 25.3,
+   "t1": 28.9
+  }
+ ],
+ "rings": [
+  {
+   "kind": "ink",
+   "cells": [
+    [
+     4,
+     0
+    ],
+    [
+     5,
+     1
+    ]
+   ],
+   "t0": 3.0,
+   "t1": 9.7,
+   "pulses": [
+    [
+     0,
+     6.5
+    ],
+    [
+     1,
+     8.2
+    ]
+   ]
+  },
+  {
+   "kind": "trial",
+   "cells": [
+    [
+     5,
+     1
+    ]
+   ],
+   "t0": 12.1,
+   "t1": 28.9
+  },
+  {
+   "kind": "red",
+   "cells": [
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     6
+    ]
+   ],
+   "t0": 25.3,
+   "t1": 28.9
+  },
+  {
+   "kind": "green",
+   "cells": [
+    [
+     4,
+     0
+    ]
+   ],
+   "t0": 32.4,
+   "t1": 34.6,
+   "pulse": 1
+  }
+ ],
+ "dehighlight": {
+  "name": "s039",
+  "t0": 28.9,
+  "t1": 29.4
+ },
+ "rail": {
+  "items": [
+   {
+    "t": 6.5,
+    "coord": "r5c1 = 9",
+    "label": "candidate",
+    "kind": "ink"
+   },
+   {
+    "t": 8.2,
+    "coord": "r6c2 = 9",
+    "label": "candidate",
+    "kind": "ink"
+   },
+   {
+    "t": 12.1,
+    "coord": "r6c2 = 9",
+    "label": "TRIAL · temporary",
+    "kind": "trial",
+    "clear": true
+   },
+   {
+    "t": 13.574,
+    "coord": "r5c7 = 9",
+    "label": "hidden single · box 6",
+    "kind": "ink"
+   },
+   {
+    "t": 15.444,
+    "coord": "r1c4 = 5",
+    "label": "hidden single · column 4",
+    "kind": "ink"
+   },
+   {
+    "t": 19.013,
+    "coord": "r5c3 = 7",
+    "label": "hidden single · box 4",
+    "kind": "ink"
+   },
+   {
+    "t": 20.613,
+    "coord": "r3c5 = 6",
+    "label": "naked single",
+    "kind": "ink"
+   },
+   {
+    "t": 22.483,
+    "coord": "r1c8 = 1",
+    "label": "hidden single · box 3",
+    "kind": "ink"
+   },
+   {
+    "t": 23.812,
+    "coord": "r3c2 = 7",
+    "label": "7 enters row 3",
+    "kind": "red"
+   },
+   {
+    "t": 32.4,
+    "coord": "r5c1 = 9",
+    "label": "confirmed by the failed trial",
+    "kind": "green",
+    "clear": true
+   },
+   {
+    "t": 35.5,
+    "coord": "r6c8 = 9",
+    "label": "hidden single · row 6",
+    "kind": "ink"
+   },
+   {
+    "t": 36.3,
+    "coord": "r6c9 = 2",
+    "label": "hidden single · row 6",
+    "kind": "ink"
+   }
+  ],
+  "t_hide": 37.0,
+  "clear_at": [
+   28.9
+  ]
+ },
+ "sfx": {
+  "brush": [
+   0.6,
+   6.5,
+   8.2
+  ],
+  "ink": [
+   12.1
+  ],
+  "impact": 25.5,
+  "release": 28.9,
+  "lift": 32.4
+ },
+ "music": {
+  "chain0": 13.5,
+  "contra": 25.5,
+  "release": 28.9,
+  "lift": 32.4,
+  "end": 41.8
+ }
+}

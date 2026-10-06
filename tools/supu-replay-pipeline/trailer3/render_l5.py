@@ -1,11 +1,11 @@
-"""Lesson 05 creative-test renderer (9:16). VIDEO=A|B  K=1 (1080x1920 review) or 2 (4K).
+"""Lesson 05 renderer (9:16). VIDEO=A|B (creative test) or F (revised forward cut; adds washes, a trial ring, the event rail and a URL end card)  K=1 (1080x1920 review) or 2 (4K).
 usage: VIDEO=A K=1 python3 trailer3/render_l5.py [t ...]   (times -> preview PNGs in shots/; no times -> every frame into hd/frames_l5_<V>_K<K>/)"""
 import sys, os, json, math, bisect
 from multiprocessing import Pool
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageChops
 K=int(os.environ.get('K','1')); VID=os.environ.get('VIDEO','A'); PLAN=json.load(open(f'trailer3/plan_l5_{VID}.json'))
 FPS=PLAN['fps']; TOTAL=PLAN['total']; W,H=1080*K,1920*K
-CARD=(252,250,244); INK=(29,33,30); GREEN=(36,76,58); RED=(196,30,58); GREY=(110,112,106); HI=(250,226,178); PULSE=(27,138,76); FIELD=(246,241,229)
+CARD=(252,250,244); INK=(29,33,30); GREEN=(36,76,58); RED=(196,30,58); GREY=(110,112,106); HI=(250,226,178); PULSE=(27,138,76); FIELD=(246,241,229); AMBER=(204,132,22); WASH={'amber':(255,214,140),'red':(246,196,200)}
 SC=6; PAD=int(40*SC); BOARD=(42,123,289); TOP,BOT,LEFT,RIGHT=100,416,6,342; BAND=232
 F=lambda n,s: ImageFont.truetype(f'fonts/{n}.ttf',max(1,int(s*K)))
 CAMK=PLAN['cam']; CT=[c[0] for c in CAMK]
@@ -53,9 +53,35 @@ def draw_rings(im,m,t):
                 for idx,tp in R.get('pulses',[]):
                     if idx==j and 0<=t-tp<0.8: u=(t-tp)/0.8; grow=9*u; al=0.85+0.15*(1-u)
                 d.rounded_rectangle(cell_box(m,r,c,grow),radius=int(8*K),outline=INK+(int(255*al*a),),width=int(7*K))
+        elif R['kind']=='trial':   # temporary trial placement: solid amber ring
+            for r,c in R['cells']: d.rounded_rectangle(cell_box(m,r,c,2),radius=int(8*K),outline=AMBER+(int(235*a),),width=int(6*K))
         else:   # green: a confirmed correct move
             w=0.5+0.5*math.cos(2*math.pi*((t-R['t0'])%0.9)/0.9)
             for r,c in R['cells']: d.rounded_rectangle(cell_box(m,r,c,3*(1-w)),radius=int(8*K),outline=PULSE+(int(255*(0.55+0.45*w)*a),),width=int(5*K))
+def draw_washes(im,m,t):
+    for Wd in PLAN.get('washes',[]):
+        if not (Wd['t0']<=t<Wd['t1']): continue
+        a=smooth(Wd['t0'],Wd['t1'],t,0.4)*0.55; bx,by,bs=BOARD; cs=bs/9
+        box=tuple(int(v) for v in (m.x(bx+Wd['c0']*cs),m.y(by+Wd['r0']*cs),m.x(bx+(Wd['c1']+1)*cs),m.y(by+(Wd['r1']+1)*cs)))
+        reg=im.crop(box); tint=ImageChops.multiply(reg,Image.new('RGB',reg.size,WASH[Wd['color']])); im.paste(Image.blend(reg,tint,a),box[:2])
+RAILC={'ink':INK,'trial':AMBER,'red':RED,'green':PULSE}
+def draw_rail(im,t):
+    R=PLAN.get('rail')
+    if not R: return
+    ga=1-max(0,min(1,(t-R['t_hide'])/0.4)); items=[i for i in R['items'] if i['t']<=t]
+    if not items or ga<=0: return
+    seg=[]
+    for i in items:
+        if i.get('clear'): seg=[]
+        seg.append(i)
+    for c in R.get('clear_at',[]):
+        if seg[-1]['t']<c<=t: ga*=max(0,1-(t-c)/0.4)
+    if ga<=0: return
+    d=ImageDraw.Draw(im,'RGBA'); fc=F('mono500',44); fl=F('plex400',34); y0=1272; LH=74; shown=seg[-4:]
+    for j,i in enumerate(shown):
+        u=max(0,min(1,(t-i['t'])/0.25)); new=(j==len(shown)-1); a=ga*u*(1 if new else 0.55); y=(y0+j*LH+(1-u)*14)*K; col=RAILC[i['kind']]
+        d.ellipse((92*K,y+16*K,110*K,y+34*K),fill=col+(int(255*a),))
+        d.text((134*K,y),i['coord'],font=fc,fill=INK+(int(255*a),)); d.text((134*K+d.textlength(i['coord'],font=fc)+28*K,y+8*K),i['label'],font=fl,fill=(col if i['kind']!='ink' else GREY)+(int(255*a),))
 def fit(d,txt,font_name,maxw,start=80,minimum=44):
     s=start
     while s>minimum and d.textlength(txt,font=F(font_name,s))>maxw: s-=2
@@ -87,7 +113,7 @@ def paste_seal(im,x,y,w,a):
     im.paste(s,(int(x*K),int(y*K)),s)
 def draw_sub(im,t):
     S=PLAN['sub']
-    if not (S['t0']<=t<S['t1']): return
+    if not S or not (S['t0']<=t<S['t1']): return
     a=smooth(S['t0'],S['t1'],t,0.2); d=ImageDraw.Draw(im,'RGBA'); f1=F('plex400',36); f2=F('plex600',36)
     t1w=d.textlength(S['text1'],font=f1); pw=d.textlength(S['text2'],font=f2)+70*K; total=(96+22)*K+max(t1w,pw); x0=(W-total)/2
     paste_seal(im,x0/K,1300,96,a); tx=x0+118*K
@@ -96,14 +122,17 @@ def draw_sub(im,t):
 def draw_end(im,t):
     E=PLAN['end']; a=smooth(E['t0'],TOTAL+9,t,0.5)
     if a<=0: return
-    d=ImageDraw.Draw(im,'RGBA'); d.rounded_rectangle((30*K,1150*K,1050*K,1535*K),radius=26*K,fill=FIELD+(int(235*a),))
+    url=E.get('url'); d=ImageDraw.Draw(im,'RGBA'); d.rounded_rectangle((30*K,1150*K,1050*K,(1600 if url else 1535)*K),radius=26*K,fill=FIELD+(int(235*a),))
     paste_seal(im,36,36,100,a)
     words=E['line1'].split(); l1=' '.join(words[:2]); l2=' '.join(words[2:]); f=F('plex600',92)
     for i,s in enumerate((l1,l2)):
         w=d.textlength(s,font=f); d.text(((W-w)/2,(1172+i*98)*K),s,font=f,fill=INK+(int(255*a),))
     f2=F('plex600',54); w=d.textlength(E['line2'],font=f2); x=(W-w)/2
     d.rounded_rectangle((x-44*K,1384*K,x+w+44*K,1384*K+84*K),radius=42*K,fill=GREEN+(int(240*a),)); d.text((x,1384*K+12*K),E['line2'],font=f2,fill=(255,255,255,int(255*a)))
-    f3=F('plex400',34); w=d.textlength(E['line3'],font=f3); d.text(((W-w)/2,1486*K),E['line3'],font=f3,fill=GREY+(int(255*a),))
+    f3=F('plex400',34); y3=1486
+    if url:
+        fu=F('mono500',32); w=d.textlength(url,font=fu); d.text(((W-w)/2,1490*K),url,font=fu,fill=INK+(int(255*a),)); y3=1540
+    w=d.textlength(E['line3'],font=f3); d.text(((W-w)/2,y3*K),E['line3'],font=f3,fill=GREY+(int(255*a),))
 T=[s[0] for s in PLAN['steps']]
 def name_at(t): return PLAN['steps'][max(0,bisect.bisect_right(T,t)-1)][1]
 def frame(t):
@@ -117,7 +146,7 @@ def frame(t):
         x0,y0,x1,y1=max(0,x0),max(0,y0),min(W,x1),min(H,y1)
         if x1>x0 and y1>y0: d.rectangle((x0,y0,x1,y1),fill=CARD+(255,))
     rect(0,0,W,m.y(TOP)); rect(0,m.y(BOT),W,H); rect(0,0,m.x(LEFT),H); rect(m.x(RIGHT),0,W,H)
-    draw_rings(im,m,t)
+    draw_washes(im,m,t); draw_rings(im,m,t)
     # header band (covers the board when the camera is tight) with a soft lower edge
     ea=smooth(PLAN['end']['t0'],TOTAL+9,t,0.5)
     if ea<1:
@@ -125,7 +154,7 @@ def frame(t):
         for i in range(24*K): d.line((0,BAND*K+i,W,BAND*K+i),fill=CARD+(int(255*(1-i/(24*K))*(1-ea)),))
         if ea>0: band.putalpha(int(255*(1-ea)))
         im.paste(band,(0,0),band)
-    draw_head(im,t); draw_sub(im,t); draw_end(im,t)
+    draw_head(im,t); draw_rail(im,t); draw_sub(im,t); draw_end(im,t)
     return im
 def work(i):
     frame(i/FPS).save(f'hd/frames_l5_{VID}_K{K}/f{i:05d}.png',compress_level=1); return i

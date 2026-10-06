@@ -1,5 +1,22 @@
 # Lesson 05 creative test: SP-20261005-922508
 
+## Current: v2 revised forward cut (Video F, 2026-10-06)
+
+One forward-chronological journal-style proof, "Where Does the 9 Go? A Failed Trial Proves It", built from `brief/lesson05-revised-forward-script.md`. It replaces the A/B pair for review.
+
+| File (local only, `renders/v2/`) | Format | Length | Size | sha256 |
+| --- | --- | --- | --- | --- |
+| `SP-20261005-922508_lesson_916_1080p_v2.mp4` | 9:16, 1080x1920 review | 41.8 s, 30 fps, −14.4 LUFS | 2.6 MB (2,562,346 bytes) | `1ecf2da25a4fd7582d10d9a5552c2371d70350202573c7e03162904da2cfd9d1` |
+
+- Full 9×9 grid on screen in every scene. Box 4 amber wash for the fork, ink rings on r5c1/r6c2, amber ring on the temporary r6c2=9, red dashed on the two 7s in row 3, green pulse on r5c1=9. The event rail shows each coordinate with its technique. It stops after r6c8=9 and r6c9=2: no second fork, no solved grid. No subscribe card. The end card reads PLAY THIS EXACT REPLAY / Tap Play now / orbacesudoku.com/su-pu/SP-20261005-922508 / The next fork is still waiting.
+- **Source correction (read `brief/source-check.md`):** the script's "BOX 3: NO PLACE FOR 6" comes from the Journal's hand-pencilled chain. The recorded replay fails on **two 7s in row 3**, so the headline and line F5 say that.
+- **Voice: all scratch (pico).** No recording was supplied for this narration. Lines to record: `script/vo-rerecord-sheet.md` (Video F section). Captions: `script/SP-20261005-922508_lesson_F.en.srt`. Plan: `production/plan/plan_F.json`. Build: `trailer3/plan_l5_fwd.py`, then `VIDEO=F render_l5.py`, then `audio_l5.py plan_l5_F.json -`.
+- After approval and recording: re-cut to the real voice, 4K masters, 16:9 (and 1:1 if needed) from their own captures, thumbnails, YouTube copy.
+
+---
+
+## Earlier: v1 A/B creative test
+
 Two review videos from one replay, differing only in narrative order (Video A: choice first; Video B: contradiction first). Brief: `brief/lesson05-creative-test-brief.md` (from the Drive production brief). Replay: https://orbacesudoku.com/su-pu/SP-20261005-922508
 
 **Read `brief/source-check.md` first.** The brief says the contradiction is "Box 3 has no place for 6". The recording shows **two 7s in row 3** (and 6 still has legal cells in Box 3), so on-screen text and three narration sentences were corrected.
