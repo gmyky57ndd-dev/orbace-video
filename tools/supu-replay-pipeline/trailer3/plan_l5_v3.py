@@ -61,3 +61,7 @@ assert not any(n in ('s036','s037','s038','s041','s042') or int(n[1:])>45 for _,
 for i in range(len(VO)-1): assert VO[i][6]+VO[i][5]<VO[i+1][6],('voice overlap',VO[i][0])
 for r in rail: print(r['t'],r['coord'],r['label'])
 print('voice ends',round(VO[-1][6]+VO[-1][5],2),'total',TOTAL)
+# ---- finals (2026-10-06 PM feedback): after the trial clears, use the quiet captures (path pins hidden) from capture_l5_final.js ----
+Q=dict(P); Q['video']='V3F'
+Q['steps']=[(t,n+'q' if n in ('s040','s044','s045') else n) for t,n in P['steps']]
+json.dump(Q,open('trailer3/plan_l5_V3F.json','w'),indent=1,ensure_ascii=False)

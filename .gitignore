@@ -48,3 +48,4 @@ tools/supu-replay-pipeline/hd/*.info
 **/hd/v7.info
 **/hd/t6w/
 **/hd/l5/
+**/hd/l5f_*/

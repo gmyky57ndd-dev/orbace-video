@@ -143,3 +143,7 @@ New folder `videos/journal-lesson/lesson5/` (SP-20261005-922508): brief record, 
 ## 2026-10-06: Lesson 05 v3 (real voice, Box 1 / 7)
 - Added `videos/journal-lesson/lesson5/brief/lesson05-revised-forward-script-v4.md`, `script/SP-20261005-922508_lesson.en.srt`, `script/narration-v3.txt`, `production/plan/plan_V3.json`, `production/plan/vo_report_V3.json`, `review/v3-validation-report.md`, `review/v3-contact-sheet-phone.png`.
 - Added `tools/supu-replay-pipeline/trailer3/plan_l5_v3.py`; `render_l5.py` gains box-frame and elimination-ray overlays and a configurable rail. No moves or renames.
+
+## 2026-10-06: Lesson 05 finals (9:16, 16:9, 1:1 at 4K)
+- Added `tools/supu-replay-pipeline/trailer3/capture_l5_final.js`, `render_l5_final.py`, `plan_l5_V3F.json` (from `plan_l5_v3.py`). `.gitignore` adds `**/hd/l5f_*/`.
+- Added `videos/journal-lesson/lesson5/publishing/youtube-copy.md`, `publishing/thumbnails/*_thumb.jpg`, `renders/final/SP-20261005-922508_lesson.en.srt`, `review/final-validation-report.md`, `review/final-phone-check-{916,169,11}.png`. No moves or renames.

@@ -1,6 +1,20 @@
 # Lesson 05 creative test: SP-20261005-922508
 
-## Current: v3 forward proof with the real voice (2026-10-06)
+## Final (2026-10-06): 9:16, 16:9, 1:1 at 4K
+
+The approved v3 cut with the PM's last feedback: path pins fade after the trial clears, larger pencil notes and end-card URL, full board with no inset, natural bitrate. Each format is rendered from its own capture of the production replay (`trailer3/capture_l5_final.js`, then `render_l5_final.py` with FORMAT=916|169|11 K=2 PIPE=…). Validation, phone-size and YouTube-style checks: `review/final-validation-report.md`. Package: `publishing/youtube-copy.md`, `publishing/thumbnails/`, captions `renders/final/SP-20261005-922508_lesson.en.srt`.
+
+| File (local only, `renders/final/`) | Size | Length | Bytes | sha256 |
+| --- | --- | --- | --- | --- |
+| `SP-20261005-922508_lesson_916_4k.mp4` | 2160×3840 | 41.9 s | 11,417,224 | `1313c4f5ea0cb4a6bc4382619048d25c91fe89a9d40b877514b308a6b3080fbd` |
+| `SP-20261005-922508_lesson_169_4k.mp4` | 3840×2160 | 41.9 s | 10,217,063 | `1a4c7dec28c45b1dba2406704040e4032ad0d5cfe18c5513d0ceda94d2ef99d6` |
+| `SP-20261005-922508_lesson_11_4k.mp4` | 2160×2160 | 41.9 s | 8,349,015 | `2b097ac289403950597eaf63e41103aa276c3c297ec4e9fdaddaca244df7853c` |
+
+H.264 High, 30 fps progressive, yuv420p, CRF 10; AAC 48 kHz stereo, −14.3 LUFS.
+
+---
+
+## Approved review cut: v3 forward proof with the real voice (2026-10-06)
 
 Built from `brief/lesson05-revised-forward-script-v4.md` and the PM's real narration take (`lesson_5_video_script_v4.mp3`, sha256 `b0dec010…b39e`, not committed). The contradiction is **Box 1 has no place for 7** at step 35, as recorded. Replay steps 36–38 (r3c2=7) are never shown. Validation: `review/v3-validation-report.md`. Captions: `script/SP-20261005-922508_lesson.en.srt`. Plan: `production/plan/plan_V3.json` (`trailer3/plan_l5_v3.py`, then `VIDEO=V3 render_l5.py`, then `audio_l5.py plan_l5_V3.json <take>`).
 
