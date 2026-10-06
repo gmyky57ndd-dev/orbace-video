@@ -1,0 +1,72 @@
+[
+ {
+  "id": "V1",
+  "start": 0.3,
+  "end": 3.06,
+  "scratch": false,
+  "text": "This Hell-tier grid begins with one sharp choice."
+ },
+ {
+  "id": "V2",
+  "start": 3.4,
+  "end": 10.79,
+  "scratch": false,
+  "text": "In Box Four, nine has only two possible homes: row five, column one\u2014or row six, column two."
+ },
+ {
+  "id": "V3",
+  "start": 11.3,
+  "end": 14.69,
+  "scratch": false,
+  "text": "Let's test the lower position: row six, column two."
+ },
+ {
+  "id": "V4",
+  "start": 15.2,
+  "end": 17.56,
+  "scratch": false,
+  "text": "Now follow the chain to step thirty-five."
+ },
+ {
+  "id": "V5",
+  "start": 21.8,
+  "end": 25.36,
+  "scratch": false,
+  "text": "The trial leads to row two, column two equals one\u2014"
+ },
+ {
+  "id": "V6",
+  "start": 25.7,
+  "end": 28.82,
+  "scratch": false,
+  "text": "but Box One has no place for seven. Contradiction."
+ },
+ {
+  "id": "V7",
+  "start": 29.3,
+  "end": 30.41,
+  "scratch": false,
+  "text": "That trial fails."
+ },
+ {
+  "id": "V8",
+  "start": 30.8,
+  "end": 36.27,
+  "scratch": false,
+  "text": "The other position is certain: r5c1 equals nine."
+ },
+ {
+  "id": "V9",
+  "start": 36.5,
+  "end": 37.85,
+  "scratch": false,
+  "text": "Two more placements follow."
+ },
+ {
+  "id": "V10",
+  "start": 38.2,
+  "end": 41.25,
+  "scratch": false,
+  "text": "Play the exact Su-Pu replay and trace the proof yourself."
+ }
+]

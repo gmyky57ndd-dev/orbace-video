@@ -139,3 +139,7 @@ New folder `videos/journal-lesson/lesson5/` (SP-20261005-922508): brief record, 
 - Added `videos/journal-lesson/lesson5/brief/lesson05-revised-forward-script.md` (PM script), `script/narration-F.txt`, `script/SP-20261005-922508_lesson_F.en.srt`, `production/plan/plan_F.json`, `production/plan/vo_report_F.json`, `review/v2-contact-sheet-F.png`.
 - Added `tools/supu-replay-pipeline/trailer3/plan_l5_fwd.py`. `render_l5.py` gains washes, a trial ring, the event rail and a URL end card (used only by plan F). `audio_l5.py` accepts `-` for scratch-only narration.
 - No moves or renames.
+
+## 2026-10-06: Lesson 05 v3 (real voice, Box 1 / 7)
+- Added `videos/journal-lesson/lesson5/brief/lesson05-revised-forward-script-v4.md`, `script/SP-20261005-922508_lesson.en.srt`, `script/narration-v3.txt`, `production/plan/plan_V3.json`, `production/plan/vo_report_V3.json`, `review/v3-validation-report.md`, `review/v3-contact-sheet-phone.png`.
+- Added `tools/supu-replay-pipeline/trailer3/plan_l5_v3.py`; `render_l5.py` gains box-frame and elimination-ray overlays and a configurable rail. No moves or renames.

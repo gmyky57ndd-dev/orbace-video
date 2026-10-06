@@ -53,6 +53,15 @@ def draw_rings(im,m,t):
                 for idx,tp in R.get('pulses',[]):
                     if idx==j and 0<=t-tp<0.8: u=(t-tp)/0.8; grow=9*u; al=0.85+0.15*(1-u)
                 d.rounded_rectangle(cell_box(m,r,c,grow),radius=int(8*K),outline=INK+(int(255*al*a),),width=int(7*K))
+        elif R['kind']=='redbox':   # contradiction: red dashed frame round a whole box
+            bx,by,bs=BOARD; cs=bs/9
+            dashed_rect(d,(m.x(bx+R['c0']*cs)-3*K,m.y(by+R['r0']*cs)-3*K,m.x(bx+(R['c1']+1)*cs)+3*K,m.y(by+(R['r1']+1)*cs)+3*K),RED+(int(255*a),),int(6*K),int(20*K),int(12*K))
+        elif R['kind']=='rays':     # elimination lines from a blocking digit across the box it rules out
+            bx,by,bs=BOARD; cs=bs/9
+            for (r0,c0),(r1,c1) in R['rays']:
+                u=max(0,min(1,(t-R['t0'])/0.6))
+                x0,y0=m.x(bx+(c0+.5)*cs),m.y(by+(r0+.5)*cs); x1,y1=m.x(bx+(c1+.5)*cs),m.y(by+(r1+.5)*cs)
+                d.line((x0,y0,x0+(x1-x0)*u,y0+(y1-y0)*u),fill=RED+(int(150*a),),width=int(5*K))
         elif R['kind']=='trial':   # temporary trial placement: solid amber ring
             for r,c in R['cells']: d.rounded_rectangle(cell_box(m,r,c,2),radius=int(8*K),outline=AMBER+(int(235*a),),width=int(6*K))
         else:   # green: a confirmed correct move
@@ -77,11 +86,11 @@ def draw_rail(im,t):
     for c in R.get('clear_at',[]):
         if seg[-1]['t']<c<=t: ga*=max(0,1-(t-c)/0.4)
     if ga<=0: return
-    d=ImageDraw.Draw(im,'RGBA'); fc=F('mono500',44); fl=F('plex400',34); y0=1272; LH=74; shown=seg[-4:]
+    sc,sl=R.get('size',(44,34)); x0=R.get('x0',92); d=ImageDraw.Draw(im,'RGBA'); fc=F('mono500',sc); fl=F('plex400',sl); y0=1272; LH=R.get('lh',74); shown=seg[-4:]
     for j,i in enumerate(shown):
         u=max(0,min(1,(t-i['t'])/0.25)); new=(j==len(shown)-1); a=ga*u*(1 if new else 0.55); y=(y0+j*LH+(1-u)*14)*K; col=RAILC[i['kind']]
-        d.ellipse((92*K,y+16*K,110*K,y+34*K),fill=col+(int(255*a),))
-        d.text((134*K,y),i['coord'],font=fc,fill=INK+(int(255*a),)); d.text((134*K+d.textlength(i['coord'],font=fc)+28*K,y+8*K),i['label'],font=fl,fill=(col if i['kind']!='ink' else GREY)+(int(255*a),))
+        d.ellipse(((x0+2)*K,y+(sc/2-7)*K,(x0+20)*K,y+(sc/2+11)*K),fill=col+(int(255*a),))
+        d.text(((x0+42)*K,y),i['coord'],font=fc,fill=INK+(int(255*a),)); d.text(((x0+42)*K+d.textlength(i['coord'],font=fc)+28*K,y+(sc-sl)*0.7*K),i['label'],font=fl,fill=(col if i['kind']!='ink' else GREY)+(int(255*a),))
 def fit(d,txt,font_name,maxw,start=80,minimum=44):
     s=start
     while s>minimum and d.textlength(txt,font=F(font_name,s))>maxw: s-=2

@@ -1,0 +1,691 @@
+{
+ "video": "V3",
+ "total": 41.9,
+ "fps": 30,
+ "id": "SP-20261005-922508",
+ "vo": [
+  {
+   "id": "V1",
+   "text": "This Hell-tier grid begins with one sharp choice.",
+   "src": "v4",
+   "cut0": 0.0,
+   "cut1": 3.11,
+   "speech_in": 0.14,
+   "speech_dur": 2.76,
+   "scratch": 0,
+   "at": 0.3
+  },
+  {
+   "id": "V2",
+   "text": "In Box Four, nine has only two possible homes: row five, column one—or row six, column two.",
+   "src": "v4",
+   "cut0": 3.11,
+   "cut1": 10.92,
+   "speech_in": 0.16,
+   "speech_dur": 7.39,
+   "scratch": 0,
+   "at": 3.4
+  },
+  {
+   "id": "V3",
+   "text": "Let's test the lower position: row six, column two.",
+   "src": "v4",
+   "cut0": 10.92,
+   "cut1": 14.75,
+   "speech_in": 0.25,
+   "speech_dur": 3.39,
+   "scratch": 0,
+   "at": 11.3
+  },
+  {
+   "id": "V4",
+   "text": "Now follow the chain to step thirty-five.",
+   "src": "v4",
+   "cut0": 14.75,
+   "cut1": 17.53,
+   "speech_in": 0.19,
+   "speech_dur": 2.36,
+   "scratch": 0,
+   "at": 15.2
+  },
+  {
+   "id": "V5",
+   "text": "The trial leads to row two, column two equals one—",
+   "src": "v4",
+   "cut0": 17.53,
+   "cut1": 21.46,
+   "speech_in": 0.2,
+   "speech_dur": 3.56,
+   "scratch": 0,
+   "at": 21.8
+  },
+  {
+   "id": "V6",
+   "text": "but Box One has no place for seven. Contradiction.",
+   "src": "v4",
+   "cut0": 21.46,
+   "cut1": 24.97,
+   "speech_in": 0.17,
+   "speech_dur": 3.12,
+   "scratch": 0,
+   "at": 25.7
+  },
+  {
+   "id": "V7",
+   "text": "That trial fails.",
+   "src": "v4",
+   "cut0": 24.97,
+   "cut1": 26.52,
+   "speech_in": 0.21,
+   "speech_dur": 1.11,
+   "scratch": 0,
+   "at": 29.3
+  },
+  {
+   "id": "V8",
+   "text": "The other position is certain: r5c1 equals nine.",
+   "src": "v4",
+   "cut0": 26.52,
+   "cut1": 32.38,
+   "speech_in": 0.19,
+   "speech_dur": 5.47,
+   "scratch": 0,
+   "at": 30.8
+  },
+  {
+   "id": "V9",
+   "text": "Two more placements follow.",
+   "src": "v4",
+   "cut0": 32.38,
+   "cut1": 34.15,
+   "speech_in": 0.18,
+   "speech_dur": 1.35,
+   "scratch": 0,
+   "at": 36.5
+  },
+  {
+   "id": "V10",
+   "text": "Play the exact Su-Pu replay and trace the proof yourself.",
+   "src": "v4",
+   "cut0": 34.15,
+   "cut1": 37.69,
+   "speech_in": 0.17,
+   "speech_dur": 3.05,
+   "scratch": 0,
+   "at": 38.2
+  }
+ ],
+ "end": {
+  "t0": 37.9,
+  "line1": "PLAY THIS EXACT REPLAY",
+  "line2": "Tap Play now",
+  "url": "https://orbacesudoku.com/su-pu/SP-20261005-922508",
+  "line3": "The next fork is still waiting."
+ },
+ "sub": null,
+ "steps": [
+  [
+   0.0,
+   "s000"
+  ],
+  [
+   7.0,
+   "s001"
+  ],
+  [
+   9.17,
+   "s002"
+  ],
+  [
+   11.3,
+   "s003"
+  ],
+  [
+   11.9,
+   "s004"
+  ],
+  [
+   13.06,
+   "s005"
+  ],
+  [
+   15.2,
+   "s006"
+  ],
+  [
+   15.248,
+   "s007"
+  ],
+  [
+   15.798,
+   "s008"
+  ],
+  [
+   15.96,
+   "s009"
+  ],
+  [
+   16.121,
+   "s010"
+  ],
+  [
+   16.283,
+   "s011"
+  ],
+  [
+   16.444,
+   "s012"
+  ],
+  [
+   16.994,
+   "s013"
+  ],
+  [
+   17.042,
+   "s014"
+  ],
+  [
+   17.204,
+   "s015"
+  ],
+  [
+   17.366,
+   "s016"
+  ],
+  [
+   17.527,
+   "s017"
+  ],
+  [
+   17.689,
+   "s018"
+  ],
+  [
+   17.851,
+   "s019"
+  ],
+  [
+   18.012,
+   "s020"
+  ],
+  [
+   18.174,
+   "s021"
+  ],
+  [
+   18.335,
+   "s022"
+  ],
+  [
+   18.497,
+   "s023"
+  ],
+  [
+   18.659,
+   "s024"
+  ],
+  [
+   19.208,
+   "s025"
+  ],
+  [
+   19.37,
+   "s026"
+  ],
+  [
+   19.531,
+   "s027"
+  ],
+  [
+   20.081,
+   "s028"
+  ],
+  [
+   20.242,
+   "s029"
+  ],
+  [
+   20.404,
+   "s030"
+  ],
+  [
+   20.566,
+   "s031"
+  ],
+  [
+   20.727,
+   "s032"
+  ],
+  [
+   20.889,
+   "s033"
+  ],
+  [
+   21.438,
+   "s034"
+  ],
+  [
+   24.0,
+   "s035"
+  ],
+  [
+   29.6,
+   "s039"
+  ],
+  [
+   33.2,
+   "s040"
+  ],
+  [
+   36.9,
+   "s044"
+  ],
+  [
+   37.6,
+   "s045"
+  ]
+ ],
+ "cam": [
+  [
+   0,
+   178,
+   262,
+   3.12,
+   540,
+   760
+  ],
+  [
+   37.5,
+   178,
+   262,
+   3.12,
+   540,
+   760
+  ],
+  [
+   38.3,
+   178,
+   262,
+   3.12,
+   540,
+   655
+  ]
+ ],
+ "heads": [
+  {
+   "t0": 0.0,
+   "t1": 3.2,
+   "lines": [
+    [
+     [
+      "ONE GRID. ONE CHOICE.",
+      0
+     ]
+    ]
+   ]
+  },
+  {
+   "t0": 3.2,
+   "t1": 11.1,
+   "lines": [
+    [
+     [
+      "WHERE DOES 9 GO?",
+      0
+     ]
+    ],
+    [
+     [
+      "r5c1",
+      1
+     ],
+     [
+      "  OR  ",
+      0
+     ],
+     [
+      "r6c2",
+      1
+     ]
+    ]
+   ]
+  },
+  {
+   "t0": 11.1,
+   "t1": 15.0,
+   "lines": [
+    [
+     [
+      "TEST ",
+      0
+     ],
+     [
+      "r6c2 = 9",
+      1
+     ]
+    ]
+   ]
+  },
+  {
+   "t0": 15.0,
+   "t1": 25.6,
+   "lines": [
+    [
+     [
+      "FOLLOW THE PROOF",
+      0
+     ]
+    ]
+   ]
+  },
+  {
+   "t0": 25.7,
+   "t1": 29.2,
+   "lines": [
+    [
+     [
+      "BOX 1: NO PLACE FOR 7",
+      2
+     ]
+    ],
+    [
+     [
+      "TRIAL FAILS",
+      0
+     ]
+    ]
+   ]
+  },
+  {
+   "t0": 29.3,
+   "t1": 37.9,
+   "lines": [
+    [
+     [
+      "CONFIRM ",
+      0
+     ],
+     [
+      "r5c1 = 9",
+      1
+     ]
+    ],
+    [
+     [
+      "THE OTHER 9 IS CERTAIN",
+      0
+     ]
+    ]
+   ]
+  }
+ ],
+ "washes": [
+  {
+   "color": "amber",
+   "r0": 3,
+   "c0": 0,
+   "r1": 5,
+   "c1": 2,
+   "t0": 0.3,
+   "t1": 15.0
+  },
+  {
+   "color": "red",
+   "r0": 0,
+   "c0": 0,
+   "r1": 2,
+   "c1": 2,
+   "t0": 25.8,
+   "t1": 29.6
+  }
+ ],
+ "rings": [
+  {
+   "kind": "ink",
+   "cells": [
+    [
+     4,
+     0
+    ],
+    [
+     5,
+     1
+    ]
+   ],
+   "t0": 3.6,
+   "t1": 11.3,
+   "pulses": [
+    [
+     0,
+     7.0
+    ],
+    [
+     1,
+     9.17
+    ]
+   ]
+  },
+  {
+   "kind": "trial",
+   "cells": [
+    [
+     5,
+     1
+    ]
+   ],
+   "t0": 13.06,
+   "t1": 29.6
+  },
+  {
+   "kind": "redbox",
+   "r0": 0,
+   "c0": 0,
+   "r1": 2,
+   "c1": 2,
+   "t0": 25.8,
+   "t1": 29.6
+  },
+  {
+   "kind": "ink",
+   "cells": [
+    [
+     0,
+     4
+    ],
+    [
+     2,
+     6
+    ],
+    [
+     8,
+     0
+    ],
+    [
+     4,
+     2
+    ]
+   ],
+   "t0": 26.3,
+   "t1": 29.6
+  },
+  {
+   "kind": "rays",
+   "t0": 26.3,
+   "t1": 29.6,
+   "rays": [
+    [
+     [
+      0,
+      4
+     ],
+     [
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      2,
+      6
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    [
+     [
+      8,
+      0
+     ],
+     [
+      0,
+      0
+     ]
+    ],
+    [
+     [
+      4,
+      2
+     ],
+     [
+      0,
+      2
+     ]
+    ]
+   ]
+  },
+  {
+   "kind": "green",
+   "cells": [
+    [
+     4,
+     0
+    ]
+   ],
+   "t0": 33.2,
+   "t1": 35.4,
+   "pulse": 1
+  }
+ ],
+ "dehighlight": {
+  "name": "s039",
+  "t0": 29.6,
+  "t1": 30.1
+ },
+ "rail": {
+  "items": [
+   {
+    "t": 7.0,
+    "coord": "r5c1 = 9",
+    "label": "candidate",
+    "kind": "ink"
+   },
+   {
+    "t": 9.17,
+    "coord": "r6c2 = 9",
+    "label": "candidate",
+    "kind": "ink"
+   },
+   {
+    "t": 13.06,
+    "coord": "r6c2 = 9",
+    "label": "TRIAL · temporary",
+    "kind": "trial",
+    "clear": true
+   },
+   {
+    "t": 15.248,
+    "coord": "r5c7 = 9",
+    "label": "hidden single · box 6",
+    "kind": "ink"
+   },
+   {
+    "t": 16.444,
+    "coord": "r1c4 = 5",
+    "label": "hidden single · column 4",
+    "kind": "ink"
+   },
+   {
+    "t": 18.659,
+    "coord": "r5c3 = 7",
+    "label": "hidden single · box 4",
+    "kind": "ink"
+   },
+   {
+    "t": 19.531,
+    "coord": "r1c5 = 7",
+    "label": "hidden single · box 2",
+    "kind": "ink"
+   },
+   {
+    "t": 20.889,
+    "coord": "r1c8 = 1",
+    "label": "hidden single · box 3",
+    "kind": "ink"
+   },
+   {
+    "t": 24.0,
+    "coord": "r2c2 = 1",
+    "label": "hidden single · box 1",
+    "kind": "ink"
+   },
+   {
+    "t": 25.8,
+    "coord": "Box 1",
+    "label": "no legal cell for 7",
+    "kind": "red"
+   },
+   {
+    "t": 33.2,
+    "coord": "r5c1 = 9",
+    "label": "confirmed by the failed trial",
+    "kind": "green",
+    "clear": true
+   },
+   {
+    "t": 36.9,
+    "coord": "r6c8 = 9",
+    "label": "hidden single · row 6",
+    "kind": "ink"
+   },
+   {
+    "t": 37.6,
+    "coord": "r6c9 = 2",
+    "label": "hidden single · row 6",
+    "kind": "ink"
+   }
+  ],
+  "t_hide": 37.9,
+  "clear_at": [
+   29.6
+  ],
+  "x0": 116,
+  "x1": 1017,
+  "size": [
+   46,
+   40
+  ],
+  "lh": 80
+ },
+ "sfx": {
+  "brush": [
+   0.6,
+   7.0,
+   9.17
+  ],
+  "ink": [
+   13.06
+  ],
+  "impact": 28.0,
+  "release": 29.6,
+  "lift": 33.2
+ },
+ "music": {
+  "chain0": 15.2,
+  "contra": 25.8,
+  "release": 29.6,
+  "lift": 33.2,
+  "end": 41.9
+ }
+}

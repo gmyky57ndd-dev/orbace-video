@@ -1,6 +1,18 @@
 # Lesson 05 creative test: SP-20261005-922508
 
-## Current: v2 revised forward cut (Video F, 2026-10-06)
+## Current: v3 forward proof with the real voice (2026-10-06)
+
+Built from `brief/lesson05-revised-forward-script-v4.md` and the PM's real narration take (`lesson_5_video_script_v4.mp3`, sha256 `b0dec010…b39e`, not committed). The contradiction is **Box 1 has no place for 7** at step 35, as recorded. Replay steps 36–38 (r3c2=7) are never shown. Validation: `review/v3-validation-report.md`. Captions: `script/SP-20261005-922508_lesson.en.srt`. Plan: `production/plan/plan_V3.json` (`trailer3/plan_l5_v3.py`, then `VIDEO=V3 render_l5.py`, then `audio_l5.py plan_l5_V3.json <take>`).
+
+| File (local only, `renders/v3/`) | Format | Length | Size | sha256 |
+| --- | --- | --- | --- | --- |
+| `SP-20261005-922508_lesson_916_1080p_v3.mp4` | 9:16, 1080x1920, H.264 High CRF 8, AAC 48 kHz stereo | 41.9 s, −14.3 LUFS | 7.1 MB (7,094,013 bytes) | `dc19bad882cbdcc456231e568c44bb392ce463b02e1222e65301d6614d06822c` |
+
+Next, after approval: native 4K (2160x3840) master, 16:9 from its own capture, thumbnails, YouTube copy.
+
+---
+
+## Superseded: v2 revised forward cut (Video F, 2026-10-06)
 
 One forward-chronological journal-style proof, "Where Does the 9 Go? A Failed Trial Proves It", built from `brief/lesson05-revised-forward-script.md`. It replaces the A/B pair for review.
 
